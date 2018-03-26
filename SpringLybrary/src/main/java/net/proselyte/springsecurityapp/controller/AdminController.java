@@ -57,21 +57,21 @@ public class AdminController extends Controller {
     }
 
     @RequestMapping(value = "/addNewUser", method = RequestMethod.POST)
-    public String addNewuser(@RequestParam(value = "password", required = false, defaultValue = "Not found") String password,
-                                    @RequestParam(value = "name", required = false, defaultValue = "Not found") String name,
-                                    @RequestParam(value = "email", required = false, defaultValue = "Not found") String email,
-                                    @RequestParam(value = "surname", required = false, defaultValue = "Not found") String surname,
-                                    @RequestParam(value = "status", required = false, defaultValue = "Not found") String status) {
+    public String addNewuser(@RequestParam(value = "password", required = false, defaultValue = "No password") String password,
+                                    @RequestParam(value = "name", required = false, defaultValue = "No name") String name,
+                                    @RequestParam(value = "email", required = false, defaultValue = "No email") String email,
+                                    @RequestParam(value = "surname", required = false, defaultValue = "No surname") String surname,
+                                    @RequestParam(value = "status", required = false, defaultValue = "No status") String status) {
         boolean check = addNewUserToTheSystem(name,surname,email,password,status);
         return check?"true":"false";
     }
 
     @RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
-    public String modifyUser(@RequestParam(value = "id", required = false, defaultValue = "Not found") String id,
-                                    @RequestParam(value = "name", required = false, defaultValue = "Not found") String name,
-                                    @RequestParam(value = "address", required = false, defaultValue = "Not found") String address,
-                                    @RequestParam(value = "phone", required = false, defaultValue = "Not found") String phone,
-                                    @RequestParam(value = "type", required = false, defaultValue = "Not found") String status){
+    public String modifyUser(@RequestParam(value = "id", required = false, defaultValue = "No id") String id,
+                                    @RequestParam(value = "name", required = false, defaultValue = "No name") String name,
+                                    @RequestParam(value = "address", required = false, defaultValue = "No address") String address,
+                                    @RequestParam(value = "phone", required = false, defaultValue = "No phone") String phone,
+                                    @RequestParam(value = "type", required = false, defaultValue = "No type") String status){
         String surname = name.substring(name.indexOf(' ')+1, name.length());
         name = name.substring(0,name.indexOf(' '));
         User u = userService.get(Integer.parseInt(id));

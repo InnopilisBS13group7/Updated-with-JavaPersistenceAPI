@@ -121,7 +121,7 @@ public class Controller {
         return userService.getByCookie(cookieUserCode.getValue()) == null;
     }
 
-    protected boolean addNewUserToTheSystem(String name, String surname, String email, String password) throws SQLException {
+    protected boolean addNewUserToTheSystem(String name, String surname, String email, String password){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         if (userService.get(email) != null) return false;
         String encodedPassword = encoder.encode(password);
@@ -171,15 +171,16 @@ public class Controller {
                 "<input type=password class=new_user_inputs id=new_user_inputs_password placeholder=\"Password\" />" +
                 "<input type=text class=new_user_inputs id=new_user_inputs_type placeholder=\"Type\" />" +
                 "<div id=new_user_save>Save</div>" +
+                "<div id=new_user_alert>New user was saved</div>" +
                 "</div>";
         for (User u : users) {
             div += "<div class=settings_list_users>" +
                     "<img src=/resources/img/avatars/1.jpg width=106px height=106px class=settings_users_list_avatar />" +
                     "<div class=settings_users_list_specs_box>" +
-                    "<b>Name: </b><input type=text class=settings_inputs_users_name placeholder=\"Name\" value=\"" + u.getName() + " " + u.getSurname() + "\" /></br>" +
-                    "<b>Adress: </b><input type=text class=settings_inputs_users_adress placeholder=\"Adress\" value=\"" + u.getAddress() + "\" /></br>" +
-                    "<b>Phone number: </b><input type=text class=settings_inputs_users_phone placeholder=\"Phone number\" value=\"" + u.getPhone() + "\" /></br>" +
-                    "<b>id: </b>" + u.getId() + "</br>" +
+                    "<b>Name: </b><input type=text class=settings_inputs_users_name placeholder=\"Name\" value=\""+ u.getName() + " " + u.getSurname() +"\" /></br>" +
+                    "<b>Adress: </b><input type=text class=settings_inputs_users_adress placeholder=\"Adress\" value=\""+u.getAddress()+"\" /></br>" +
+                    "<b>Phone number: </b><input type=text class=settings_inputs_users_phone placeholder=\"Phone number\" value=\""+u.getPhone()+"\" /></br>" +
+                    "<b>id: </b>"+u.getId()+"</br>" +
                     "<b>Type: </b><input type=text class=settings_inputs_users_type placeholder=\"Type\" value=\"" + u.getStatus() + "\" /></br>" +
                     "</div>" +
                     "<div class=settings_users_list_modify id=" + u.getId() + ">Save</div>" +
@@ -188,23 +189,21 @@ public class Controller {
         return div + "</div>";
     }
 
-    protected String createListOfOrdersBlock(List<Order> orders) throws SQLException {
+    protected String createListOfOrdersBlock(List<Order> orders){
         String div = "<div class=settings_type_box id=settings_orders>";
         Document d;
         User u;
         for (Order or : orders) {
             d = documentService.get(or.getItemId());
-            System.out.println(or);
-            System.out.println(d);
             u = userService.get(or.getUserId());
             div += "<div class=settings_list_orders>" +
                     "<img src=/resources/img/books/1.jpg width=62px height=62px class=settings_orders_list_avatar />" +
                     "<div class=settings_orders_list_specs_box>" +
-                    "<b style=\"text-decoration:underline;\"> (" + or.getId() + ")" + d.getTitle() + "   :" + u.getName() + " " + u.getSurname() + "</b></br>" +
-                    "<b>Status: </b>" + or.getStatus() + "</br>" +
+                    "<b style=\"text-decoration:underline;\"> (" + or.getId() + ")" + d.getTitle()+ "   :" + u.getName() + " " + u.getSurname()  + "</b></br>" +
+                    "<b>Status: </b>"+or.getStatus()+"</br>" +
                     "<b>Return date:</b>" + getDate(or.getFinishTime()) +
                     "</div>" +
-                    (or.getStatus().equals("closed") ? "" : "<div class=settings_orders_list_modify id=" + or.getId() + ">Close</div>") +
+                    (or.getStatus().equals("closed") ? "":"<div class=settings_orders_list_modify id="+or.getId()+">Close</div>") +
                     "</div>";
         }
         return div + "</div>";

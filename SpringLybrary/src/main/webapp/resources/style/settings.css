@@ -199,14 +199,32 @@ body{
 	font-family:'RobotoRegular';
 	font-size:18px;
 	text-align:center;
-	padding-top:8px;
-	padding-bottom:8px;
-	padding-left:0px;
-	padding-right:0px;
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-left:8px;
+	padding-right:8px;
 	color:white;
 	background-color:#ff000d;
 	margin-left:264px;
-	margin-top:468px;
-	width:0px;
+	margin-top:-38px;
+	height:0px;
 	overflow:hidden;
+	cursor:default;
+}
+#new_user_alert{
+	position:absolute;
+	font-family:'RobotoRegular';
+	font-size:18px;
+	text-align:center;
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-left:8px;
+	padding-right:8px;
+	color:white;
+	background-color:#ff000d;
+	margin-top:-38px;
+	height:0px;
+	overflow:hidden;
+	cursor:default;
+	width:230px;
 }

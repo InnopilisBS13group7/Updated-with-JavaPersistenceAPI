@@ -34,27 +34,53 @@ $(document).ready(function(){
 		}
 	});
 	$("#new_user_save").click(function(){
-		$.post("/addNewUser", {name:$("#new_user_inputs_name").val(), surname:$("#new_user_inputs_surname").val(), email:$("#new_user_inputs_email").val(), password:$("#new_user_inputs_password").val(), status:$("#new_user_inputs_type").val()}, function(result){
-			alert(result)
-		});
+		if($("#new_user_inputs_name").val() == "")
+			$("#new_user_inputs_name").css({"border-bottom":"2px solid rgb(255, 71, 81)"});
+		else{
+			if($("#new_user_inputs_surname").val() == "")
+				$("#new_user_inputs_surname").css({"border-bottom":"2px solid rgb(255, 71, 81)"});
+			else{
+				if($("#new_user_inputs_email").val() == "")
+					$("#new_user_inputs_email").css({"border-bottom":"2px solid rgb(255, 71, 81)"});
+				else{
+					if($("#new_user_inputs_password").val() == "")
+						$("#new_user_inputs_password").css({"border-bottom":"2px solid rgb(255, 71, 81)"});
+					else{
+						if($("#new_user_inputs_type").val() == "")
+							$("#new_user_inputs_type").css({"border-bottom":"2px solid rgb(255, 71, 81)"});
+						else{
+							$.post("/addNewUser", {name:$("#new_user_inputs_name").val(), surname:$("#new_user_inputs_surname").val(), email:$("#new_user_inputs_email").val(), password:$("#new_user_inputs_password").val(), status:$("#new_user_inputs_type").val()}, function(result){
+								$("#new_user_alert").animate({"height":"22px", "padding-top":"8px", "padding-bottom":"8px"}, 150).delay(1000).animate({"height":"0px", "padding-top":"0px", "padding-bottom":"0px"}, 150);
+								setTimeout(function(){
+									$("#new_user_bottom").text("+ Add a new user").css({"color":"black"});
+									$("#new_user").animate({"height":"20px"}, 150);
+									$("#settings_block").animate({"height":"-=218px"}, 150);
+								}, 1000);
+							});
+						}
+					}
+				}
+			}
+		}
 	});
 	$("#settings_profile_save").click(function(){
 		$.post("/profileSettings", {name:$("#settings_name").val(), surname:$("#settings_surname").val(), currentPassword:$("#settings_current_password").val(), newPassword:$("#settings_new_password").val(), address:$("#settings_adress").val(), phone:$("#settings_phone").val()}, function(result){
-			$("#settings_alert").animate({"width":"256px", "padding-left":"8px", "padding-right":"8px"}, 150).delay(1000).animate({"width":"0px", "padding-left":"0px", "padding-right":"0px"}, 150);
+			$("#settings_alert").animate({"height":"22px", "padding-top":"8px", "padding-bottom":"8px"}, 150).delay(1000).animate({"height":"0px", "padding-top":"0px", "padding-bottom":"0px"}, 150);
 		});
 	});
 	$(".settings_users_list_modify").click(function(){
-		// alert("work")
-		var object = $(this).parent();
-		var id = $(this).attr("id");
-		$.post("/modifyUser", {id:id, name:object.find(".settings_inputs_users_name").val(), address:object.find(".settings_inputs_users_adress").val(), phone:object.find(".settings_inputs_users_phone").val(), type:object.find(".settings_inputs_users_type").val()}, function(result){
-			alert(result)
-		});
-	});
+    var object = $(this).parent();
+    var object20 = $(this);
+    var id = $(this).attr("id");
+    $.post("/modifyUser", {id:id, name:object.find(".settings_inputs_users_name").val(), address:object.find(".settings_inputs_users_adress").val(), phone:object.find(".settings_inputs_users_phone").val(), type:object.find(".settings_inputs_users_type").val()}, function(result){
+      object20.text("Saved").animate({"margin-left":"720px"}, 100);
+    });
+  });
 	$(".settings_orders_list_modify").click(function(){
-		var id = $(this).attr("id");
+		var object = $(this);
+		var id = object.attr("id");
 		$.post("/closeOrder", {orderId:id}, function(result){
-			alert(result)
+			object.text("Closed").animate({"margin-left":"713px"}, 100);
 		});
 	});
 });

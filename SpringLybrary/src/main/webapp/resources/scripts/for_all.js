@@ -81,7 +81,7 @@ $(document).ready(function(){
 	});
 	$("#exit").click(function(){
 		$.post("/exit", function(result){
-			alert(result)
+			location.reload();
 		});
 	});
 	$("#settings").click(function(){

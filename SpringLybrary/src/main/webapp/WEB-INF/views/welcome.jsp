@@ -9,11 +9,9 @@
     <title>welcome</title>
 </head>
 <body>
-<p>users: ${users}</p>
+<p>Name: ${name}</p>
 
-<p>documents: ${documents}</p>
-
-<p>orders: ${orders}</p>
+<p>surname: ${surname}</p>
 
 <%--<p>URL: ${URL}</p>
 
