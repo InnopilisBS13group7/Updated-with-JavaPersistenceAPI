@@ -12,10 +12,10 @@ import java.util.List;
 public interface OrderService {
 
     public List<Order> getAllOrders();
-
     public List<Order> getAllFinishedOrders();
     public List<Order> getOrdersByUserId(int userId);
     public List<Order> getOpenOrdersByUserId(int userId);
+    public List<Order> getQueue(int documentId);
     public void save(Order order);
     public Order get(int id);
 

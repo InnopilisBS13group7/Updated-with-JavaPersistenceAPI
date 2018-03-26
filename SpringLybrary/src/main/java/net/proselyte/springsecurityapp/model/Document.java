@@ -1,5 +1,7 @@
 package net.proselyte.springsecurityapp.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -19,18 +21,26 @@ public class Document implements Serializable {
     private String status;
     @Column(name = "amount")
     private int amount;
+    @ColumnDefault("")
     @Column(name = "description")
     private String description;
+    @ColumnDefault("")
     @Column(name = "teg")
     private String teg;
+    @ColumnDefault("")
     @Column(name = "type")
     private String type;
+    @ColumnDefault("0")
     @Column(name = "year")
     private int year;
+    @ColumnDefault("")
     @Column(name = "publisher")
     private String publisher;
+    @ColumnDefault("")
     @Column(name = "edition")
     private String edition;
+//    @Column(name = "availableFrom")
+//    private long availableFrom;
 
     public Document(){}
 

@@ -73,18 +73,19 @@ public class Controller {
         long keepingTime;
         int i = 0;
         int margin = -5;
-        for (Order or : orderService.getOpenOrdersByUserId(u.getId())) {
-            i++;
-            keepingTime = or.getFinishTime();
-            items = items + "<div class=\"books\" style=\"margin-left:" + margin + "px\"> " +
-                    "<div class=books_inside>" + getDate(keepingTime) +
-                    "<div class=return_book id=" + or.getId() + ">Return the book</div></div>" +
-                    "<img src=\"/resources/img/books/1.jpg\" width=\"190px\" height=\"289px\" /> " +
-                    "<p class=\"bookname\">" + "3 PIGS</p> " +
-                    "</div>";
-            margin += 198;
-            if (i % 4 == 0) margin = -5;
-
+        for (Order or : orderService.getOrdersByUserId(u.getId())) {
+            if (or.getStatus().equals("open") || or.getStatus().equals("queue")) {
+                i++;
+                keepingTime = or.getFinishTime();
+                items = items + "<div class=\"books\" style=\"margin-left:" + margin + "px\"> " +
+                        "<div class=books_inside>" + getDate(keepingTime) +
+                        "<div class=return_book id=" + or.getId() + ">Return the book</div></div>" +
+                        "<img src=\"/resources/img/books/1.jpg\" width=\"190px\" height=\"289px\" /> " +
+                        "<p class=\"bookname\">" + "3 PIGS</p> " +
+                        "</div>";
+                margin += 198;
+                if (i % 4 == 0) margin = -5;
+            }
         }
 
         page = "<div id=\"usercard\">" +
@@ -207,5 +208,51 @@ public class Controller {
                     "</div>";
         }
         return div + "</div>";
+    }
+
+    protected List<User> getQueueForDocument(Document document){
+        List<Order> queue = orderService.getQueue(document.getId());
+        List<User> users = new LinkedList<>();
+        for (Order or:queue){
+            users.add(userService.get(or.getUserId()));
+        }
+        List<User> students = new LinkedList<>();
+        List<User> instructors= new LinkedList<>();
+        List<User> tas= new LinkedList<>();
+        List<User> visitingProfessors= new LinkedList<>();
+        List<User> professors= new LinkedList<>();
+        for(User u:users){
+            if (u.getStatus().equals("student")){
+                students.add(u);
+                continue;
+            }
+            if (u.getStatus().equals("instructor")){
+                instructors.add(u);
+                continue;
+            }
+            if (u.getStatus().equals("ta")){
+                tas.add(u);
+                continue;
+            }if (u.getStatus().equals("professor")){
+                professors.add(u);
+                continue;
+            }
+            if (u.getStatus().equals("visitingProfessor"))
+                visitingProfessors.add(u);
+
+        }
+/*      Create comparator for User and sort lists by startTime
+        students.sort();
+        instructors.sort();
+        tas.sort();
+        visitingProfessors.sort();
+        professors.sort();
+*/
+        students.addAll(instructors);
+        students.addAll(tas);
+        students.addAll(visitingProfessors);
+        students.addAll(professors);
+        return students;
+
     }
 }

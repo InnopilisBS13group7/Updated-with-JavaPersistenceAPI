@@ -1,7 +1,10 @@
 package net.proselyte.springsecurityapp.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -48,25 +51,47 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
+    @ColumnDefault("")
     @Column(name = "email")
     private String email;
+    @ColumnDefault("")
     @Column(name = "password")
     private String password;
+    @ColumnDefault("")
     @Column(name = "name")
     private String name;
+    @ColumnDefault("")
     @Column(name = "surname")
     private String surname;
+    @ColumnDefault("")
     @Column(name = "cookieId")
     private String cookieId;
+    @ColumnDefault("disabled")
     @Column(name = "status")
     private String status;
     @Column(name = "fine")
+    @ColumnDefault("0")
     private int fine;
+    @ColumnDefault("")
     @Column(name = "address")
     private String address;
+    @ColumnDefault("")
     @Column(name = "phone")
     private String phone;
+
+    public int getPositionInQueue(List<User> queue){
+        int i = 0;
+        for (User u:queue){
+            if (u.getId() == this.id)
+                break;
+            i++;
+        }
+        if (queue.indexOf(this) == i) System.out.println("It works");
+//        return queue.indexOf(this);
+        return i;
+    }
+
+
 
 
     public int getFine() {

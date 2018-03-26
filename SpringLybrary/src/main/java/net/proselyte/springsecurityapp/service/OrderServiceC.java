@@ -39,6 +39,11 @@ public class OrderServiceC implements OrderService {
     }
 
     @Override
+    public List<Order> getQueue(int documentId) {
+        return orderRepository.findAllByItemIdAndStatus(documentId,"queue");
+    }
+
+    @Override
     public void save(Order order) {
         orderRepository.save(order);
     }

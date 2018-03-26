@@ -18,7 +18,7 @@ public class AdminController extends Controller {
                                      @RequestParam(value = "author", required = false, defaultValue = "Not found") String author,
                                      @RequestParam(value = "publisher", required = false, defaultValue = "Not found") String publisher,
                                      @RequestParam(value = "note", required = false, defaultValue = "Not found") String description,
-                                     @RequestParam(value = "year", required = false, defaultValue = "Not found") String year,
+                                     @RequestParam(value = "year", required = false, defaultValue = "0") String year,
                                      @RequestParam(value = "status", required = false, defaultValue = "Not found") String status,
                                      @RequestParam(value = "edition", required = false, defaultValue = "Not found") String edition){
         Document d = new Document(title,author,status,0,description,"#","book",Integer.parseInt(year),publisher,edition);
@@ -86,7 +86,7 @@ public class AdminController extends Controller {
     }
 
     @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
-    public String deleteUser(@RequestParam(value = "id", required = false, defaultValue = "Not found") String id) {
+    public String deleteUser(@RequestParam(value = "id", required = false, defaultValue = "0") String id) {
         User u = userService.get(Integer.parseInt(id));
         if (u == null) return "false";//does not exist such user
         userService.delete(u);
@@ -94,7 +94,7 @@ public class AdminController extends Controller {
     }
 
     @RequestMapping(value = "/deleteDocumentById", method = RequestMethod.POST)
-    public String deleteDocumentById(@RequestParam(value = "id", required = false, defaultValue = "Not found") String id){
+    public String deleteDocumentById(@RequestParam(value = "id", required = false, defaultValue = "0") String id){
         Document d = documentService.get(Integer.parseInt(id));
         if (d==null) return "false";//does not exist such book
         documentService.delete(d);
