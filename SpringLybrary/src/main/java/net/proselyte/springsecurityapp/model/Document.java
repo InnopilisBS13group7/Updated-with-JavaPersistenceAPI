@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "documents")
-public class Document implements Serializable {
+public class Document {
 
     @Id
     @Column(name = "id")
@@ -21,22 +21,16 @@ public class Document implements Serializable {
     private String status;
     @Column(name = "amount")
     private int amount;
-    @ColumnDefault("")
     @Column(name = "description")
     private String description;
-    @ColumnDefault("")
     @Column(name = "teg")
     private String teg;
-    @ColumnDefault("")
     @Column(name = "type")
     private String type;
-    @ColumnDefault("0")
     @Column(name = "year")
     private int year;
-    @ColumnDefault("")
     @Column(name = "publisher")
     private String publisher;
-    @ColumnDefault("")
     @Column(name = "edition")
     private String edition;
 //    @Column(name = "availableFrom")

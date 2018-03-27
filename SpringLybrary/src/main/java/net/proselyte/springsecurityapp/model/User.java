@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class User {
     public User(String email, String password, String name, String surname, String cookieId, String status, int fine, String address, String phone) {
         this.email = email;
         this.password = password;
@@ -50,32 +50,22 @@ public class User implements Serializable {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @ColumnDefault("")
     @Column(name = "email")
     private String email;
-    @ColumnDefault("")
     @Column(name = "password")
     private String password;
-    @ColumnDefault("")
     @Column(name = "name")
     private String name;
-    @ColumnDefault("")
     @Column(name = "surname")
     private String surname;
-    @ColumnDefault("")
     @Column(name = "cookieId")
     private String cookieId;
-    @ColumnDefault("disabled")
     @Column(name = "status")
     private String status;
     @Column(name = "fine")
-    @ColumnDefault("0")
     private int fine;
-    @ColumnDefault("")
     @Column(name = "address")
     private String address;
-    @ColumnDefault("")
     @Column(name = "phone")
     private String phone;
 
