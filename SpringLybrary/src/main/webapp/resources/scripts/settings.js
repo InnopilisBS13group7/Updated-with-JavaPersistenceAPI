@@ -69,13 +69,13 @@ $(document).ready(function(){
 		});
 	});
 	$(".settings_users_list_modify").click(function(){
-    var object = $(this).parent();
-    var object20 = $(this);
-    var id = $(this).attr("id");
-    $.post("/modifyUser", {id:id, name:object.find(".settings_inputs_users_name").val(), address:object.find(".settings_inputs_users_adress").val(), phone:object.find(".settings_inputs_users_phone").val(), type:object.find(".settings_inputs_users_type").val()}, function(result){
-      object20.text("Saved").animate({"margin-left":"720px"}, 100);
-    });
-  });
+		var object = $(this).parent();
+		var object20 = $(this);
+		var id = $(this).attr("id");
+		$.post("/modifyUser", {id:id, name:object.find(".settings_inputs_users_name").val(), address:object.find(".settings_inputs_users_adress").val(), phone:object.find(".settings_inputs_users_phone").val(), type:object.find(".settings_inputs_users_type").val()}, function(result){
+			object20.text("Saved").animate({"margin-left":"720px"}, 100);
+		});
+	});
 	$(".settings_orders_list_modify").click(function(){
 		var object = $(this);
 		var id = object.attr("id");

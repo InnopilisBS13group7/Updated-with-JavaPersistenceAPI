@@ -65,6 +65,7 @@ public class Controller {
     }
 
     public String createUserCardPage(int userId) {
+        Date date = new Date();
         String page = "";
         User u = userService.get(userId);
         if (u == null) return "error";
@@ -73,10 +74,13 @@ public class Controller {
         long keepingTime;
         int i = 0;
         int margin = -5;
+        long wholeFine = 0;
+        long fine = 0;
         for (Order or : orderService.getOrdersByUserId(u.getId())) {
             if (or.getStatus().equals("open") || or.getStatus().equals("queue")) {
                 i++;
                 keepingTime = or.getFinishTime();
+                if (keepingTime> date.getTime()) fine = (keepingTime-date.getTime())/1000/3600/24;
                 items = items + "<div class=\"books\" style=\"margin-left:" + margin + "px\"> " +
                         "<div class=books_inside>" + getDate(keepingTime) +
                         "<div class=return_book id=" + or.getId() + ">Return the book</div></div>" +
