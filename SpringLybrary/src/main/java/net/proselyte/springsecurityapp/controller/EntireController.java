@@ -30,10 +30,7 @@ public class EntireController extends net.proselyte.springsecurityapp.controller
                         Model model) {
 
         if (cookieUserCode != null) {
-            System.out.println("cookie");
             User u = userService.getByCookie(cookieUserCode.getValue());
-            System.out.println(cookieUserCode.getValue());
-            System.out.println(u);
             if (u == null) return "index";
 
 
@@ -60,7 +57,7 @@ public class EntireController extends net.proselyte.springsecurityapp.controller
             model.addAttribute("name", u.getName()+" "+u.getSurname());
             model.addAttribute("status", u.getStatus());
             model.addAttribute("fine", u.getFine()+"$");
-            model.addAttribute("booki", booki);
+            model.addAttribute("booki", createUserHistoryBlock(u));
             model.addAttribute("address", u.getAddress());
             model.addAttribute("id", u.getId());
             model.addAttribute("phone", u.getPhone());
@@ -69,7 +66,6 @@ public class EntireController extends net.proselyte.springsecurityapp.controller
 
             return "usercard";
         }
-        System.out.println(getAllUsers());
         return "index";
     }
 
@@ -92,7 +88,7 @@ public class EntireController extends net.proselyte.springsecurityapp.controller
         model.addAttribute("documents", getAllDocuments());
         model.addAttribute("orders", orderService.getOpenOrdersByUserId(1).toString());
         userService.add(new User("ttt","ttt","ttt","rrr","disabled"));
-        System.out.println(getAllUsers());
+
         return "welcome";
     }
 }

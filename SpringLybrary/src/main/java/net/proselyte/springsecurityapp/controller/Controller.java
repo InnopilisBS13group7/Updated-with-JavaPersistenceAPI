@@ -70,7 +70,7 @@ public class Controller {
         User u = userService.get(userId);
         if (u == null) return "error";
 
-        String title, time, items = "";
+        /*String title, time, items = "<div class=line>";
         long keepingTime;
         int i = 0;
         int margin = -5;
@@ -82,15 +82,19 @@ public class Controller {
                 keepingTime = or.getFinishTime();
                 if (keepingTime> date.getTime()) fine = (keepingTime-date.getTime())/1000/3600/24;
                 items = items + "<div class=\"books\" style=\"margin-left:" + margin + "px\"> " +
-                        "<div class=books_inside>" + getDate(keepingTime) +
-                        "<div class=return_book id=" + or.getId() + ">Return the book</div></div>" +
+                        "<div class=books_inside>" + ((or.getStatus().equals("queue"))? "# in queue"+u.getPositionInQueue(getQueueForDocument(documentService.get(or.getItemId()))): getDate(keepingTime)) +
+                        "<div class=return_book id=" +or.getId() + ">Return the book</div></div>" +
                         "<img src=\"/resources/img/books/1.jpg\" width=\"190px\" height=\"289px\" /> " +
                         "<p class=\"bookname\">" + "3 PIGS</p> " +
                         "</div>";
                 margin += 198;
-                if (i % 4 == 0) margin = -5;
+                if (i % 4 == 0) {
+                    items +="</div><div class=line>";
+                    margin = -5;
+                }
             }
         }
+        items += "</div>";*/
 
         page = "<div id=\"usercard\">" +
                 "<div id=\"usercard_avatar\" class=\"blocks\"></div>" +
@@ -110,11 +114,42 @@ public class Controller {
                 "</div> " +
                 "<div class=\"blocks\" id=\"history\"> " +
                 "<div class=\"line\"> " +
-                items +
+                createUserHistoryBlock(u) +
                 "</div> " +
                 "</div> " +
                 "</div>";
         return page;
+    }
+
+    public String createUserHistoryBlock(User u) {
+        Date date = new Date();
+        if (u == null) return "error";
+        String items = "<div class=line>";
+        long keepingTime;
+        int i = 0;
+        int margin = -5;
+        long wholeFine = 0;
+        long fine = 0;
+        for (Order or : orderService.getOrdersByUserId(u.getId())) {
+            if (or.getStatus().equals("open") || or.getStatus().equals("queue")) {
+                i++;
+                keepingTime = or.getFinishTime();
+                if (keepingTime> date.getTime()) fine = (keepingTime-date.getTime())/1000/3600/24;
+                items = items + "<div class=\"books\" style=\"margin-left:" + margin + "px\"> " +
+                        "<div class=books_inside>" + ((or.getStatus().equals("queue"))? "# in queue"+u.getPositionInQueue(getQueueForDocument(documentService.get(or.getItemId()))): getDate(keepingTime)) +
+                        "<div class=return_book id=" +or.getId() + ">Return the book</div></div>" +
+                        "<img src=\"/resources/img/books/1.jpg\" width=\"190px\" height=\"289px\" /> " +
+                        "<p class=\"bookname\">" + "3 PIGS</p> " +
+                        "</div>";
+                margin += 198;
+                if (i % 4 == 0) {
+                    items +="</div><div class=line>";
+                    margin = -5;
+                }
+            }
+        }
+        items += "</div>";
+        return items;
     }
 
     public static String getClientIpAddress(HttpServletRequest request) {
@@ -157,7 +192,6 @@ public class Controller {
     protected List<Document> getAllDocuments() {
         return documentService.getAllDocuments();
     }
-
 
     protected User getClientUserObject(String id) {
         return userService.get(Integer.parseInt(id));

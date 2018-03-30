@@ -2,6 +2,7 @@ package net.proselyte.springsecurityapp.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Comparator;
 
 @Entity
 @Table(name = "orders")
@@ -22,7 +23,8 @@ public class Order {
     @Column(name = "status")
     private String status;
 
-    public Order(){}
+    public Order() {
+    }
 
     public Order(int userId, int itemId, long startTime, long finishTime, String status) {
         this.userId = userId;
@@ -89,4 +91,11 @@ public class Order {
                 ", status='" + status + '\'' +
                 "}\n";
     }
+
+    public static final Comparator<Order> COMPARE_BY_START_TIME = new Comparator<Order>() {
+        @Override
+        public int compare(Order lhs, Order rhs) {
+            return (lhs.getStartTime() > rhs.getStartTime()) ? 1 : 0;
+        }
+    };
 }

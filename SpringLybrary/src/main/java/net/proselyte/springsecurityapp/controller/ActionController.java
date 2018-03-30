@@ -22,8 +22,7 @@ public class ActionController extends Controller {
     }
 
     @RequestMapping(value = "/settings", method = RequestMethod.POST)
-    public String settings(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode)
-            throws SQLException {
+    public String settings(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode) {
         if (isCookieWrong(cookieUserCode)) return "false";
 
         User u = getClientUserObject(getIdFromCookie(cookieUserCode.getValue()));

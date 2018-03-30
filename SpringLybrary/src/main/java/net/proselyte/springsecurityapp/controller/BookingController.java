@@ -25,11 +25,11 @@ public class BookingController extends Controller {
         Date date = new Date();
         Document d = documentService.get(documentId);
         User u = userService.get(getIdFromCookie(cookieUserCode.getValue()));
-        List<Order> orders = orderService.getOpenOrdersByUserId(u.getId());
+        List<Order> orders = orderService.getOrdersByUserId(u.getId());
 
         boolean check = false;
         for (Order or : orders) {
-            if (or.getItemId() == documentId) {
+            if (or.getItemId() == documentId && (or.getStatus().equals("open") || or.getStatus().equals("queue"))) {
                 check = true;
             }
         }
@@ -64,8 +64,7 @@ public class BookingController extends Controller {
     public String listItems(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode) {
         if (isCookieWrong(cookieUserCode)) return "false";
         User u = getClientUserObject(getIdFromCookie(cookieUserCode.getValue()));
-        System.out.println(cookieUserCode.getValue());
-        System.out.println(u);
+
         String divList = (u.getStatus().equals("admin") ? "<div id=new_doc_box>" +
                 "<div class=new_doc id=new_book>+ Add a new book</div>" +
                 "<div class=new_doc id=new_av>+ Add a new audio/video</div>" +

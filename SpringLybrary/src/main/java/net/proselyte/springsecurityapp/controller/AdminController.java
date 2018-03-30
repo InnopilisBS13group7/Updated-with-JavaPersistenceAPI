@@ -123,8 +123,20 @@ public class AdminController extends Controller {
     public String closeOrder(@RequestParam(value = "orderId", required = false, defaultValue = "Not found") String orderId){
 
         Order or = orderService.get(Integer.parseInt(orderId));
+        Document document = documentService.get(or.getItemId());
+        if (!or.getStatus().equals("queue")) document.setAmount(document.getAmount()+1);
         if (or == null) return "false";//does not exist such order
         or.setStatus("closed");
+        orderService.save(or);
+        documentService.save(document);
+        return "true";
+    }
+
+    @RequestMapping(value = "/queueRequest", method = RequestMethod.POST)
+    public String queueRequest(@RequestParam(value = "orderId", required = false, defaultValue = "Not found") String orderId){
+
+        Order or = orderService.get(Integer.parseInt(orderId));
+        or.setStatus("open");
         orderService.save(or);
         return "true";
     }

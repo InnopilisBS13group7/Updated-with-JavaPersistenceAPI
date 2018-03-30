@@ -25,7 +25,6 @@ public class UserController extends Controller {
         String encodedOldPassword = u.getPassword();
         String encodedNewPassword = encoder.encode(newPassword);
         String query;
-        System.out.println(newPassword);
         if (!currentPassword.equals("")) {
             Boolean passwordValidation = encoder.matches(currentPassword, encodedOldPassword);
             if (!passwordValidation) return "false";
