@@ -103,12 +103,15 @@ public class Controller {
         Document d;
         for (Order or : orderService.getOrdersByUserId(u.getId())) {
             d = documentService.get(or.getItemId());
-            if (or.getStatus().equals("open") || or.getStatus().equals("queue") || or.getStatus().equals("renewed")) {
+            if (or.getStatus().equals("open") || or.getStatus().equals("queue") || or.getStatus().equals("renewed")
+                    || or.getStatus().equals("waitForAccept")) {
                 i++;
                 keepingTime = or.getFinishTime();
                 if (keepingTime> date.getTime()) fine = (keepingTime-date.getTime())/1000/3600/24;
                 items = items + "<div class=\"books\" style=\"margin-left:" + margin + "px\"> " +
-                        "<div class=books_inside>" + ((or.getStatus().equals("queue"))? "# in queue"+u.getPositionInQueue(getQueueForDocument(documentService.get(or.getItemId()))): getDate(keepingTime)) +
+                        "<div class=books_inside>" +
+                            ((or.getStatus().equals("queue"))? "# in queue"+u.getPositionInQueue(getQueueForDocument(documentService.get(or.getItemId()))):
+                                    ((or.getStatus().equals("waitForAccept"))?"Accept the book":getDate(keepingTime))) +
                         ((!or.getStatus().equals("renewed"))?"<div class=renew_book id=" +or.getId() + ">Renew the book</div>":"") +
                         "<div class=return_book id=" +or.getId() + ">Return the book</div>" +
                         "</div>" +

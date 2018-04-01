@@ -1,5 +1,6 @@
 package net.proselyte.springsecurityapp.controller;
 
+import net.proselyte.springsecurityapp.model.Order;
 import net.proselyte.springsecurityapp.model.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -47,6 +48,15 @@ public class UserController extends Controller {
             u.setPhone(phone);
         }
         userService.save(u);
+        return "true";
+    }
+
+    @RequestMapping(value = "/acceptDocument", method = RequestMethod.POST)
+    public String acceptDocument(@RequestParam(value = "orderId", required = false, defaultValue = "Not found") String orderId){
+
+        Order or = orderService.get(Integer.parseInt(orderId));
+        or.setStatus("open");
+        orderService.save(or);
         return "true";
     }
 

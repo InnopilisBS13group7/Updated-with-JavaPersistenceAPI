@@ -136,7 +136,11 @@ public class AdminController extends Controller {
     public String queueRequest(@RequestParam(value = "orderId", required = false, defaultValue = "Not found") String orderId){
 
         Order or = orderService.get(Integer.parseInt(orderId));
-        or.setStatus("open");
+        if (documentService.get(or.getItemId()).getAmount() == 0) return "false";
+        or.setStatus("waitForAccept");
+        long start = or.getStartTime();
+        or.setStartTime(or.getFinishTime());
+        or.setFinishTime(or.getFinishTime()+or.getFinishTime()-or.getStartTime());
         orderService.save(or);
         return "true";
     }

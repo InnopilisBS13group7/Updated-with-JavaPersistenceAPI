@@ -34,6 +34,11 @@ public class OrderServiceC implements OrderService {
     }
 
     @Override
+    public List<Order> getOrdersByUserIdAndItemId(int userId, int itemid) {
+        return orderRepository.findByUserIdAndItemId(userId,itemid);
+    }
+
+    @Override
     public List<Order> getOpenOrdersByUserId(int userId) {
         return orderRepository.findByUserIdAndStatus(userId,"open");
     }
