@@ -110,12 +110,27 @@ public class BookingController extends Controller {
 
     @RequestMapping(value = "/returnDocument", method = RequestMethod.POST)
     public String returnDocument(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
-                                 @RequestParam(value = "orderId") String orderId)
-            throws SQLException {
+                                 @RequestParam(value = "orderId") String orderId){
         if (isCookieWrong(cookieUserCode)) return "false";
 
         Order or = orderService.get(Integer.parseInt(orderId));
         or.setStatus("finished");
+        orderService.save(or);
+        return "true";
+    }
+
+    @RequestMapping(value = "/renewDocument", method = RequestMethod.POST)
+    public String renewDocument(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
+                                 @RequestParam(value = "orderId") String orderId){
+        if (isCookieWrong(cookieUserCode)) return "false";
+        Order or = orderService.get(Integer.parseInt(orderId));
+        Document d = documentService.get(or.getItemId());
+
+        if (or.getStatus().equals("renewed")) return "false";
+        if (d == null) return "false";
+
+        or.setStatus("renewed");
+        or.setFinishTime(or.getFinishTime()+(or.getFinishTime()-or.getStartTime()));
         orderService.save(or);
         return "true";
     }

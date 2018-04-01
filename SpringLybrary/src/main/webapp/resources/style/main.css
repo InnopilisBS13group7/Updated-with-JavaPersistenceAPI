@@ -339,6 +339,21 @@ body{
 	margin-top:166px;
 }
 .return_book{
+	 position:absolute;
+	 border:2px solid white;
+	 text-align:center;
+	 font-family:'RobotoRegular';
+	 font-size:18px;
+	 color:white;
+	 padding:8px;
+	 margin-top:201px;
+	 margin-left:22px;
+	 cursor:pointer;
+ }
+.return_book:hover{
+	opacity:.7;
+}
+.renew_book{
 	position:absolute;
 	border:2px solid white;
 	text-align:center;
@@ -346,10 +361,10 @@ body{
 	font-size:18px;
 	color:white;
 	padding:8px;
-	margin-top:201px;
+	margin-top:170px;
 	margin-left:22px;
 	cursor:pointer;
 }
-.return_book:hover{
+.renew_book:hover{
 	opacity:.7;
 }

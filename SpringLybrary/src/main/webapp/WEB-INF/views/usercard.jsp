@@ -43,9 +43,9 @@
                 </div>
             </div>
             <div class=blocks id=history>
-                <div class=line>
+                <%--<div class=line>--%>
                     ${booki}
-                </div>
+                <%--</div>--%>
             </div>
         </div>
         <div id=main_menu>

@@ -65,38 +65,10 @@ public class Controller {
     }
 
     public String createUserCardPage(int userId) {
-        Date date = new Date();
-        String page = "";
         User u = userService.get(userId);
         if (u == null) return "error";
 
-        /*String title, time, items = "<div class=line>";
-        long keepingTime;
-        int i = 0;
-        int margin = -5;
-        long wholeFine = 0;
-        long fine = 0;
-        for (Order or : orderService.getOrdersByUserId(u.getId())) {
-            if (or.getStatus().equals("open") || or.getStatus().equals("queue")) {
-                i++;
-                keepingTime = or.getFinishTime();
-                if (keepingTime> date.getTime()) fine = (keepingTime-date.getTime())/1000/3600/24;
-                items = items + "<div class=\"books\" style=\"margin-left:" + margin + "px\"> " +
-                        "<div class=books_inside>" + ((or.getStatus().equals("queue"))? "# in queue"+u.getPositionInQueue(getQueueForDocument(documentService.get(or.getItemId()))): getDate(keepingTime)) +
-                        "<div class=return_book id=" +or.getId() + ">Return the book</div></div>" +
-                        "<img src=\"/resources/img/books/1.jpg\" width=\"190px\" height=\"289px\" /> " +
-                        "<p class=\"bookname\">" + "3 PIGS</p> " +
-                        "</div>";
-                margin += 198;
-                if (i % 4 == 0) {
-                    items +="</div><div class=line>";
-                    margin = -5;
-                }
-            }
-        }
-        items += "</div>";*/
-
-        page = "<div id=\"usercard\">" +
+        String page = "<div id=\"usercard\">" +
                 "<div id=\"usercard_avatar\" class=\"blocks\"></div>" +
                 "<div class=\"blocks\" id=\"usercard_info\">" +
                 "<p id=\"name\">" + u.getName() + " " + u.getSurname() + "</p> " +
@@ -113,9 +85,7 @@ public class Controller {
                 "<p class=\"usercard_info_text2\" style=\"margin-top:112px\">" + userId + "</p> " +
                 "</div> " +
                 "<div class=\"blocks\" id=\"history\"> " +
-                "<div class=\"line\"> " +
                 createUserHistoryBlock(u) +
-                "</div> " +
                 "</div> " +
                 "</div>";
         return page;
@@ -130,14 +100,18 @@ public class Controller {
         int margin = -5;
         long wholeFine = 0;
         long fine = 0;
+        Document d;
         for (Order or : orderService.getOrdersByUserId(u.getId())) {
-            if (or.getStatus().equals("open") || or.getStatus().equals("queue")) {
+            d = documentService.get(or.getItemId());
+            if (or.getStatus().equals("open") || or.getStatus().equals("queue") || or.getStatus().equals("renewed")) {
                 i++;
                 keepingTime = or.getFinishTime();
                 if (keepingTime> date.getTime()) fine = (keepingTime-date.getTime())/1000/3600/24;
                 items = items + "<div class=\"books\" style=\"margin-left:" + margin + "px\"> " +
                         "<div class=books_inside>" + ((or.getStatus().equals("queue"))? "# in queue"+u.getPositionInQueue(getQueueForDocument(documentService.get(or.getItemId()))): getDate(keepingTime)) +
-                        "<div class=return_book id=" +or.getId() + ">Return the book</div></div>" +
+                        ((!or.getStatus().equals("renewed"))?"<div class=renew_book id=" +or.getId() + ">Renew the book</div>":"") +
+                        "<div class=return_book id=" +or.getId() + ">Return the book</div>" +
+                        "</div>" +
                         "<img src=\"/resources/img/books/1.jpg\" width=\"190px\" height=\"289px\" /> " +
                         "<p class=\"bookname\">" + "3 PIGS</p> " +
                         "</div>";
