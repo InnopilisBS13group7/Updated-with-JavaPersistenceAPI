@@ -6,6 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import java.sql.ResultSet;
+import java.util.Date;
 
 @RestController
 public class UserController extends Controller {
@@ -56,6 +57,10 @@ public class UserController extends Controller {
 
         Order or = orderService.get(Integer.parseInt(orderId));
         or.setStatus("open");
+        Date date = new Date();
+        long start = date.getTime();
+        or.setFinishTime(start+or.getFinishTime()-or.getStartTime());
+        or.setStartTime(start);
         orderService.save(or);
         return "true";
     }

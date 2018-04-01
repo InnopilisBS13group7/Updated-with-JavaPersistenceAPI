@@ -17,6 +17,7 @@ public interface OrderService {
     public List<Order> getOrdersByUserIdAndItemId(int userId,int itemid);
     public List<Order> getOpenOrdersByUserId(int userId);
     public List<Order> getQueue(int documentId);
+    public List<Order> getOrdersByStatus(String status);
     public void save(Order order);
     public Order get(int id);
 

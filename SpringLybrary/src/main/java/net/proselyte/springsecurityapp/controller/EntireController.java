@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -30,18 +31,30 @@ public class EntireController extends net.proselyte.springsecurityapp.controller
                         HttpServletRequest request,
                         @CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
                         Model model) {
+        Date date = new Date();
 
         //check queue
         List<Document> documentList = documentService.getAllDocuments();
         int userId;
+        Order or;
         for (Document d: documentService.getAllDocuments()){
             if (d.getAmount() > 0 ){
                 if (getQueueForDocument(d).size() > 0) {
                     userId = getQueueForDocument(d).get(0).getId();
-                    orderService.getOrdersByUserIdAndItemId(userId, d.getId()).get(0).setStatus("waitForAccept");
+                    or = orderService.getOrdersByUserIdAndItemId(userId, d.getId()).get(0);
+                    or.setStatus("waitForAccept");
+                    or.setFinishTime(date.getTime() +  or.getFinishTime() - or.getStartTime());
+                    or.setStartTime(date.getTime());
                 }
             }
         }
+
+        for (Order order: orderService.getOrdersByStatus("waitForAccept")){
+            if (date.getTime() - order.getStartTime() > 3600000*24) order.setStatus("closed");
+            orderService.save(order);
+        }
+
+
 
         if (cookieUserCode != null) {
             User u = userService.getByCookie(cookieUserCode.getValue());

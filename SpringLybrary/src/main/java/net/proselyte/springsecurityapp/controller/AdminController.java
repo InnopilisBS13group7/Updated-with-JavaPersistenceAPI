@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 @RestController
 public class AdminController extends Controller {
@@ -138,9 +139,10 @@ public class AdminController extends Controller {
         Order or = orderService.get(Integer.parseInt(orderId));
         if (documentService.get(or.getItemId()).getAmount() == 0) return "false";
         or.setStatus("waitForAccept");
-        long start = or.getStartTime();
-        or.setStartTime(or.getFinishTime());
-        or.setFinishTime(or.getFinishTime()+or.getFinishTime()-or.getStartTime());
+        Date date = new Date();
+        long start = date.getTime();
+        or.setFinishTime(start+or.getFinishTime()-or.getStartTime());
+        or.setStartTime(start);
         orderService.save(or);
         return "true";
     }

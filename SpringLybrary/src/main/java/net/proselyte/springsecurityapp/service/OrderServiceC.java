@@ -49,6 +49,11 @@ public class OrderServiceC implements OrderService {
     }
 
     @Override
+    public List<Order> getOrdersByStatus(String status) {
+        return orderRepository.findByStatus(status);
+    }
+
+    @Override
     public void save(Order order) {
         orderRepository.save(order);
     }
