@@ -45,9 +45,4 @@ $(document).ready(function(){
 			$("#add_block_av").animate({"height":"0px"}, 150);
 		}
 	});
-	$(".queue").click(function(){
-		$.post("/goToQueue", {id:$(this).attr("id")}, function(result){
-			alert(result);
-		});
-	});
 });
