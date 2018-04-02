@@ -8,7 +8,7 @@
 	box-shadow:0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
 	border:8px solid white;
 	margin-top:8px;
-	height:121px;
+	height:145px;
 	width:800px;
 }
 .cover{
@@ -99,18 +99,32 @@
 	position:absolute;
 	border:none;
 	outline:none;
-	width:300px;
+	width:530px;
 	font-family:'RobotoRegular';
 	font-size:18px;
 }
 .books_text{
 	margin-top:-3px;
-	margin-left:86px;
+	margin-left:101px;
 }
 .modifyit{
 	position:absolute;
 	margin-left:700px;
-	margin-top:82px;
+	margin-top:47px;
+	width:100px;
+	padding-top:8px;
+	padding-bottom:8px;
+	border-bottom:4px solid #ff000d;
+	background-color:#ff4751;
+	color:white;
+	text-align:center;
+	cursor:pointer;
+	font-family:'RobotoRegular';
+}
+.queue{
+	position:absolute;
+	margin-left:700px;
+	margin-top:94px;
 	width:100px;
 	padding-top:8px;
 	padding-bottom:8px;

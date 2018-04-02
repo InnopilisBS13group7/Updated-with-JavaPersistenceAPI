@@ -97,7 +97,7 @@ public class Controller {
         String items = "<div class=line>";
         long keepingTime;
         int i = 0;
-        int margin = -5;
+        int margin = -1;
         long wholeFine = 0;
         long fine = 0;
         Document d;
@@ -112,11 +112,14 @@ public class Controller {
                         "<div class=books_inside>" +
                             ((or.getStatus().equals("queue"))? "# in queue"+u.getPositionInQueue(getQueueForDocument(documentService.get(or.getItemId()))):
                                     ((or.getStatus().equals("waitForAccept"))?"Accept the book":getDate(keepingTime))) +
+                        "<p class=inside_text id=queue>In queue</p>" +
+                        "<p class=inside_text id=fine>Fine: 228$</p>" +
+                        "<div class=accept_book id=" +or.getId() + ">Accept the book</div>" +
                         ((!or.getStatus().equals("renewed"))?"<div class=renew_book id=" +or.getId() + ">Renew the book</div>":"") +
                         "<div class=return_book id=" +or.getId() + ">Return the book</div>" +
                         "</div>" +
                         "<img src=\"/resources/img/books/1.jpg\" width=\"190px\" height=\"289px\" /> " +
-                        "<p class=\"bookname\">" + "3 PIGS</p> " +
+                        "<p class=\"bookname\">" + documentService.get(or.getItemId()).getTitle() + "</p> " +
                         "</div>";
                 margin += 198;
                 if (i % 4 == 0) {
@@ -214,6 +217,8 @@ public class Controller {
                 "<div class=search_buttons id=search_closed>Closed</div>" +
                 "<div class=search_buttons id=search_open>Open</div>" +
                 "<div class=search_buttons id=search_finished>Finished</div>" +
+                "<div class=search_buttons id=search_queue>Queue</div>" +
+                "<div class=search_buttons id=search_renewed>Renewed</div>" +
                 "<input type=text id=search_user_id placeholder=\"Users id\" />" +
                 "<div class=search_buttons id=search_user>By user</div>" +
                 "<div id=search_button>Search</div>" +
@@ -223,10 +228,11 @@ public class Controller {
             d = documentService.get(or.getItemId());
             u = userService.get(or.getUserId());
             div += "<div class=settings_list_orders>" +
-                    "<img src=/resources/img/books/1.jpg width=62px height=62px class=settings_orders_list_avatar />" +
+                    "<img src=/resources/img/books/1.jpg width=82px height=82px class=settings_orders_list_avatar />" +
                     "<div class=settings_orders_list_specs_box>" +
                     "<b style=\"text-decoration:underline;\"> (" + or.getId() + ")" + d.getTitle()+ "   :" + u.getName() + " " + u.getSurname()  + "</b></br>" +
                     "<b>Status: </b>"+or.getStatus()+"</br>" +
+                    "<b>Fine: </b>" + or.getStatus() + "</br>" +
                     "<b>Return date:</b>" + getDate(or.getFinishTime()) +
                     "</div>" +
                     (or.getStatus().equals("closed") ? "":"<div class=settings_orders_list_modify id="+or.getId()+">Close</div>") +
@@ -247,10 +253,11 @@ public class Controller {
                 d = documentService.get(or.getItemId());
                 u = userService.get(or.getUserId());
                 div += "<div class=settings_list_orders>" +
-                        "<img src=/resources/img/books/1.jpg width=62px height=62px class=settings_orders_list_avatar />" +
+                        "<img src=/resources/img/books/1.jpg width=82px height=82px class=settings_orders_list_avatar />" +
                         "<div class=settings_orders_list_specs_box>" +
                         "<b style=\"text-decoration:underline;\"> (" + or.getId() + ")" + d.getTitle() + "   :" + u.getName() + " " + u.getSurname() + "</b></br>" +
                         "<b>Status: </b>" + or.getStatus() + "</br>" +
+                        "<b>Fine: </b>" + or.getStatus() + "</br>" +
                         "<b>Return date:</b>" + getDate(or.getFinishTime()) +
                         "</div>" +
                         (or.getStatus().equals("closed") ? "" : "<div class=settings_orders_list_modify id=" + or.getId() + ">Close</div>") +
