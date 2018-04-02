@@ -209,6 +209,16 @@ public class Controller {
         String div = "<div class=settings_type_box id=settings_orders>";
         Document d;
         User u;
+        div += "<div id=search_panel>" +
+                "<div class=search_buttons id=search_all>All</div>" +
+                "<div class=search_buttons id=search_closed>Closed</div>" +
+                "<div class=search_buttons id=search_open>Open</div>" +
+                "<div class=search_buttons id=search_finished>Finished</div>" +
+                "<input type=text id=search_user_id placeholder=\"Users id\" />" +
+                "<div class=search_buttons id=search_user>By user</div>" +
+                "<div id=search_button>Search</div>" +
+                "</div>" +
+                "<div id=list_box>";
         for (Order or : orders) {
             d = documentService.get(or.getItemId());
             u = userService.get(or.getUserId());
@@ -222,7 +232,32 @@ public class Controller {
                     (or.getStatus().equals("closed") ? "":"<div class=settings_orders_list_modify id="+or.getId()+">Close</div>") +
                     "</div>";
         }
-        return div + "</div>";
+        return div + "</div></div>";
+    }
+
+    protected String createListOfOrdersBlock(List<Order> orders, String config, int userId){
+        String div = "";
+        Document d;
+        User u;
+        config = config.toLowerCase();
+
+        for (Order or : orders) {
+            if (config.contains(or.getStatus()) && !config.contains("byuserid") ||
+                    config.contains("byuserid") && config.contains(or.getStatus()) && or.getUserId() == userId) {
+                d = documentService.get(or.getItemId());
+                u = userService.get(or.getUserId());
+                div += "<div class=settings_list_orders>" +
+                        "<img src=/resources/img/books/1.jpg width=62px height=62px class=settings_orders_list_avatar />" +
+                        "<div class=settings_orders_list_specs_box>" +
+                        "<b style=\"text-decoration:underline;\"> (" + or.getId() + ")" + d.getTitle() + "   :" + u.getName() + " " + u.getSurname() + "</b></br>" +
+                        "<b>Status: </b>" + or.getStatus() + "</br>" +
+                        "<b>Return date:</b>" + getDate(or.getFinishTime()) +
+                        "</div>" +
+                        (or.getStatus().equals("closed") ? "" : "<div class=settings_orders_list_modify id=" + or.getId() + ">Close</div>") +
+                        "</div>";
+            }
+        }
+        return div;
     }
 
     protected List<User> getQueueForDocument(Document document){
@@ -256,13 +291,6 @@ public class Controller {
                 visitingProfessors.add(u);
 
         }
-/*      Create comparator for User and sort lists by startTime
-        students.sort();
-        instructors.sort();
-        tas.sort();
-        visitingProfessors.sort();
-        professors.sort();
-*/
         students.addAll(instructors);
         students.addAll(tas);
         students.addAll(visitingProfessors);

@@ -1,10 +1,7 @@
 package net.proselyte.springsecurityapp.controller;
 
 import net.proselyte.springsecurityapp.model.User;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import java.sql.SQLException;
@@ -56,6 +53,14 @@ public class ActionController extends Controller {
 
                 "</div>";
         return div;
+    }
+
+    @RequestMapping(value = "/ordersSearch", method = RequestMethod.POST)
+    public String ordersSearch(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
+                               @RequestParam(value = "id", required = false, defaultValue = "0") int userId,
+                               @RequestParam(value = "type") String configString) {
+        if (isCookieWrong(cookieUserCode)) return "false";
+        return createListOfOrdersBlock(getAllOrders(),configString,userId);
     }
 }
 

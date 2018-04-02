@@ -83,4 +83,36 @@ $(document).ready(function(){
 			object.text("Closed").animate({"margin-left":"713px"}, 100);
 		});
 	});
+	$("#search_all").click(function(){
+		//alert($(this).css("border"));
+		if($(this).css("border") == "2px solid rgb(0, 0, 0)")
+			$("#search_all, #search_closed, #search_open, #search_finished").css({"border":"2px solid #ff000d"});
+		else
+			$("#search_all, #search_closed, #search_open, #search_finished").css({"border":"2px solid black"});
+	});
+	$("#search_closed, #search_open, #search_finished").click(function(){
+		if($(this).css("border") == "2px solid rgb(0, 0, 0)")
+			$(this).css({"border":"2px solid #ff000d"});
+		else{
+			$(this).css({"border":"2px solid black"});
+			$("#search_all").css({"border":"2px solid black"});
+		}
+	});
+	$("#search_user").click(function(){
+		if($(this).css("border") == "2px solid rgb(0, 0, 0)")
+			$(this).css({"border":"2px solid #ff000d"});
+		else
+			$(this).css({"border":"2px solid black"});
+	});
+	$("#search_button").click(function(){
+		var type = "";
+		$(".search_buttons").each(function(){
+			if($(this).text() != "All" && $(this).css("border") == "2px solid rgb(255, 0, 13)"){
+				type += $(this).text() + ",";
+			}
+		});
+		$.post("/ordersSearch", {type:type.slice(0,-1), id:$("#search_user_id").val()}, function(result){
+			$("#list_box").html(result);
+		});
+	});
 });
