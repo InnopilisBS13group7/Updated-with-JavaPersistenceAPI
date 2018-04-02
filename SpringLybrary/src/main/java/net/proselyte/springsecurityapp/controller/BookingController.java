@@ -86,20 +86,20 @@ public class BookingController extends Controller {
 
 
         for (Document d : getAllDocuments()) {
-            divList = divList + "<div class=books_box><img src=/resources/img/books/" + (d.getType().equals("book") ? "1.jpg" : "2.jpg") + " class=cover width=79px height=121px />" +
+            divList = divList + "<div class=books_box><img src=/resources/img/books/" + (d.getType().equals("book") ? "1.jpg" : "2.jpg") + " class=cover width=94px height=145px />" +
                     "<p class=books_text>" +
                     "Title:&nbsp;<input class=books_inputs_title placeholder=\"Title\" value=\"" + d.getTitle() + "\" /></br>" +
                     "Author:&nbsp;<input class=books_inputs_author placeholder=\"Author\" value=\"" + d.getAuthor() + "\" /></br>" +
 
                     (d.getType().equals("book") ? "Publisher:&nbsp;<input class=books_inputs_publisher placeholder=\"Publisher\" value=\"" + d.getPublisher() + "\" /></br>" +
                             "Year:&nbsp;<input class=books_inputs_year placeholder=\"Year\" value=\"" + d.getYear() + "\" /></br>" +
+                            "Type:&nbsp;<input class=books_inputs_type placeholder=\"Type\" value=\"" + d.getEdition() + "\" /></br>" +
                             "Edition:&nbsp;<input class=books_inputs_edition placeholder=\"Edition\" value=\"" + d.getEdition() + "\" /></br>" +
                             "Note:&nbsp;<input class=books_inputs_note placeholder=\"Note\" value=\"" + d.getDescription() + "\" /></br>" : "") +
                     "</p>" +
-                    "<div class=bookit id=" + d.getId() + ">Book</div> <p class=number>There is " +
-                    d.getAmount() +
-                    "</p> " +
+                    "<div class=bookit id=" + d.getId() + ">Book</div>" +
                     "<div class=modifyit id=" + d.getId() + ">Modify</div>" +
+                    "<div class=queue id=" + d.getId() + ">Queue</div>" +
                     "</div>";
         }
 

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	$.getScript('../resources/scripts/close_order.js');
 	$("#settings_block").height($("#settings_type_menu").height() + $("#settings_profile").height());
 	$("#settings_type_profile").click(function(){
 		$("#settings_profile").animate({"margin-left":"0"}, 300);
@@ -76,21 +77,14 @@ $(document).ready(function(){
 			object20.text("Saved").animate({"margin-left":"720px"}, 100);
 		});
 	});
-	$(".settings_orders_list_modify").click(function(){
-		var object = $(this);
-		var id = object.attr("id");
-		$.post("/closeOrder", {orderId:id}, function(result){
-			object.text("Closed").animate({"margin-left":"713px"}, 100);
-		});
-	});
 	$("#search_all").click(function(){
 		//alert($(this).css("border"));
 		if($(this).css("border") == "2px solid rgb(0, 0, 0)")
-			$("#search_all, #search_closed, #search_open, #search_finished").css({"border":"2px solid #ff000d"});
+			$("#search_all, #search_closed, #search_open, #search_finished, #search_queue, #search_renewed").css({"border":"2px solid #ff000d"});
 		else
-			$("#search_all, #search_closed, #search_open, #search_finished").css({"border":"2px solid black"});
+			$("#search_all, #search_closed, #search_open, #search_finished, #search_queue, #search_renewed").css({"border":"2px solid black"});
 	});
-	$("#search_closed, #search_open, #search_finished").click(function(){
+	$("#search_closed, #search_open, #search_finished, #search_queue, #search_renewed").click(function(){
 		if($(this).css("border") == "2px solid rgb(0, 0, 0)")
 			$(this).css({"border":"2px solid #ff000d"});
 		else{
@@ -111,8 +105,9 @@ $(document).ready(function(){
 				type += $(this).text() + ",";
 			}
 		});
-		$.post("/ordersSearch", {type:type.slice(0,-1), id:$("#search_user_id").val()}, function(result){
+		$.post("/ordersSearch", {type:type.slice(0, -1), id:$("#search_user_id").val()}, function(result){
 			$("#list_box").html(result);
+			$.getScript('../resources/scripts/close_order.js');
 		});
 	});
 });
