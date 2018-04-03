@@ -46,8 +46,25 @@ $(document).ready(function(){
 		}
 	});
 	$(".queue").click(function(){
-		$.post("/goToQueue", {id:$(this).attr("id")}, function(result){
-			alert(result);
-		});
+		var object = $(this).parent().find(".queue_box");
+		if($(this).text() == "Queue"){
+			$(this).text("Hide");
+			$.post("/goToQueue", {id:$(this).attr("id")}, function(result){
+				if(result != "Queue is empty"){	
+					object.parent().animate({"height":"345px"}, 200);
+					object.slideDown(0).html(result).animate({"height":"200px"}, 200);
+				}
+			});
+		}
+		else{
+			$(this).text("Queue");
+			object.parent().animate({"height":"145px"}, 200);
+			object.animate({"height":"0px"}, 200).slideUp(0);
+		}
 	});
+	$(document).on('click', ".otdat", function(){
+    	$.post("/queueRequest", {id:$(this).attr("id")}, function(result){
+      		alert(result);
+    	});
+  	});
 });

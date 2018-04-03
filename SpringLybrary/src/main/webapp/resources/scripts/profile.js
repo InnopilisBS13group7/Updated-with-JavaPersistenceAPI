@@ -7,4 +7,14 @@ $(document).ready(function(){
 			alert(result);
 		});
 	});
+	$(".renew_book").click(function(){
+		$.post("/renewDocument", {orderId:$(this).attr("id")}, function(result){
+			alert(result);
+		});
+	});
+	$(".accept_book").click(function(){
+		$.post("/acceptDocument", {orderId:$(this).attr("id")}, function(result){
+			alert(result);
+		});
+	});
 });

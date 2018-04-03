@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-public class EntireController extends net.proselyte.springsecurityapp.controller.Controller//extends net.repositories.controllers.Controller
+public class EntireController extends net.proselyte.springsecurityapp.controller.Controller
 {
     @Autowired
     private UserService userService;
@@ -33,33 +33,34 @@ public class EntireController extends net.proselyte.springsecurityapp.controller
                         Model model) {
         Date date = new Date();
 
-        //check queue
-        List<Document> documentList = documentService.getAllDocuments();
-        int userId;
-        Order or;
-        for (Document d: documentService.getAllDocuments()){
-            if (d.getAmount() > 0 ){
-                if (getQueueForDocument(d).size() > 0) {
-                    userId = getQueueForDocument(d).get(0).getId();
-                    or = orderService.getOrdersByUserIdAndItemId(userId, d.getId()).get(0);
-                    or.setStatus("waitForAccept");
-                    or.setFinishTime(date.getTime() +  or.getFinishTime() - or.getStartTime());
-                    or.setStartTime(date.getTime());
-                }
-            }
-        }
-
-        for (Order order: orderService.getOrdersByStatus("waitForAccept")){
-            if (date.getTime() - order.getStartTime() > 3600000*24) order.setStatus("closed");
-            orderService.save(order);
-        }
-
-
-
         if (cookieUserCode != null) {
             User u = userService.getByCookie(cookieUserCode.getValue());
             if (u == null) return "index";
-                        model.addAttribute("name", u.getName()+" "+u.getSurname());
+
+            //check queue
+            List<Document> documentList = documentService.getAllDocuments();
+            int userId;
+            long startTime;
+            for (Order or:orderService.getOrdersByUserAndStatus(u,"queue")){
+                if (u.getPositionInQueue(getQueueForDocument(documentService.get(or.getItemId())))== 0
+                        && documentService.get(or.getItemId()).getAmount()>0){
+
+                    or.setStatus("waitForAccept");
+                    startTime = or.getStartTime();
+                    or.setStartTime(or.getFinishTime());
+                    or.setFinishTime(or.getFinishTime()+or.getFinishTime()-startTime);
+                    orderService.save(or);
+                }
+            }
+
+
+            for (Order order: orderService.getOrdersByStatus("waitForAccept")){
+                if (date.getTime() - order.getStartTime() > 3600000*24) order.setStatus("closed");
+                orderService.save(order);
+            }
+
+
+            model.addAttribute("name", u.getName()+" "+u.getSurname());
             model.addAttribute("status", u.getStatus());
             model.addAttribute("fine", u.getFine()+"$");
             model.addAttribute("booki", createUserHistoryBlock(u));
@@ -81,8 +82,6 @@ public class EntireController extends net.proselyte.springsecurityapp.controller
         return "index";
     }
 
-    @Autowired
-    private OrderService orderService;
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String hello(@RequestParam(value = "name", required = false, defaultValue = "ITP_Project") String name, Model model) {

@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -98,8 +99,10 @@ public class BookingController extends Controller {
                             "Note:&nbsp;<input class=books_inputs_note placeholder=\"Note\" value=\"" + d.getDescription() + "\" /></br>" : "") +
                     "</p>" +
                     "<div class=bookit id=" + d.getId() + ">Book</div>" +
+                    ((u.getStatus().equals("admin"))?(
                     "<div class=modifyit id=" + d.getId() + ">Modify</div>" +
-                    "<div class=queue id=" + d.getId() + ">Queue</div>" +
+                    "<div class=queue id=" + d.getId() + ">Queue</div>"):"") +
+                    "<div class=queue_box></div>" +
                     "</div>";
         }
 
@@ -119,20 +122,38 @@ public class BookingController extends Controller {
         return "true";
     }
 
-    @RequestMapping(value = "/renewDocument", method = RequestMethod.POST)
-    public String renewDocument(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
-                                 @RequestParam(value = "orderId") String orderId){
+    @RequestMapping(value = "/goToQueue", method = RequestMethod.POST)
+    public String goToQueue(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
+                                 @RequestParam(value = "id") String documentId){
         if (isCookieWrong(cookieUserCode)) return "false";
-        Order or = orderService.get(Integer.parseInt(orderId));
-        Document d = documentService.get(or.getItemId());
+        Document d = documentService.get(Integer.parseInt(documentId));
+        List<Order> orderQueue = new LinkedList<>();
+        for (User u : getQueueForDocument(d)){
+            orderQueue.add(orderService.getOrdersByUserIdAndItemId(u.getId(),d.getId()).get(0));
+        }
+        String div = "";
+        User u;
+        int i = 1;
+        for (Order or : orderQueue) {
 
-        if (or.getStatus().equals("renewed")) return "false";
-        if (d == null) return "false";
-
-        or.setStatus("renewed");
-        or.setFinishTime(or.getFinishTime()+(or.getFinishTime()-or.getStartTime()));
-        orderService.save(or);
-        return "true";
+            d = documentService.get(or.getItemId());
+            u = userService.get(or.getUserId());
+            div += "<div class=settings_list_orders>" +
+                    "<img src=/resources/img/avatars/0.png width=82px height=82px class=settings_orders_list_avatar />" +
+                    "<div class=settings_orders_list_specs_box>" +
+                    "<b style=\"text-decoration:underline;\"> (" + i + ") " + u.getName() + " " + u.getSurname()  + "</b></br>" +
+                    "<b>Status: </b>"+u.getStatus()+"</br>" +
+                    "<b>Fine: </b>" + getFine(or,d) + "</br>" +
+                    "<b>Return date:</b>" + getDate(or.getFinishTime()) +
+                    "</div>" +
+                    "<div class=otdat id="+ or.getId()+">Queue Request</div>" +
+                    "</div>";
+            i++;
+        }
+        return (i == 1)?"Queue is empty":div;
     }
+
+
+
 
 }
