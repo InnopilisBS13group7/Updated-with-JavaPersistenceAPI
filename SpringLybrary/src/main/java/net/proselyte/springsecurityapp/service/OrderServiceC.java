@@ -40,6 +40,11 @@ public class OrderServiceC implements OrderService {
     }
 
     @Override
+    public List<Order> getOrdersByUserAndStatus(User u, String status) {
+        return orderRepository.findByUserIdAndStatus(u.getId(),status);
+    }
+
+    @Override
     public List<Order> getOpenOrdersByUserId(int userId) {
         return orderRepository.findByUserIdAndStatus(userId,"open");
     }
@@ -52,11 +57,6 @@ public class OrderServiceC implements OrderService {
     @Override
     public List<Order> getOrdersByStatus(String status) {
         return orderRepository.findByStatus(status);
-    }
-
-    @Override
-    public List<Order> getOrdersByUserAndStatus(User u, String status) {
-        return orderRepository.findByUserIdAndStatus(u.getId(),status);
     }
 
     @Override

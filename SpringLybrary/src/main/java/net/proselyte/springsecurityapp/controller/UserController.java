@@ -26,12 +26,12 @@ public class UserController extends Controller {
      */
     @RequestMapping(value = "/profileSettings", method = RequestMethod.POST)
     public String profileSettings(@RequestParam(value = "name", required = false, defaultValue = "") String name,
-                                    @RequestParam(value = "surname", required = false, defaultValue = "") String surname,
-                                    @RequestParam(value = "address", required = false, defaultValue = "") String address,
-                                    @RequestParam(value = "phone", required = false, defaultValue = "") String phone,
-                                    @RequestParam(value = "newPassword", required = false, defaultValue = "") String newPassword,
-                                    @RequestParam(value = "currentPassword", required = false, defaultValue = "") String currentPassword,
-                                         @CookieValue(value = "user_code", required = false) Cookie cookieUserCode){
+                                  @RequestParam(value = "surname", required = false, defaultValue = "") String surname,
+                                  @RequestParam(value = "address", required = false, defaultValue = "") String address,
+                                  @RequestParam(value = "phone", required = false, defaultValue = "") String phone,
+                                  @RequestParam(value = "newPassword", required = false, defaultValue = "") String newPassword,
+                                  @RequestParam(value = "currentPassword", required = false, defaultValue = "") String currentPassword,
+                                  @CookieValue(value = "user_code", required = false) Cookie cookieUserCode){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         User u = userService.get(getIdFromCookie(cookieUserCode.getValue()));
         if (u == null) return "false";

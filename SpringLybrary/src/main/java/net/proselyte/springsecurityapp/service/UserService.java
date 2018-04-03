@@ -12,7 +12,6 @@ public interface UserService {
     public List<User> getAllusers();
     public User get(int id);
 
-    @Transactional
     public User get(String email);
     public User getByCookie(String cookie);
     public void add(User user);

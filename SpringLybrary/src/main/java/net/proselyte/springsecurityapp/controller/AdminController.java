@@ -30,12 +30,12 @@ public class AdminController extends Controller {
      */
     @RequestMapping(value = "/addDocument", method = RequestMethod.POST)
     public String addDocument(@RequestParam(value = "title", required = false, defaultValue = "Not found") String title,
-                                     @RequestParam(value = "author", required = false, defaultValue = "Not found") String author,
-                                     @RequestParam(value = "publisher", required = false, defaultValue = "Not found") String publisher,
-                                     @RequestParam(value = "note", required = false, defaultValue = "Not found") String description,
-                                     @RequestParam(value = "year", required = false, defaultValue = "0") String year,
-                                     @RequestParam(value = "status", required = false, defaultValue = "Not found") String status,
-                                     @RequestParam(value = "edition", required = false, defaultValue = "Not found") String edition){
+                              @RequestParam(value = "author", required = false, defaultValue = "Not found") String author,
+                              @RequestParam(value = "publisher", required = false, defaultValue = "Not found") String publisher,
+                              @RequestParam(value = "note", required = false, defaultValue = "Not found") String description,
+                              @RequestParam(value = "year", required = false, defaultValue = "0") String year,
+                              @RequestParam(value = "status", required = false, defaultValue = "Not found") String status,
+                              @RequestParam(value = "edition", required = false, defaultValue = "Not found") String edition){
         Document d = new Document(title,author,status,0,description,"#","book",Integer.parseInt(year),publisher,edition);
         documentService.save(d);
         return "true";
@@ -49,7 +49,7 @@ public class AdminController extends Controller {
      */
     @RequestMapping(value = "/addAV", method = RequestMethod.POST)
     public String addDocument(@RequestParam(value = "title", required = false, defaultValue = "Not found") String title,
-                                     @RequestParam(value = "author", required = false, defaultValue = "Not found") String author) {
+                              @RequestParam(value = "author", required = false, defaultValue = "Not found") String author) {
 
         Document d = new Document(title,author,"AV",0,"none","#","av",0,"none","none");
         documentService.save(d);
@@ -69,12 +69,12 @@ public class AdminController extends Controller {
      */
     @RequestMapping(value = "/modifyDocument", method = RequestMethod.POST)
     public String modifyDocument(@RequestParam(value = "documentId") String id,
-                                        @RequestParam(value = "title") String title,
-                                        @RequestParam(value = "author") String author,
-                                        @RequestParam(value = "publisher") String publisher,
-                                        @RequestParam(value = "note", required = false, defaultValue = "Not_found") String description,
-                                        @RequestParam(value = "edition", required = false, defaultValue = "Not_found") String edition,
-                                        @RequestParam(value = "year", required = false, defaultValue = "Not_found") String year){
+                                 @RequestParam(value = "title") String title,
+                                 @RequestParam(value = "author") String author,
+                                 @RequestParam(value = "publisher") String publisher,
+                                 @RequestParam(value = "note", required = false, defaultValue = "Not_found") String description,
+                                 @RequestParam(value = "edition", required = false, defaultValue = "Not_found") String edition,
+                                 @RequestParam(value = "year", required = false, defaultValue = "Not_found") String year){
         Document d = documentService.get(Integer.parseInt(id));
         if (d ==null) return "false";//does not exist such book
         d.setTitle(title);
@@ -99,10 +99,10 @@ public class AdminController extends Controller {
      */
     @RequestMapping(value = "/addNewUser", method = RequestMethod.POST)
     public String addNewuser(@RequestParam(value = "password", required = false, defaultValue = "No password") String password,
-                                    @RequestParam(value = "name", required = false, defaultValue = "No name") String name,
-                                    @RequestParam(value = "email", required = false, defaultValue = "No email") String email,
-                                    @RequestParam(value = "surname", required = false, defaultValue = "No surname") String surname,
-                                    @RequestParam(value = "status", required = false, defaultValue = "No status") String status) {
+                             @RequestParam(value = "name", required = false, defaultValue = "No name") String name,
+                             @RequestParam(value = "email", required = false, defaultValue = "No email") String email,
+                             @RequestParam(value = "surname", required = false, defaultValue = "No surname") String surname,
+                             @RequestParam(value = "status", required = false, defaultValue = "No status") String status) {
         boolean check = addNewUserToTheSystem(name,surname,email,password,status);
         return check?"true":"false";
     }
@@ -118,10 +118,10 @@ public class AdminController extends Controller {
      */
     @RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
     public String modifyUser(@RequestParam(value = "id", required = false, defaultValue = "No id") String id,
-                                    @RequestParam(value = "name", required = false, defaultValue = "No name") String name,
-                                    @RequestParam(value = "address", required = false, defaultValue = "No address") String address,
-                                    @RequestParam(value = "phone", required = false, defaultValue = "No phone") String phone,
-                                    @RequestParam(value = "type", required = false, defaultValue = "No type") String status){
+                             @RequestParam(value = "name", required = false, defaultValue = "No name") String name,
+                             @RequestParam(value = "address", required = false, defaultValue = "No address") String address,
+                             @RequestParam(value = "phone", required = false, defaultValue = "No phone") String phone,
+                             @RequestParam(value = "type", required = false, defaultValue = "No type") String status){
         String surname = name.substring(name.indexOf(' ')+1, name.length());
         name = name.substring(0,name.indexOf(' '));
         User u = userService.get(Integer.parseInt(id));

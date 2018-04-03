@@ -110,8 +110,8 @@ public class BookingController extends Controller {
                     "</p>" +
                     "<div class=bookit id=" + d.getId() + ">Book</div>" +
                     ((u.getStatus().equals("admin"))?(
-                    "<div class=modifyit id=" + d.getId() + ">Modify</div>" +
-                    "<div class=queue id=" + d.getId() + ">Queue</div>"):"") +
+                            "<div class=modifyit id=" + d.getId() + ">Modify</div>" +
+                                    "<div class=queue id=" + d.getId() + ">Queue</div>"):"") +
                     "<div class=queue_box></div>" +
                     "</div>";
         }
@@ -141,7 +141,7 @@ public class BookingController extends Controller {
 
     @RequestMapping(value = "/goToQueue", method = RequestMethod.POST)
     public String goToQueue(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
-                                 @RequestParam(value = "id") String documentId){
+                            @RequestParam(value = "id") String documentId){
         if (isCookieWrong(cookieUserCode)) return "false";
         Document d = documentService.get(Integer.parseInt(documentId));
         List<Order> orderQueue = new LinkedList<>();
