@@ -102,9 +102,13 @@ $(document).ready(function(){
 		var type = "";
 		$(".search_buttons").each(function(){
 			if($(this).text() != "All" && $(this).css("border") == "2px solid rgb(255, 0, 13)"){
-				type += $(this).text() + ",";
+				if($(this).text() == "Queue")
+					var text = "waitForAccept"
+				else text = $(this).text();
+				type += text + ",";
 			}
 		});
+		// alert(type);
 		$.post("/ordersSearch", {type:type.slice(0, -1), id:$("#search_user_id").val()}, function(result){
 			$("#list_box").html(result);
 			$.getScript('../resources/scripts/close_order.js');

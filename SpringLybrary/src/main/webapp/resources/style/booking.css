@@ -135,3 +135,42 @@
 	cursor:pointer;
 	font-family:'RobotoRegular';
 }
+.queue_box{
+	position:absolute;
+	width:800px;
+	margin-left:0px;
+	margin-top:145px;
+	overflow:auto;
+	display:none;
+}
+.settings_list_orders{
+	position:relative;
+	margin-top:8px;
+	margin-left:8px;
+	padding-bottom:8px;
+	width:683px;
+	height:82px;
+	border-bottom:1px solid black;
+}
+.settings_orders_list_specs_box{
+	position:absolute;
+	font-family:'RobotoRegular';
+	font-size:18px;
+	margin-left:90px;
+}
+.settings_orders_list_avatar{
+	position:absolute;
+}
+.otdat{
+	position:absolute;
+	padding:8px;
+	padding-bottom:4px;
+	border-bottom:4px solid #ff000d;
+	background-color:#ff4751;
+	color:white;
+	font-size:18px;
+	font-family:'RobotoRegular';
+	margin-left:606px;
+	margin-top:24px;
+	cursor:pointer;
+}

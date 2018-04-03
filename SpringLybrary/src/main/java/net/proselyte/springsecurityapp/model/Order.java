@@ -1,12 +1,19 @@
 package net.proselyte.springsecurityapp.model;
 
+import net.proselyte.springsecurityapp.controller.Controller;
+import net.proselyte.springsecurityapp.service.DocumentService;
+import net.proselyte.springsecurityapp.service.OrderService;
+import net.proselyte.springsecurityapp.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Comparator;
+import java.util.Date;
 
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Order extends Controller{
 
     @Id
     @Column(name = "id")
@@ -98,4 +105,10 @@ public class Order {
             return (lhs.getStartTime() > rhs.getStartTime()) ? 1 : 0;
         }
     };
+
+
+    public int overdueDays(){
+        Date date = new Date();
+        return (date.getTime() > getFinishTime())? (int)((date.getTime()-getFinishTime())/1000/3600/24) : 0;
+    }
 }

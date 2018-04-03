@@ -45,6 +45,11 @@ public class Controller {
         return format.format(cal.getTime());
     }
 
+    public int getFine(Order or, Document d){
+        Controller c = new Controller();
+        return or.overdueDays()*d.getPrice();
+    }
+
     public static int getIdFromCookie(String cookieUserCode) {
         return Integer.parseInt(cookieUserCode.substring(6, cookieUserCode.length() - 6));
     }
@@ -107,15 +112,15 @@ public class Controller {
                     || or.getStatus().equals("waitForAccept")) {
                 i++;
                 keepingTime = or.getFinishTime();
-                if (keepingTime> date.getTime()) fine = (keepingTime-date.getTime())/1000/3600/24;
+                if (keepingTime < date.getTime()) fine = getFine(or,d);
                 items = items + "<div class=\"books\" style=\"margin-left:" + margin + "px\"> " +
                         "<div class=books_inside>" +
-                            ((or.getStatus().equals("queue"))? "# in queue"+u.getPositionInQueue(getQueueForDocument(documentService.get(or.getItemId()))):
-                                    ((or.getStatus().equals("waitForAccept"))?"Accept the book":getDate(keepingTime))) +
-                        "<p class=inside_text id=queue>In queue</p>" +
-                        "<p class=inside_text id=fine>Fine: 228$</p>" +
-                        "<div class=accept_book id=" +or.getId() + ">Accept the book</div>" +
-                        ((!or.getStatus().equals("renewed"))?"<div class=renew_book id=" +or.getId() + ">Renew the book</div>":"") +
+                        ((or.getStatus().equals("waitForAccept"))?("Document is Ready!"):getDate(keepingTime)) +
+                        (or.getStatus().equals("queue")? "<p class=inside_text id=queue># in queue "+ (1+u.getPositionInQueue(getQueueForDocument(documentService.get(or.getItemId())))) +"</p>" : "") +
+                        "<p class=inside_text id=fine>Fine: "+fine+"</p>" +
+                        "<p class=inside_text >Status: "+or.getStatus() +"</p>" +
+                        ((or.getStatus().equals("waitForAccept"))?("<div class=accept_book id=" +or.getId() + ">Accept the book</div>"):"") +
+                        ((or.getStatus().equals("open"))?"<div class=renew_book id=" +or.getId() + ">Renew the book</div>":"") +
                         "<div class=return_book id=" +or.getId() + ">Return the book</div>" +
                         "</div>" +
                         "<img src=\"/resources/img/books/1.jpg\" width=\"190px\" height=\"289px\" /> " +
@@ -232,7 +237,7 @@ public class Controller {
                     "<div class=settings_orders_list_specs_box>" +
                     "<b style=\"text-decoration:underline;\"> (" + or.getId() + ")" + d.getTitle()+ "   :" + u.getName() + " " + u.getSurname()  + "</b></br>" +
                     "<b>Status: </b>"+or.getStatus()+"</br>" +
-                    "<b>Fine: </b>" + or.getStatus() + "</br>" +
+                    "<b>Fine: </b>" + getFine(or,d) + "</br>" +
                     "<b>Return date:</b>" + getDate(or.getFinishTime()) +
                     "</div>" +
                     (or.getStatus().equals("closed") ? "":"<div class=settings_orders_list_modify id="+or.getId()+">Close</div>") +
@@ -246,10 +251,9 @@ public class Controller {
         Document d;
         User u;
         config = config.toLowerCase();
-
         for (Order or : orders) {
-            if (config.contains(or.getStatus()) && !config.contains("byuserid") ||
-                    config.contains("byuserid") && config.contains(or.getStatus()) && or.getUserId() == userId) {
+            if (config.contains(or.getStatus().toLowerCase()) && !config.contains("by user") ||
+                    config.contains("by user") && config.contains(or.getStatus().toLowerCase()) && or.getUserId() == userId) {
                 d = documentService.get(or.getItemId());
                 u = userService.get(or.getUserId());
                 div += "<div class=settings_list_orders>" +
@@ -257,7 +261,7 @@ public class Controller {
                         "<div class=settings_orders_list_specs_box>" +
                         "<b style=\"text-decoration:underline;\"> (" + or.getId() + ")" + d.getTitle() + "   :" + u.getName() + " " + u.getSurname() + "</b></br>" +
                         "<b>Status: </b>" + or.getStatus() + "</br>" +
-                        "<b>Fine: </b>" + or.getStatus() + "</br>" +
+                        "<b>Fine: </b>" + getFine(or,d) + "</br>" +
                         "<b>Return date:</b>" + getDate(or.getFinishTime()) +
                         "</div>" +
                         (or.getStatus().equals("closed") ? "" : "<div class=settings_orders_list_modify id=" + or.getId() + ">Close</div>") +

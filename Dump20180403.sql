@@ -51,15 +51,16 @@ CREATE TABLE `documents` (
   `author` varchar(200) DEFAULT NULL,
   `status` varchar(10) DEFAULT 'none',
   `amount` int(11) DEFAULT '5',
-  `description` varchar(1000) DEFAULT NULL,
-  `teg` varchar(200) DEFAULT NULL,
-  `type` varchar(10) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT 'none',
+  `teg` varchar(200) DEFAULT '#',
+  `type` varchar(10) DEFAULT 'book',
   `year` int(11) DEFAULT '0',
-  `publisher` varchar(150) DEFAULT NULL,
-  `edition` varchar(100) DEFAULT NULL,
+  `publisher` varchar(150) DEFAULT 'none',
+  `edition` varchar(100) DEFAULT 'none',
+  `price` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `documents_id_uindex` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +69,6 @@ CREATE TABLE `documents` (
 
 LOCK TABLES `documents` WRITE;
 /*!40000 ALTER TABLE `documents` DISABLE KEYS */;
-INSERT INTO `documents` VALUES (2,'Book One','Author','bestseller',151,'Short description','#book','book',2018,'Drofa','300th'),(4,'Reference book','Book','reference',10,'some notes','Bookkk','book',2000,'Moscow','3th'),(9,'Introduction to Algorithms','Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein','status',35,'Publisher: MIT Press.Year: 2009.Edition: Third edition','teg','book',3333,NULL,NULL),(10,'Design Patterns: Elements of Reusable Object-Oriented Software','Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm','bestseller',45,'Publisher: Addison-Wesley Professional. Year: 2003.Edition: First edition','teg','book',222,NULL,NULL),(11,'The Mythical Man-month','Brooks,Jr., Frederick P','reference',0,'Publisher: Addison-Wesley Longman Publishing Co., Inc.Year: 1995.Edition: Second edition','teg','book',2222,NULL,NULL),(13,' Information Entropy','Claude Shannon','status',335,'','teg','video',2201,NULL,NULL);
 /*!40000 ALTER TABLE `documents` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `orders` (
   `finishTime` bigint(20) NOT NULL,
   `status` varchar(15) DEFAULT 'open',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,6 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (42,26,2,1521226262169,1522435862169,'closed'),(43,26,2,1521226917460,1522436517460,'finished'),(44,26,2,1521929046646,1523138646646,'finished'),(45,28,2,1521931694343,1523141294343,'open');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +118,7 @@ CREATE TABLE `users` (
   `address` varchar(150) DEFAULT NULL,
   `phone` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +127,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (26,'sk@innopolis.ru','$2a$10$0WShmxnxFzzOotGCGlelSuD5WFQjBGdlQzLl.rpFRp0D3Jf4J9b/q','Sem','Kiss','71741326190300','admin',0,'Voronezh','89995556677'),(27,'ttt','ttt','ttt','rrr',NULL,'disabled',0,NULL,NULL),(28,'rr@innopolis.ru','$2a$10$QeXasUTTROMJuvOs5xLxh.JH9OJ3D3bI3trBVuaF3Lxv2I3HSortS','rr','rr','69680628721116','disabled',0,NULL,NULL);
+INSERT INTO `users` VALUES (26,'sk@innopolis.ru','$2a$10$JQ1DK.mN.PQSld9rI.Ui.eMqxlCojzyJr45Ya60r09dNs1A7mrzfe','Semen','Kiss','43040826690363','admin',0,'Voronezh','89995556677'),(32,'p@innopolis.ru','$2a$10$NSDNMnCpS1/hXPA2Yv.4leJba8coHAr.9VzadKDSb1gAHpCBcts3u','Professor','Mayak','15672632353337','professor',0,'null','null'),(33,'s@innopolis.ru','$2a$10$BNQufB/2aDLugWDberO/xeDXfb4HL9U.gBR1J1oEYcgxAE7Bwa8Ee','Student','Vika','66749133319350','student',0,'null','null');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -141,4 +140,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-25  1:53:02
+-- Dump completed on 2018-04-03  7:01:58

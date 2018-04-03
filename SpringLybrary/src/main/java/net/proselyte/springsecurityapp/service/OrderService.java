@@ -2,6 +2,7 @@ package net.proselyte.springsecurityapp.service;
 
 import net.proselyte.springsecurityapp.model.Document;
 import net.proselyte.springsecurityapp.model.Order;
+import net.proselyte.springsecurityapp.model.User;
 import org.springframework.stereotype.Service;
 
 import javax.print.Doc;
@@ -18,7 +19,9 @@ public interface OrderService {
     public List<Order> getOpenOrdersByUserId(int userId);
     public List<Order> getQueue(int documentId);
     public List<Order> getOrdersByStatus(String status);
+    public List<Order> getOrdersByUserAndStatus(User u, String status);
     public void save(Order order);
+    public void delete(Order order);
     public Order get(int id);
 
 }

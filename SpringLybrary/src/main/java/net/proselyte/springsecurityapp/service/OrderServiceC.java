@@ -5,6 +5,7 @@ import net.proselyte.springsecurityapp.dao.DocumentRepository;
 import net.proselyte.springsecurityapp.dao.OrderRepository;
 import net.proselyte.springsecurityapp.model.Document;
 import net.proselyte.springsecurityapp.model.Order;
+import net.proselyte.springsecurityapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,8 +55,18 @@ public class OrderServiceC implements OrderService {
     }
 
     @Override
+    public List<Order> getOrdersByUserAndStatus(User u, String status) {
+        return orderRepository.findByUserIdAndStatus(u.getId(),status);
+    }
+
+    @Override
     public void save(Order order) {
         orderRepository.save(order);
+    }
+
+    @Override
+    public void delete(Order order) {
+        orderRepository.delete(order);
     }
 
     @Override
