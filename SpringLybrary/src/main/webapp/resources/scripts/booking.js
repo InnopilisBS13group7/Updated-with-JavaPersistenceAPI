@@ -61,6 +61,13 @@ $(document).ready(function(){
 			object.parent().animate({"height":"145px"}, 200);
 			object.animate({"height":"0px"}, 200).slideUp(0);
 		}
+<<<<<<< HEAD
+	});
+	$(".otdat").click(function(){
+		$.post("/pizda", {id:$(this).attr("id")}, function(result){
+			alert(result);
+		});
+>>>>>>> 97345b19783acc000f31554c2029a8336576937c
 	});
 	$(document).on('click', ".otdat", function(){
     	$.post("/queueRequest", {id:$(this).attr("id")}, function(result){

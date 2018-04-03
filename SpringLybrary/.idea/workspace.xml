@@ -91,6 +91,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="DocumentServiceC.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/DocumentServiceC.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -173,6 +174,14 @@
                 <element signature="method#getOrdersByUserIdAndItemId#0;class#OrderServiceC#0" expanded="false" />
                 <element signature="method#getOpenOrdersByUserId#0;class#OrderServiceC#0" expanded="false" />
               </folding>
+=======
+      <file leaf-file-name="BookingController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/BookingController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="617">
+              <caret line="156" column="57" lean-forward="false" selection-start-line="156" selection-start-column="57" selection-end-line="156" selection-end-column="57" />
+              <folding />
+>>>>>>> 97345b19783acc000f31554c2029a8336576937c
             </state>
           </provider>
         </entry>
@@ -231,6 +240,7 @@
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/model/Document.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/model/Order.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/Controller.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/BookingController.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/dao/OrderRepository.java" />
         <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
@@ -240,6 +250,10 @@
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/AdminController.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/DocumentServiceC.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/OrderServiceC.java" />
+=======
+        <option value="$PROJECT_DIR$/src/main/resources/database.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/BookingController.java" />
+>>>>>>> 97345b19783acc000f31554c2029a8336576937c
       </list>
     </option>
   </component>
@@ -561,10 +575,18 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="73867000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+=======
+    <option name="totallyTimeSpent" value="56487000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="70" y="-9" width="1859" height="1098" extended-state="6" />
+    <editor active="true" />
+>>>>>>> 97345b19783acc000f31554c2029a8336576937c
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -582,11 +604,19 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41558442" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18070363" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8874025" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26752663" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> 97345b19783acc000f31554c2029a8336576937c
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -950,6 +980,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -977,6 +1008,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/AdminController.java">
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/ActionController.java">
+>>>>>>> 97345b19783acc000f31554c2029a8336576937c
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="62" lean-forward="false" selection-start-line="6" selection-start-column="62" selection-end-line="6" selection-end-column="62" />
@@ -993,14 +1027,22 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/DocumentServiceC.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="4" column="62" lean-forward="false" selection-start-line="4" selection-start-column="62" selection-end-line="4" selection-end-column="62" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/resources/database.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="24" lean-forward="false" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+>>>>>>> 97345b19783acc000f31554c2029a8336576937c
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/OrderServiceC.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -1018,10 +1060,18 @@
           <caret line="263" column="55" lean-forward="false" selection-start-line="263" selection-start-column="55" selection-end-line="263" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="246" column="11" lean-forward="false" selection-start-line="246" selection-start-column="11" selection-end-line="246" selection-end-column="11" />
+          <folding>
+>>>>>>> 97345b19783acc000f31554c2029a8336576937c
             <element signature="method#getDate#0;class#Controller#0" expanded="false" />
             <element signature="method#getDate#1;class#Controller#0" expanded="false" />
             <element signature="method#getIdFromCookie#0;class#Controller#0" expanded="false" />
             <element signature="method#createNewCookieForUser#0;class#Controller#0" expanded="false" />
+<<<<<<< HEAD
             <element signature="method#createUserCardPage#0;class#Controller#0" expanded="false" />
             <element signature="method#isCookieWrong#0;class#Controller#0" expanded="false" />
             <element signature="method#addNewUserToTheSystem#0;class#Controller#0" expanded="false" />
@@ -1029,6 +1079,17 @@
             <element signature="method#createListOfUsersBlock#0;class#Controller#0" expanded="false" />
             <element signature="method#getQueueForDocument#0;class#Controller#0" expanded="false" />
           </folding>
+=======
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/BookingController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="156" column="57" lean-forward="false" selection-start-line="156" selection-start-column="57" selection-end-line="156" selection-end-column="57" />
+          <folding />
+>>>>>>> 97345b19783acc000f31554c2029a8336576937c
         </state>
       </provider>
     </entry>

@@ -102,6 +102,9 @@ public class BookingController extends Controller {
                     ((u.getStatus().equals("admin"))?(
                     "<div class=modifyit id=" + d.getId() + ">Modify</div>" +
                     "<div class=queue id=" + d.getId() + ">Queue</div>"):"") +
+=======
+                    "<div class=queue id=" + d.getId() + ">Queue</div>" +
+>>>>>>> 97345b19783acc000f31554c2029a8336576937c
                     "<div class=queue_box></div>" +
                     "</div>";
         }
