@@ -100,6 +100,7 @@ public class BookingController extends Controller {
                     "<div class=bookit id=" + d.getId() + ">Book</div>" +
                     "<div class=modifyit id=" + d.getId() + ">Modify</div>" +
                     "<div class=queue id=" + d.getId() + ">Queue</div>" +
+                    "<div class=queue_box></div>" +
                     "</div>";
         }
 
@@ -133,6 +134,30 @@ public class BookingController extends Controller {
         or.setFinishTime(or.getFinishTime()+(or.getFinishTime()-or.getStartTime()));
         orderService.save(or);
         return "true";
+    }
+
+    @RequestMapping(value = "/goToQueue", method = RequestMethod.POST)
+    public String goToQueue(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
+                            @RequestParam(value = "id") String documentId){
+        if (isCookieWrong(cookieUserCode)) return "false";
+        Document d = documentService.get(Integer.parseInt(documentId));
+        String div = "";
+        User u;
+        for (Order or : orderService.getQueue(d.getId())) {
+            d = documentService.get(or.getItemId());
+            u = userService.get(or.getUserId());
+            div += "<div class=settings_list_orders>" +
+                    "<img src=/resources/img/books/1.jpg width=82px height=82px class=settings_orders_list_avatar />" +
+                    "<div class=settings_orders_list_specs_box>" +
+                    "<b style=\"text-decoration:underline;\"> (" + or.getId() + ")" + d.getTitle()+ "   :" + u.getName() + " " + u.getSurname()  + "</b></br>" +
+                    "<b>Status: </b>"+or.getStatus()+"</br>" +
+                    "<b>Fine: </b>" + or.getStatus() + "</br>" +
+                    "<b>Return date:</b>" + getDate(or.getFinishTime()) +
+                    "</div>" +
+                    "<div class=otdat id=228>XYI</div>" +
+                    "</div>";
+        }
+        return div;
     }
 
 }
