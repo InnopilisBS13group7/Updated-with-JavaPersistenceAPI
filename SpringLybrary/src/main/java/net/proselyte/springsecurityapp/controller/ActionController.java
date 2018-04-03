@@ -60,7 +60,6 @@ public class ActionController extends Controller {
                                @RequestParam(value = "id", required = false, defaultValue = "0") int userId,
                                @RequestParam(value = "type") String configString) {
         if (isCookieWrong(cookieUserCode)) return "false";
-
         return createListOfOrdersBlock(getAllOrders(),configString,userId);
     }
 }

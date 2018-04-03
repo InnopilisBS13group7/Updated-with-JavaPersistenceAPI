@@ -46,6 +46,7 @@ $(document).ready(function(){
 		}
 	});
 	$(".queue").click(function(){
+<<<<<<< HEAD
 		var object = $(this).parent().find(".queue_box");
 		if($(this).text() == "Queue"){
 			$(this).text("Hide");
@@ -68,10 +69,10 @@ $(document).ready(function(){
 			alert(result);
 		});
 >>>>>>> 97345b19783acc000f31554c2029a8336576937c
+=======
+		$.post("/goToQueue", {id:$(this).attr("id")}, function(result){
+			alert(result);
+		});
+>>>>>>> parent of fdc4cb3... ready for d3
 	});
-	$(document).on('click', ".otdat", function(){
-    	$.post("/queueRequest", {id:$(this).attr("id")}, function(result){
-      		alert(result);
-    	});
-  	});
 });

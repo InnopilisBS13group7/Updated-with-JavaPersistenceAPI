@@ -7,6 +7,7 @@ $(document).ready(function(){
 			alert(result);
 		});
 	});
+<<<<<<< HEAD
 	$(".renew_book").click(function(){
 		$.post("/renewDocument", {orderId:$(this).attr("id")}, function(result){
 =======
@@ -23,4 +24,6 @@ $(document).ready(function(){
 			alert(result);
 		});
 	});
+=======
+>>>>>>> parent of fdc4cb3... ready for d3
 });

@@ -1,6 +1,5 @@
 package net.proselyte.springsecurityapp.controller;
 
-import net.proselyte.springsecurityapp.model.Document;
 import net.proselyte.springsecurityapp.model.Order;
 import net.proselyte.springsecurityapp.model.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -58,35 +57,12 @@ public class UserController extends Controller {
 
         Order or = orderService.get(Integer.parseInt(orderId));
         or.setStatus("open");
-        Document d = documentService.get(or.getItemId());
-        if (d.getAmount() < 1) return "false";
-        d.setAmount(d.getAmount()-1);
         Date date = new Date();
         long start = date.getTime();
         or.setFinishTime(start+or.getFinishTime()-or.getStartTime());
         or.setStartTime(start);
-        documentService.save(d);
         orderService.save(or);
         return "true";
     }
 
-
-    @RequestMapping(value = "/renewDocument", method = RequestMethod.POST)
-    public String renewDocument(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
-                                @RequestParam(value = "orderId") String orderId){
-        if (isCookieWrong(cookieUserCode)) return "false";
-        Order or = orderService.get(Integer.parseInt(orderId));
-        Document d = documentService.get(or.getItemId());
-
-        if (or.getStatus().equals("renewed")) return "false";
-        if (d == null) return "false";
-
-        or.setStatus("renewed");
-        Date date = new Date();
-        long start = date.getTime();
-        or.setFinishTime(start+(or.getFinishTime()-or.getStartTime()));
-        or.setStartTime(start);
-        orderService.save(or);
-        return "true";
-    }
 }

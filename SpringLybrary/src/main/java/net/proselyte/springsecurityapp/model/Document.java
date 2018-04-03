@@ -33,16 +33,8 @@ public class Document {
     private String publisher;
     @Column(name = "edition")
     private String edition;
-    @Column(name = "price")
-    private int price;
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
+//    @Column(name = "availableFrom")
+//    private long availableFrom;
 
     public Document(){}
 

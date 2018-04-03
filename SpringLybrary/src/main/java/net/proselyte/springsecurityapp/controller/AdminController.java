@@ -3,12 +3,9 @@ package net.proselyte.springsecurityapp.controller;
 import net.proselyte.springsecurityapp.model.Document;
 import net.proselyte.springsecurityapp.model.Order;
 import net.proselyte.springsecurityapp.model.User;
-import org.hibernate.Hibernate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
-import javax.print.Doc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,7 +13,6 @@ import java.util.Date;
 
 @RestController
 public class AdminController extends Controller {
-
 
     @RequestMapping(value = "/addDocument", method = RequestMethod.POST)
     public String addDocument(@RequestParam(value = "title", required = false, defaultValue = "Not found") String title,
@@ -106,8 +102,27 @@ public class AdminController extends Controller {
         return "true";
     }
 
+ /*   @RequestMapping(value = "/deleteDocumentByParameters", method = RequestMethod.POST)
+    public String deleteDocumentByParameters(@RequestParam(value = "title", required = false, defaultValue = "Not found") String title,
+                                                    @RequestParam(value = "author", required = false, defaultValue = "Not found") String author,
+                                                    @RequestParam(value = "type", required = false, defaultValue = "Not found") String type) {
+        DBHandler db;
+        db = new DBHandler();
+        Statement statement = db.getConnection().createStatement();
+
+        String getQuery = "select * from documents where title = '" + title + "' and author = '" + author + "' and type = '" + type + "'";
+        ResultSet resultSet = statement.executeQuery(getQuery);
+        if (!resultSet.next()) return "false";//already exist such book
+
+        String query = "DELETE from documents "+
+                "where title = '" + title + "' and author = '" + author + "' and type = '" + type + "'";
+        statement.execute(query);
+        return "true";
+    }
+*/
     @RequestMapping(value = "/closeOrder", method = RequestMethod.POST)
     public String closeOrder(@RequestParam(value = "orderId", required = false, defaultValue = "Not found") String orderId){
+
         Order or = orderService.get(Integer.parseInt(orderId));
         Document document = documentService.get(or.getItemId());
         if (!or.getStatus().equals("queue")) document.setAmount(document.getAmount()+1);
@@ -119,18 +134,16 @@ public class AdminController extends Controller {
     }
 
     @RequestMapping(value = "/queueRequest", method = RequestMethod.POST)
-    public String queueRequest(@RequestParam(value = "id", required = false, defaultValue = "Not found") String orderId){
+    public String queueRequest(@RequestParam(value = "orderId", required = false, defaultValue = "Not found") String orderId){
+
         Order or = orderService.get(Integer.parseInt(orderId));
-        Document d = documentService.get(or.getItemId());
+        if (documentService.get(or.getItemId()).getAmount() == 0) return "false";
         or.setStatus("waitForAccept");
         Date date = new Date();
         long start = date.getTime();
         or.setFinishTime(start+or.getFinishTime()-or.getStartTime());
         or.setStartTime(start);
         orderService.save(or);
-        for (Order o:orderService.getQueue(or.getItemId())){
-            orderService.delete(o);
-        }
         return "true";
     }
 
