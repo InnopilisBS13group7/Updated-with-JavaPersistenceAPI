@@ -11,6 +11,16 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController
 public class RegistrationController extends Controller {
 
+    /**
+     * if there is no such user creates new user account
+     * @param name
+     * @param surname
+     * @param email
+     * @param password
+     * @param response
+     * @return user card page
+     * @throws SQLException
+     */
     @RequestMapping(value = "/registration", method = POST)
     public String registration(@RequestParam(value = "name", required = false, defaultValue = "Not found") String name,
                                @RequestParam(value = "surname", required = false, defaultValue = "Not found") String surname,

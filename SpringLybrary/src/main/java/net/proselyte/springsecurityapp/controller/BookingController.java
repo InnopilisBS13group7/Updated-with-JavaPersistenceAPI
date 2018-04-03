@@ -18,10 +18,15 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController
 public class BookingController extends Controller {
 
+    /**
+     *checking requirements, setting keeping time,if ammount is 0 adding to waiting list, if not 0 - opening the order
+     * @param id
+     * @param cookieUserCode
+     * @return if meets the requirements "true", otherwise "false" (already has it or waiting in queue, document status is reference,)
+     */
     @RequestMapping(value = "/takeItem", method = POST)
     public String takeItem(@RequestParam(value = "documentId", required = true, defaultValue = "0") String id,
-                           @CookieValue(value = "user_code", required = false) Cookie cookieUserCode
-    ) {
+                           @CookieValue(value = "user_code", required = false) Cookie cookieUserCode) {
         int documentId = Integer.parseInt(id);
         Date date = new Date();
         Document d = documentService.get(documentId);
@@ -61,6 +66,11 @@ public class BookingController extends Controller {
         return "true";
     }
 
+    /**
+     * get list of all documents
+     * @param cookieUserCode
+     * @return list of all documents
+     */
     @RequestMapping(value = "/listItems", method = POST)
     public String listItems(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode) {
         if (isCookieWrong(cookieUserCode)) return "false";
@@ -111,6 +121,12 @@ public class BookingController extends Controller {
     }
 
 
+    /**
+     * returning document to the system, finishing the order
+     * @param cookieUserCode
+     * @param orderId
+     * @return "true" if successfully, "false" if cookie is wrong
+     */
     @RequestMapping(value = "/returnDocument", method = RequestMethod.POST)
     public String returnDocument(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
                                  @RequestParam(value = "orderId") String orderId){
@@ -121,6 +137,7 @@ public class BookingController extends Controller {
         orderService.save(or);
         return "true";
     }
+
 
     @RequestMapping(value = "/goToQueue", method = RequestMethod.POST)
     public String goToQueue(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,

@@ -25,7 +25,13 @@ public class EntireController extends net.proselyte.springsecurityapp.controller
     @Autowired
     private UserService userService;
 
-
+    /**
+     * check queue, if within one day user haven`t take document status sets closed
+     * @param request
+     * @param cookieUserCode
+     * @param model
+     * @return main page
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(//@RequestParam(value = "name", required = false, defaultValue = "ITP_Project") String name,
                         HttpServletRequest request,
@@ -72,6 +78,12 @@ public class EntireController extends net.proselyte.springsecurityapp.controller
         return "index";
     }
 
+    /**
+     * delet cookie and exit
+     * @param response
+     * @param cookieUserCode
+     * @return main page
+     */
     @RequestMapping(value = "/exit", method = RequestMethod.POST)
     public String exit(HttpServletResponse response,
                        @CookieValue(value = "user_code", required = false) Cookie cookieUserCode) {

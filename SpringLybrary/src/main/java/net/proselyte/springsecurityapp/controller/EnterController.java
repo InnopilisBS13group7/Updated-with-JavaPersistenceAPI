@@ -15,7 +15,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class EnterController extends net.proselyte.springsecurityapp.controller.Controller {
 
 
-
+    /**
+     * checking if there is such user in the system and matching password, creating cookie
+     * @param email
+     * @param password
+     * @param response
+     * @return user card page if successfully, else "false" string
+     */
     @RequestMapping(value = "/enter", method = POST)
     public String enter(@RequestParam(value = "email", required = false, defaultValue = "Not found") String email,
                         @RequestParam(value = "password", required = false, defaultValue = "Not found") String password,

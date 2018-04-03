@@ -17,7 +17,17 @@ import java.util.Date;
 @RestController
 public class AdminController extends Controller {
 
-
+    /**
+     * adding book
+     * @param title
+     * @param author
+     * @param publisher
+     * @param description
+     * @param year
+     * @param status
+     * @param edition
+     * @return "true" string
+     */
     @RequestMapping(value = "/addDocument", method = RequestMethod.POST)
     public String addDocument(@RequestParam(value = "title", required = false, defaultValue = "Not found") String title,
                                      @RequestParam(value = "author", required = false, defaultValue = "Not found") String author,
@@ -31,6 +41,12 @@ public class AdminController extends Controller {
         return "true";
     }
 
+    /**
+     * adding Auidio/video document
+     * @param title
+     * @param author
+     * @return "true" string
+     */
     @RequestMapping(value = "/addAV", method = RequestMethod.POST)
     public String addDocument(@RequestParam(value = "title", required = false, defaultValue = "Not found") String title,
                                      @RequestParam(value = "author", required = false, defaultValue = "Not found") String author) {
@@ -40,6 +56,17 @@ public class AdminController extends Controller {
         return "true";
     }
 
+    /**
+     * setting new parameters to document
+     * @param id
+     * @param title
+     * @param author
+     * @param publisher
+     * @param description
+     * @param edition
+     * @param year
+     * @return "false" if does not exist such book, otherwise "true"
+     */
     @RequestMapping(value = "/modifyDocument", method = RequestMethod.POST)
     public String modifyDocument(@RequestParam(value = "documentId") String id,
                                         @RequestParam(value = "title") String title,
@@ -61,6 +88,15 @@ public class AdminController extends Controller {
         return "true";
     }
 
+    /**
+     * add new user to the system
+     * @param password
+     * @param name
+     * @param email
+     * @param surname
+     * @param status
+     * @return if already exists - "false", otherwise "true"
+     */
     @RequestMapping(value = "/addNewUser", method = RequestMethod.POST)
     public String addNewuser(@RequestParam(value = "password", required = false, defaultValue = "No password") String password,
                                     @RequestParam(value = "name", required = false, defaultValue = "No name") String name,
@@ -71,6 +107,15 @@ public class AdminController extends Controller {
         return check?"true":"false";
     }
 
+    /**
+     *setting new parameters to user
+     * @param id
+     * @param name
+     * @param address
+     * @param phone
+     * @param status
+     * @return "false" if does not exist such user, otherwise "true"
+     */
     @RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
     public String modifyUser(@RequestParam(value = "id", required = false, defaultValue = "No id") String id,
                                     @RequestParam(value = "name", required = false, defaultValue = "No name") String name,
@@ -90,6 +135,11 @@ public class AdminController extends Controller {
         return "true";
     }
 
+    /**
+     * deleting user from the system
+     * @param id
+     * @return "false" if does not exist such user, otherwise "true"
+     */
     @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
     public String deleteUser(@RequestParam(value = "id", required = false, defaultValue = "0") String id) {
         User u = userService.get(Integer.parseInt(id));
@@ -98,6 +148,11 @@ public class AdminController extends Controller {
         return "true";
     }
 
+    /**
+     * deleting document from the system
+     * @param id
+     * @return "false" if does not exist such document, otherwise "true"
+     */
     @RequestMapping(value = "/deleteDocumentById", method = RequestMethod.POST)
     public String deleteDocumentById(@RequestParam(value = "id", required = false, defaultValue = "0") String id){
         Document d = documentService.get(Integer.parseInt(id));
@@ -106,6 +161,11 @@ public class AdminController extends Controller {
         return "true";
     }
 
+    /**
+     * setting status "closed" to the order, returning book to the system
+     * @param orderId
+     * @return "false" if does not exist such order, otherwise "true"
+     */
     @RequestMapping(value = "/closeOrder", method = RequestMethod.POST)
     public String closeOrder(@RequestParam(value = "orderId", required = false, defaultValue = "Not found") String orderId){
         Order or = orderService.get(Integer.parseInt(orderId));
@@ -118,6 +178,11 @@ public class AdminController extends Controller {
         return "true";
     }
 
+    /**
+     * setting status "waitForAccept" , starting time and finish time, saving to orders
+     * @param orderId
+     * @return "true" string
+     */
     @RequestMapping(value = "/queueRequest", method = RequestMethod.POST)
     public String queueRequest(@RequestParam(value = "id", required = false, defaultValue = "Not found") String orderId){
         Order or = orderService.get(Integer.parseInt(orderId));

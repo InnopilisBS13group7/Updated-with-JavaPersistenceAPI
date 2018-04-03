@@ -10,6 +10,11 @@ import java.util.List;
 @RestController
 public class ActionController extends Controller {
 
+    /**
+     * to go to profile page
+     * @param cookieUserCode individual cookie of user
+     * @return user card page
+     */
 
     @RequestMapping(value = "/toProfile", method = RequestMethod.POST)
     public String toProfile(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode) {
@@ -18,6 +23,11 @@ public class ActionController extends Controller {
         return createUserCardPage(userId);
     }
 
+    /**
+     * to go to settings page
+     * @param cookieUserCode individual cookie of user
+     * @return settings page
+     */
     @RequestMapping(value = "/settings", method = RequestMethod.POST)
     public String settings(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode) {
         if (isCookieWrong(cookieUserCode)) return "false";
@@ -55,6 +65,13 @@ public class ActionController extends Controller {
         return div;
     }
 
+    /**
+     *
+     * @param cookieUserCode individual cookie of user
+     * @param userId id num in userlist
+     * @param configString string from browser
+     * @return page with orders
+     */
     @RequestMapping(value = "/ordersSearch", method = RequestMethod.POST)
     public String ordersSearch(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
                                @RequestParam(value = "id", required = false, defaultValue = "0") int userId,

@@ -32,12 +32,20 @@ public class Controller {
     @Autowired
     protected DocumentService documentService;
 
+    /**
+     * @return date in string format
+     */
     public static String getDate() {
         Date date = new Date();
         SimpleDateFormat formatForDate = new SimpleDateFormat("dd.MM.yyyy");
         return formatForDate.format(date);
     }
 
+    /**
+     * sets current time in miliseconds
+     * @param currentTime
+     * @return  time in miliseconds in string format
+     */
     public static String getDate(long currentTime) {
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(currentTime);
@@ -45,15 +53,31 @@ public class Controller {
         return format.format(cal.getTime());
     }
 
+    /**
+     *
+     * @param or object
+     * @param d object
+     * @return fine by current order
+     */
     public int getFine(Order or, Document d){
         Controller c = new Controller();
         return or.overdueDays()*d.getPrice();
     }
 
+    /**
+     * @param cookieUserCode
+     * @return id from cookie
+     */
     public static int getIdFromCookie(String cookieUserCode) {
         return Integer.parseInt(cookieUserCode.substring(6, cookieUserCode.length() - 6));
     }
 
+    /**
+     * create new cookie for user
+     * @param email
+     * @param response
+     * @return cookie
+     */
     public boolean createNewCookieForUser(String email, HttpServletResponse response) {
 
         User u = userService.get(email);
@@ -69,6 +93,11 @@ public class Controller {
         return true;
     }
 
+    /**
+     * create user card page
+     * @param userId
+     * @return user card page
+     */
     public String createUserCardPage(int userId) {
         User u = userService.get(userId);
         if (u == null) return "error";
@@ -96,6 +125,11 @@ public class Controller {
         return page;
     }
 
+    /**
+     * create a part of user page about previous orders
+     * @param u
+     * @return block with previous orders
+     */
     public String createUserHistoryBlock(User u) {
         Date date = new Date();
         if (u == null) return "error";
@@ -137,15 +171,32 @@ public class Controller {
         return items;
     }
 
+    /**
+     * @param request
+     * @return Client Ip Address
+     */
     public static String getClientIpAddress(HttpServletRequest request) {
         return request.getRemoteAddr();
     }
 
+    /**
+     * checks the correctness of cookie
+     * @param cookieUserCode
+     * @return true/false
+     */
     protected boolean isCookieWrong(Cookie cookieUserCode) {
         if (cookieUserCode == null) return true;
         return userService.getByCookie(cookieUserCode.getValue()) == null;
     }
 
+    /**
+     * adds new user to the system
+     * @param name
+     * @param surname
+     * @param email
+     * @param password
+     * @return true/false
+     */
     protected boolean addNewUserToTheSystem(String name, String surname, String email, String password){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         if (userService.get(email) != null) return false;
@@ -154,6 +205,14 @@ public class Controller {
         return true;
     }
 
+    /**
+     * adds new user to the system
+     * @param name
+     * @param surname
+     * @param email
+     * @param password
+     * @return true/false
+     */
     protected boolean addNewUserToTheSystem(String name, String surname, String email, String password, String status) {
         if (userService.get(email) != null) return false;
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -162,18 +221,34 @@ public class Controller {
         return true;
     }
 
+    /**
+     *
+     * @return list of all users in the system
+     */
     protected List<User> getAllUsers() {
         return userService.getAllusers();
     }
 
+    /**
+     *
+     * @return list of all orders in the system
+     */
     public List<Order> getAllOrders() {
         return orderService.getAllOrders();
     }
 
+    /**
+     *
+     * @return list of all finished orders in the system
+     */
     protected List<Order> getAllFinishedOrders() {
         return orderService.getAllFinishedOrders();
     }
 
+    /**
+     *
+     * @return list of all documents in the system
+     */
     protected List<Document> getAllDocuments() {
         return documentService.getAllDocuments();
     }
@@ -182,10 +257,19 @@ public class Controller {
         return userService.get(Integer.parseInt(id));
     }
 
+    /**
+     *
+     * @param id
+     * @return user by id
+     */
     protected User getClientUserObject(int id) {
         return userService.get(id);
     }
 
+    /**
+     * @param users
+     * @return block with all users
+     */
     protected String createListOfUsersBlock(List<User> users) {
         String div = "<div class=settings_type_box id=settings_users>" +
                 "<div id=new_user><p id=new_user_bottom>+ Add a new user</p>" +
@@ -213,6 +297,10 @@ public class Controller {
         return div + "</div>";
     }
 
+    /**
+     * @param orders
+     * @return block with all orders
+     */
     protected String createListOfOrdersBlock(List<Order> orders){
         String div = "<div class=settings_type_box id=settings_orders>";
         Document d;
@@ -246,6 +334,12 @@ public class Controller {
         return div + "</div></div>";
     }
 
+    /**
+     * @param orders
+     * @param config
+     * @param userId
+     * @return block with all orders
+     */
     protected String createListOfOrdersBlock(List<Order> orders, String config, int userId){
         String div = "";
         Document d;
@@ -271,6 +365,10 @@ public class Controller {
         return div;
     }
 
+    /**
+     * @param document
+     * @return queue for document
+     */
     protected List<User> getQueueForDocument(Document document){
         List<Order> queue = orderService.getQueue(document.getId());
         List<User> users = new LinkedList<>();

@@ -13,6 +13,17 @@ import java.util.Date;
 public class UserController extends Controller {
 
 
+    /**
+     * change your profile info
+     * @param name
+     * @param surname
+     * @param address
+     * @param phone
+     * @param newPassword
+     * @param currentPassword
+     * @param cookieUserCode
+     * @return true if successful
+     */
     @RequestMapping(value = "/profileSettings", method = RequestMethod.POST)
     public String profileSettings(@RequestParam(value = "name", required = false, defaultValue = "") String name,
                                     @RequestParam(value = "surname", required = false, defaultValue = "") String surname,
@@ -53,6 +64,11 @@ public class UserController extends Controller {
         return "true";
     }
 
+    /**
+     * accept the order if there are free ones, set finish time
+     * @param orderId
+     * @return true if successfully, false else
+     */
     @RequestMapping(value = "/acceptDocument", method = RequestMethod.POST)
     public String acceptDocument(@RequestParam(value = "orderId", required = false, defaultValue = "Not found") String orderId){
 
@@ -71,6 +87,12 @@ public class UserController extends Controller {
     }
 
 
+    /**
+     * set status renewed to the order, new finish time
+     * @param cookieUserCode
+     * @param orderId
+     * @return "true" if exist document, already not renewed
+     */
     @RequestMapping(value = "/renewDocument", method = RequestMethod.POST)
     public String renewDocument(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
                                 @RequestParam(value = "orderId") String orderId){
