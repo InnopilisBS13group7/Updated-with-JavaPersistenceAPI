@@ -19,4 +19,10 @@ public interface UserService {
     public void delete(int id);
     public void delete(User user);
 
+    public String checkoutDocument(int documentId, int userId);
+
+    public String renewDocument(int orderId);
+
+
+
 }

@@ -20,6 +20,12 @@ public class OrderServiceC implements OrderService {
     @Autowired
     private DocumentRepository documentRepository;
 
+    @Autowired
+    protected UserService userService;
+
+    @Autowired
+    protected DocumentService documentService;
+
     public List<Order> getAllOrders() {
         return (List<Order>)orderRepository.findAll();
     }
@@ -42,6 +48,11 @@ public class OrderServiceC implements OrderService {
     @Override
     public List<Order> getOrdersByUserAndStatus(User u, String status) {
         return orderRepository.findByUserIdAndStatus(u.getId(),status);
+    }
+
+    @Override
+    public List<Order> getOrdersByItemIdAndStatus(int itemid, String status) {
+        return orderRepository.findAllByItemIdAndStatus(itemid,status);
     }
 
     @Override
@@ -72,6 +83,11 @@ public class OrderServiceC implements OrderService {
     @Override
     public Order get(int id) {
         return orderRepository.getOne(id);
+    }
+
+    @Override
+    public int getFine(Order or, Document d) {
+            return or.overdueDays()*d.getPrice();
     }
 
 }

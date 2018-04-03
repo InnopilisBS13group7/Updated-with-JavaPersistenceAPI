@@ -20,7 +20,9 @@ public class ActionController extends Controller {
     public String toProfile(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode) {
         if (isCookieWrong(cookieUserCode)) return "false";
         int userId = getIdFromCookie(cookieUserCode.getValue());
-        return createUserCardPage(userId);
+        String notify = "<script>$(\"#alert_message\").text(\"Poshel Nahui\");"+
+        "$(\"#alert_back\").slideDown(0).animate({\"opacity\":\"1\"}, 200);</script>";
+        return createUserCardPage(userId)+notify;
     }
 
     /**

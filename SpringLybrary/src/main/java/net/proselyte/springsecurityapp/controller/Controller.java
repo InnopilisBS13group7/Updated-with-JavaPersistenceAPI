@@ -60,8 +60,7 @@ public class Controller {
      * @return fine by current order
      */
     public int getFine(Order or, Document d){
-        Controller c = new Controller();
-        return or.overdueDays()*d.getPrice();
+        return orderService.getFine(or,d);
     }
 
     /**
@@ -133,7 +132,8 @@ public class Controller {
     public String createUserHistoryBlock(User u) {
         Date date = new Date();
         if (u == null) return "error";
-        String items = "<div class=line>";
+        String items = "<div id=history_alert></div>" +
+                "<div class=line>";
         long keepingTime;
         int i = 0;
         int margin = -1;
@@ -370,41 +370,7 @@ public class Controller {
      * @return queue for document
      */
     protected List<User> getQueueForDocument(Document document){
-        List<Order> queue = orderService.getQueue(document.getId());
-        List<User> users = new LinkedList<>();
-        for (Order or:queue){
-            users.add(userService.get(or.getUserId()));
-        }
-        List<User> students = new LinkedList<>();
-        List<User> instructors= new LinkedList<>();
-        List<User> tas= new LinkedList<>();
-        List<User> visitingProfessors= new LinkedList<>();
-        List<User> professors= new LinkedList<>();
-        for(User u:users){
-            if (u.getStatus().equals("student")){
-                students.add(u);
-                continue;
-            }
-            if (u.getStatus().equals("instructor")){
-                instructors.add(u);
-                continue;
-            }
-            if (u.getStatus().equals("ta")){
-                tas.add(u);
-                continue;
-            }if (u.getStatus().equals("professor")){
-                professors.add(u);
-                continue;
-            }
-            if (u.getStatus().equals("visitingProfessor"))
-                visitingProfessors.add(u);
-
-        }
-        students.addAll(instructors);
-        students.addAll(tas);
-        students.addAll(visitingProfessors);
-        students.addAll(professors);
-        return students;
+        return documentService.getQueueForDocument(document);
 
     }
 }

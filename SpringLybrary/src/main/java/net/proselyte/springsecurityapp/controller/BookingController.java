@@ -28,42 +28,8 @@ public class BookingController extends Controller {
     public String takeItem(@RequestParam(value = "documentId", required = true, defaultValue = "0") String id,
                            @CookieValue(value = "user_code", required = false) Cookie cookieUserCode) {
         int documentId = Integer.parseInt(id);
-        Date date = new Date();
-        Document d = documentService.get(documentId);
-        User u = userService.get(getIdFromCookie(cookieUserCode.getValue()));
-        List<Order> orders = orderService.getOrdersByUserId(u.getId());
-
-        boolean check = false;
-        for (Order or : orders) {
-            if (or.getItemId() == documentId && (or.getStatus().equals("open") || or.getStatus().equals("queue"))) {
-                check = true;
-            }
-        }
-        if (check) return "false";
-        if (d == null) return "false";
-        int currentAmount = d.getAmount();
-        if (d.getStatus().equals("reference")) return "false";
-        //-- some conditions
-        long keepingTime = 0;
-        String userStatus = u.getStatus();
-        String documentStatus = d.getStatus();
-        if (documentStatus.equals("bestseller")) keepingTime = 1209600000;
-        else {
-            if (userStatus.equals("disabled") || userStatus.equals("activated")) keepingTime = 1728000000;
-            else if (userStatus.equals("visiting professor")) keepingTime = 604800000L;
-            else keepingTime = 2 * 1728000000L;
-
-        }
-        //------
-        if (currentAmount == 0) {
-            orderService.save(new Order(u.getId(), documentId, date.getTime(), date.getTime()+keepingTime, "queue"));
-            return "You are in queue";
-        }
-        //------
-        d.setAmount(d.getAmount() - 1);
-        documentService.save(d);
-        orderService.save(new Order(u.getId(), documentId, date.getTime(), (date.getTime() + keepingTime), "open"));
-        return "true";
+        int userId = getIdFromCookie(cookieUserCode.getValue());
+        return userService.checkoutDocument(documentId,userId);
     }
 
     /**
@@ -131,11 +97,7 @@ public class BookingController extends Controller {
     public String returnDocument(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
                                  @RequestParam(value = "orderId") String orderId){
         if (isCookieWrong(cookieUserCode)) return "false";
-
-        Order or = orderService.get(Integer.parseInt(orderId));
-        or.setStatus("finished");
-        orderService.save(or);
-        return "true";
+        return documentService.returnDocument(Integer.parseInt(orderId));
     }
 
 

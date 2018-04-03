@@ -1,10 +1,9 @@
 package net.proselyte.springsecurityapp.model;
 
 import net.proselyte.springsecurityapp.controller.Controller;
-import net.proselyte.springsecurityapp.service.DocumentService;
-import net.proselyte.springsecurityapp.service.OrderService;
-import net.proselyte.springsecurityapp.service.UserService;
+import net.proselyte.springsecurityapp.dao.DocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +12,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "orders")
-public class Order extends Controller{
+public class Order{
 
     @Id
     @Column(name = "id")
@@ -98,6 +97,7 @@ public class Order extends Controller{
                 ", status='" + status + '\'' +
                 "}\n";
     }
+
 
     public static final Comparator<Order> COMPARE_BY_START_TIME = new Comparator<Order>() {
         @Override

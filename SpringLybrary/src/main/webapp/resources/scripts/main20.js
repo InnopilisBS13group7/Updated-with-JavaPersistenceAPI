@@ -7,4 +7,7 @@ $(document).ready(function(){
 	$("#second_menu_block").delay(200).animate({"width":"30px"}, 250);
 	$("#third_menu_block").delay(200).animate({"width":"30px"}, 350);
 	$.getScript('../resources/scripts/profile.js');
+	$("#alert_close").click(function(){
+		$("#alert_back").animate({"opacity":"0"}, 200).slideUp(0);
+	});
 });

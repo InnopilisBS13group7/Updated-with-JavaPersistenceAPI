@@ -36,7 +36,7 @@ public class AdminController extends Controller {
                               @RequestParam(value = "year", required = false, defaultValue = "0") String year,
                               @RequestParam(value = "status", required = false, defaultValue = "Not found") String status,
                               @RequestParam(value = "edition", required = false, defaultValue = "Not found") String edition){
-        Document d = new Document(title,author,status,0,description,"#","book",Integer.parseInt(year),publisher,edition);
+        Document d = new Document(title,author,status,0,description,"#","book",Integer.parseInt(year),publisher,edition,100);
         documentService.save(d);
         return "true";
     }
@@ -51,7 +51,7 @@ public class AdminController extends Controller {
     public String addDocument(@RequestParam(value = "title", required = false, defaultValue = "Not found") String title,
                               @RequestParam(value = "author", required = false, defaultValue = "Not found") String author) {
 
-        Document d = new Document(title,author,"AV",0,"none","#","av",0,"none","none");
+        Document d = new Document(title,author,"AV",0,"none","#","av",0,"none","none",100);
         documentService.save(d);
         return "true";
     }
@@ -187,6 +187,11 @@ public class AdminController extends Controller {
     public String queueRequest(@RequestParam(value = "id", required = false, defaultValue = "Not found") String orderId){
         Order or = orderService.get(Integer.parseInt(orderId));
         Document d = documentService.get(or.getItemId());
+        for (Order o: orderService.getOrdersByItemIdAndStatus(d.getId(),"open")){
+            o.setStatus("finished");
+            or.setFinishTime(System.currentTimeMillis());
+            orderService.save(o);
+        }
         or.setStatus("waitForAccept");
         Date date = new Date();
         long start = date.getTime();

@@ -46,7 +46,7 @@ public class Document {
 
     public Document(){}
 
-    public Document(String title, String author, String status, int amount, String description, String teg, String type, int year, String publisher, String edition) {
+    public Document(String title, String author, String status, int amount, String description, String teg, String type, int year, String publisher, String edition, int price) {
         this.title = title;
         this.author = author;
         this.status = status;
@@ -57,6 +57,7 @@ public class Document {
         this.year = year;
         this.publisher = publisher;
         this.edition = edition;
+        this.price = price;
     }
 
     public int getId() {

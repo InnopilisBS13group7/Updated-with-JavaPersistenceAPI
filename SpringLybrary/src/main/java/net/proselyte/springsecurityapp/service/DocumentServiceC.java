@@ -1,10 +1,14 @@
 package net.proselyte.springsecurityapp.service;
 
 import net.proselyte.springsecurityapp.dao.DocumentRepository;
+import net.proselyte.springsecurityapp.dao.OrderRepository;
 import net.proselyte.springsecurityapp.model.Document;
+import net.proselyte.springsecurityapp.model.Order;
+import net.proselyte.springsecurityapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -12,6 +16,15 @@ public class DocumentServiceC implements DocumentService {
 
     @Autowired
     private DocumentRepository documentRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    protected UserService userService;
+
+    @Autowired
+    protected OrderService orderService;
 
     @Override
     public List<Document> getAllDocuments() {
@@ -36,5 +49,52 @@ public class DocumentServiceC implements DocumentService {
     @Override
     public void delete(Document document) {
         documentRepository.delete(document);
+    }
+
+    @Override
+    public String returnDocument(int orderId) {
+        Order or = orderRepository.findOne(orderId);
+        or.setStatus("finished");
+        orderRepository.save(or);
+        return "true";
+    }
+
+    public List<User> getQueueForDocument(Document document) {
+        List<Order> queue = orderService.getQueue(document.getId());
+        List<User> users = new LinkedList<>();
+        for (Order or : queue) {
+            users.add(userService.get(or.getUserId()));
+        }
+        List<User> students = new LinkedList<>();
+        List<User> instructors = new LinkedList<>();
+        List<User> tas = new LinkedList<>();
+        List<User> visitingProfessors = new LinkedList<>();
+        List<User> professors = new LinkedList<>();
+        for (User u : users) {
+            if (u.getStatus().equals("student")) {
+                students.add(u);
+                continue;
+            }
+            if (u.getStatus().equals("instructor")) {
+                instructors.add(u);
+                continue;
+            }
+            if (u.getStatus().equals("ta")) {
+                tas.add(u);
+                continue;
+            }
+            if (u.getStatus().equals("professor")) {
+                professors.add(u);
+                continue;
+            }
+            if (u.getStatus().equals("visitingProfessor"))
+                visitingProfessors.add(u);
+
+        }
+        students.addAll(instructors);
+        students.addAll(tas);
+        students.addAll(visitingProfessors);
+        students.addAll(professors);
+        return students;
     }
 }

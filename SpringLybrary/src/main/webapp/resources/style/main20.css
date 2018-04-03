@@ -232,3 +232,48 @@ body{
 #fine{
   margin-top:33px;
 }
+#alert_back{
+	position:absolute;
+	background-color:rgba(0, 0, 0, .7);
+	width:100%;
+	height:100%;
+	margin:-8px;
+	z-index:1000;
+	display:none;
+}
+#alert_message{
+	position:relative;
+	background-color:white;
+	font-family:'RobotoRegular';
+	font-size:18px;
+	text-align:center;
+	width:300px;
+	margin-top:200px;
+	margin-left:calc(50% - 150px);
+	padding:16px;
+	box-shadow:0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+}
+#alert_close{
+	position:relative;
+	background-color:#ff000d;
+	width:332px;
+	padding-top:8px;
+	padding-bottom:8px;
+	font-family:'RobotoRegular';
+	font-size:18px;
+	text-align:center;
+	color:white;
+	cursor:pointer;
+	margin-left:calc(50% - 150px);
+}
+#history_alert{
+	position:relative;
+	width:784px;
+	height:0px;
+	font-family:'RobotoRegular';
+	font-size:18px;
+	text-align:center;
+	color:white;
+	background-color:#ff000d;
+	overflow:hidden;
+}

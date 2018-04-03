@@ -97,18 +97,6 @@ public class UserController extends Controller {
     public String renewDocument(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
                                 @RequestParam(value = "orderId") String orderId){
         if (isCookieWrong(cookieUserCode)) return "false";
-        Order or = orderService.get(Integer.parseInt(orderId));
-        Document d = documentService.get(or.getItemId());
-
-        if (or.getStatus().equals("renewed")) return "false";
-        if (d == null) return "false";
-
-        or.setStatus("renewed");
-        Date date = new Date();
-        long start = date.getTime();
-        or.setFinishTime(start+(or.getFinishTime()-or.getStartTime()));
-        or.setStartTime(start);
-        orderService.save(or);
-        return "true";
+        return userService.renewDocument(Integer.parseInt(orderId));
     }
 }

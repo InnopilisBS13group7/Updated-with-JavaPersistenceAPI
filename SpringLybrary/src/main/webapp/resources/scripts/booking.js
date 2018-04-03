@@ -1,24 +1,42 @@
 $(document).ready(function(){
 	$(".bookit").click(function(){
 		$.post("/takeItem", {documentId:$(this).attr("id")}, function(result){
-			alert(result);
+    		$("#alert_message").text(result);
+    		$("#alert_back").slideDown(0).animate({"opacity":"1"}, 200);
 		});
 	});
 	$(".modifyit").click(function(){
 		var object = $(this).parent();
 		var id = $(this).attr("id");
 		$.post("/modifyDocument", {documentId:id, title:object.find(".books_inputs_title").val(), author:object.find(".books_inputs_author").val(), publisher:object.find(".books_inputs_publisher").val(), year:object.find(".books_inputs_year").val(), edition:object.find(".books_inputs_edition").val(), note:object.find(".books_inputs_note").val()}, function(result){
-			alert(result);
+			$("#alert_message").text(result);
+    		$("#alert_back").slideDown(0).animate({"opacity":"1"}, 200);
 		});
 	});
 	$("#add_save_book").click(function(){
+		var object = $(this);
 		$.post("/addDocument", {title:$("#add_book_title").val(), author:$("#add_book_author").val(), publisher:$("#add_book_publisher").val(), year:$("#add_book_year").val(), edition:$("#add_book_edition").val(), note:$("#add_book_note").val()}, function(result){
-			alert(result);
+			object.text("The book is added");
+			setTimeout(function(){
+				$("#new_book").text("+ Add a new book").css({"color":"black"});
+				$("#add_block_book").animate({"height":"0px"}, 150);
+				setTimeout(function(){
+					object.text("Add");
+				}, 200);
+			}, 1500);
 		});
 	});
 	$("#add_save_av").click(function(){
+		var object = $(this);
 		$.post("/addAV", {title:$("#add_av_title").val(), author:$("#add_av_author").val()}, function(result){
-			alert(result);
+			object.text("The book is added");
+			setTimeout(function(){
+				$("#new_av").text("+ Add a new audio/video").css({"color":"black"});
+				$("#add_block_av").animate({"height":"0px"}, 150);
+				setTimeout(function(){
+					object.text("Add");
+				}, 200);
+			}, 1500);
 		});
 	});
 	$("#new_book").click(function(){
@@ -64,7 +82,8 @@ $(document).ready(function(){
 	});
 	$(document).on('click', ".otdat", function(){
     	$.post("/queueRequest", {id:$(this).attr("id")}, function(result){
-      		alert(result);
+      		$("#alert_message").text(result);
+    		$("#alert_back").slideDown(0).animate({"opacity":"1"}, 200);
     	});
   	});
 });

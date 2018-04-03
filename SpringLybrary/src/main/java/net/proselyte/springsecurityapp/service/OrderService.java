@@ -19,9 +19,11 @@ public interface OrderService {
     public List<Order> getOpenOrdersByUserId(int userId);
     public List<Order> getQueue(int documentId);
     public List<Order> getOrdersByUserAndStatus(User u, String status);
+    public List<Order> getOrdersByItemIdAndStatus(int itemid, String status);
     public List<Order> getOrdersByStatus(String status);
     public void save(Order order);
     public void delete(Order order);
     public Order get(int id);
+    public int getFine(Order or, Document d);
 
 }

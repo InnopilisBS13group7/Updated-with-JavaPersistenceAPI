@@ -169,7 +169,7 @@ public class User {
                 ", fine=" + fine +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
-                '}';
+                "}\n";
     }
 }
 
