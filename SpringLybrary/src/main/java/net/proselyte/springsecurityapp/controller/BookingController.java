@@ -74,6 +74,7 @@ public class BookingController extends Controller {
                             "Edition:&nbsp;<input class=books_inputs_edition placeholder=\"Edition\" value=\"" + d.getEdition() + "\" /></br>" +
                             "Note:&nbsp;<input class=books_inputs_note placeholder=\"Note\" value=\"" + d.getDescription() + "\" /></br>" : "") +
                     "</p>" +
+                    "<div class=deleteit id=" + d.getId() + ">Delete</div>" +
                     "<div class=bookit id=" + d.getId() + ">Book</div>" +
                     ((u.getStatus().equals("admin"))?(
                             "<div class=modifyit id=" + d.getId() + ">Modify</div>" +

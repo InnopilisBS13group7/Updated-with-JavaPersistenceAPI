@@ -291,6 +291,7 @@ public class Controller {
                     "<b>id: </b>"+u.getId()+"</br>" +
                     "<b>Type: </b><input type=text class=settings_inputs_users_type placeholder=\"Type\" value=\"" + u.getStatus() + "\" /></br>" +
                     "</div>" +
+                    "<div class=settings_users_list_delete id=" + u.getId() + ">Delete</div>" +
                     "<div class=settings_users_list_modify id=" + u.getId() + ">Save</div>" +
                     "</div>";
         }

@@ -150,6 +150,19 @@ body{
 	margin-top:69px;
 	cursor:pointer;
 }
+.settings_users_list_delete{
+	position:absolute;
+	padding:8px;
+	padding-bottom:4px;
+	border-bottom:4px solid #ff000d;
+	background-color:#ff4751;
+	color:white;
+	font-size:18px;
+	font-family:'RobotoRegular';
+	margin-left:718px;
+	margin-top:24px;
+	cursor:pointer;
+}
 .settings_orders_list_modify{
 	position:absolute;
 	padding:8px;

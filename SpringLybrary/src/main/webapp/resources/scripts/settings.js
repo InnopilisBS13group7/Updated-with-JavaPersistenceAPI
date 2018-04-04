@@ -77,6 +77,13 @@ $(document).ready(function(){
 			object20.text("Saved").animate({"margin-left":"720px"}, 100);
 		});
 	});
+	$(".settings_users_list_delete").click(function(){
+		var object20 = $(this);
+		var id = $(this).attr("id");
+		$.post("/deleteUser", {id:id}, function(result){
+			object20.text("Deleted").animate({"margin-left":"708px"}, 100);
+		});
+	});
 	$("#search_all").click(function(){
 		//alert($(this).css("border"));
 		if($(this).css("border") == "2px solid rgb(0, 0, 0)")

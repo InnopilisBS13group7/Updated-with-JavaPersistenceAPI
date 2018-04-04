@@ -174,3 +174,17 @@
 	margin-top:24px;
 	cursor:pointer;
 }
+.deleteit{
+	position:absolute;
+	margin-left:591px;
+	margin-top:0px;
+	width:100px;
+	padding-top:8px;
+	padding-bottom:8px;
+	border-bottom:4px solid #ff000d;
+	background-color:#ff4751;
+	color:white;
+	text-align:center;
+	cursor:pointer;
+	font-family:'RobotoRegular';
+}

@@ -5,6 +5,12 @@ $(document).ready(function(){
     		$("#alert_back").slideDown(0).animate({"opacity":"1"}, 200);
 		});
 	});
+	$(".deleteit").click(function(){
+		$.post("/deleteItem", {documentId:$(this).attr("id")}, function(result){
+    		$("#alert_message").text(result);
+    		$("#alert_back").slideDown(0).animate({"opacity":"1"}, 200);
+		});
+	});
 	$(".modifyit").click(function(){
 		var object = $(this).parent();
 		var id = $(this).attr("id");
