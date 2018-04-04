@@ -140,8 +140,10 @@ public class Controller {
         long wholeFine = 0;
         long fine = 0;
         Document d;
+        boolean shouldNotify = false;
         for (Order or : orderService.getOrdersByUserId(u.getId())) {
             d = documentService.get(or.getItemId());
+            if (or.getStatus().equals("waitForAccept")) shouldNotify = true;
             if (or.getStatus().equals("open") || or.getStatus().equals("queue") || or.getStatus().equals("renewed")
                     || or.getStatus().equals("waitForAccept")) {
                 i++;
@@ -168,6 +170,8 @@ public class Controller {
             }
         }
         items += "</div>";
+        if (shouldNotify) items += "<script>$(\"#alert_message\").text(\"Document is available!\");"+
+                "$(\"#alert_back\").slideDown(0).animate({\"opacity\":\"1\"}, 200);</script>";
         return items;
     }
 
