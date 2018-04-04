@@ -9,6 +9,7 @@ import net.proselyte.springsecurityapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -89,5 +90,6 @@ public class OrderServiceC implements OrderService {
     public int getFine(Order or, Document d) {
             return or.overdueDays()*d.getPrice();
     }
+
 
 }

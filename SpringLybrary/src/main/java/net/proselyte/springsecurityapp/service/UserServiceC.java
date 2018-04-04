@@ -27,7 +27,6 @@ public class UserServiceC implements UserService {
         this.orderRepository = orderRepository;
     }
 
-
     @Override
     public List<User> getAllusers() {
         return userRepository.findAll();
@@ -117,7 +116,7 @@ public class UserServiceC implements UserService {
 
         if (or.getStatus().equals("renewed")) return "false";
         if (d == null) return "false";
-
+        if (or.getStatus().equals("finished")) return "false";
         or.setStatus("renewed");
         Date date = new Date();
         long start = date.getTime();
@@ -126,6 +125,5 @@ public class UserServiceC implements UserService {
         orderRepository.save(or);
         return "true";
     }
-
 
 }

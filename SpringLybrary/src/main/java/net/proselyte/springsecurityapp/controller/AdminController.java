@@ -187,21 +187,7 @@ public class AdminController extends Controller {
     public String queueRequest(@RequestParam(value = "id", required = false, defaultValue = "Not found") String orderId){
         Order or = orderService.get(Integer.parseInt(orderId));
         Document d = documentService.get(or.getItemId());
-        for (Order o: orderService.getOrdersByItemIdAndStatus(d.getId(),"open")){
-            o.setStatus("finished");
-            or.setFinishTime(System.currentTimeMillis());
-            orderService.save(o);
-        }
-        or.setStatus("waitForAccept");
-        Date date = new Date();
-        long start = date.getTime();
-        or.setFinishTime(start+or.getFinishTime()-or.getStartTime());
-        or.setStartTime(start);
-        orderService.save(or);
-        for (Order o:orderService.getQueue(or.getItemId())){
-            orderService.delete(o);
-        }
-        return "true";
+        return documentService.queueRequest(d);
     }
 
 }

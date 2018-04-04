@@ -24,6 +24,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
+      <file leaf-file-name="DocumentServiceC.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/DocumentServiceC.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="334">
+              <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+              <folding>
+                <element signature="method#returnDocument#0;class#DocumentServiceC#0" expanded="false" />
+                <element signature="method#getQueueForDocument#0;class#DocumentServiceC#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserServiceC.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/UserServiceC.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding>
+                <element signature="method#UserServiceC#0;class#UserServiceC#0" expanded="false" />
+                <element signature="method#checkoutDocument#0;class#UserServiceC#0" expanded="false" />
+                <element signature="method#renewDocument#0;class#UserServiceC#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EntireController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/EntireController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="167">
+              <caret line="38" column="37" lean-forward="false" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+              <folding>
+                <element signature="method#index#0;class#EntireController#0" expanded="false" />
+                <element signature="method#exit#0;class#EntireController#0" expanded="false" />
+                <element signature="method#hello#0;class#EntireController#0" expanded="false" />
+=======
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -58,6 +96,7 @@
                 <element signature="docComment;method#createListOfOrdersBlock#1;class#Controller#0" expanded="false" />
                 <element signature="method#createListOfOrdersBlock#1;class#Controller#0" expanded="false" />
                 <element signature="docComment;method#getQueueForDocument#0;class#Controller#0" expanded="false" />
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
               </folding>
             </state>
           </provider>
@@ -112,18 +151,27 @@
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/model/Order.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/DocumentServiceC.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/DocumentService.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/model/Document.java" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/Controller.java" />
+=======
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/UserServiceC.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/proselyte/springsecurityapp/Test1.java" />
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/OrderService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/DocumentService.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/OrderServiceC.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/AdminController.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/ActionController.java" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/AdminController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/DocumentServiceC.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/proselyte/springsecurityapp/Test1.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/UserServiceC.java" />
+=======
         <option value="$PROJECT_DIR$/src/main/resources/database.properties" />
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/BookingController.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/Controller.java" />
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
       </list>
     </option>
   </component>
@@ -137,6 +185,13 @@
     <layout place="tools.popupGrunt">
       <scroll-view-position x="0" y="0" />
     </layout>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
@@ -160,9 +215,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -179,7 +235,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
       <pane id="Scope" />
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -242,8 +301,14 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
+=======
       <pane id="Scratches" />
       <pane id="AndroidView" />
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -271,7 +336,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Test1.t3">
+  <component name="RunManager" selected="JUnit.Test1">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -461,9 +526,9 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.Test1.t3" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.Test1.t2" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.Test1" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.Test1" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.Test1.t3" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.Test1.t2" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.Test1.t1" />
       </list>
     </recent_temporary>
@@ -484,46 +549,54 @@
       <workItem from="1522747826546" duration="8022000" />
       <workItem from="1522784467908" duration="1666000" />
       <workItem from="1522787331503" duration="9359000" />
+      <workItem from="1522834108488" duration="13531000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test1 - 2018.04.04 at 01h 35m 51s.xml">
+    <history-entry file="Test1 - 2018.04.04 at 14h 42m 48s.xml">
       <configuration name="Test1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_t2 - 2018.04.04 at 01h 30m 22s.xml">
-      <configuration name="Test1.t2" configurationId="JUnit" />
+    <history-entry file="Test1 - 2018.04.04 at 14h 52m 52s.xml">
+      <configuration name="Test1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_t2 - 2018.04.04 at 01h 36m 49s.xml">
-      <configuration name="Test1.t2" configurationId="JUnit" />
+    <history-entry file="Test1 - 2018.04.04 at 15h 04m 24s.xml">
+      <configuration name="Test1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_t2 - 2018.04.04 at 01h 39m 30s.xml">
-      <configuration name="Test1.t2" configurationId="JUnit" />
+    <history-entry file="Test1 - 2018.04.04 at 15h 14m 37s.xml">
+      <configuration name="Test1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_t3 - 2018.04.04 at 01h 35m 24s.xml">
-      <configuration name="Test1.t3" configurationId="JUnit" />
+    <history-entry file="Test1 - 2018.04.04 at 15h 17m 39s.xml">
+      <configuration name="Test1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_t3 - 2018.04.04 at 01h 36m 35s.xml">
-      <configuration name="Test1.t3" configurationId="JUnit" />
+    <history-entry file="Test1 - 2018.04.04 at 15h 22m 15s.xml">
+      <configuration name="Test1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_t3 - 2018.04.04 at 01h 39m 40s.xml">
-      <configuration name="Test1.t3" configurationId="JUnit" />
+    <history-entry file="Test1 - 2018.04.04 at 15h 24m 37s.xml">
+      <configuration name="Test1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_t3 - 2018.04.04 at 01h 41m 28s.xml">
-      <configuration name="Test1.t3" configurationId="JUnit" />
+    <history-entry file="Test1 - 2018.04.04 at 16h 36m 34s.xml">
+      <configuration name="Test1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_t3 - 2018.04.04 at 01h 41m 45s.xml">
-      <configuration name="Test1.t3" configurationId="JUnit" />
+    <history-entry file="Test1 - 2018.04.04 at 16h 37m 31s.xml">
+      <configuration name="Test1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_t3 - 2018.04.04 at 01h 41m 58s.xml">
-      <configuration name="Test1.t3" configurationId="JUnit" />
+    <history-entry file="Test1 - 2018.04.04 at 16h 41m 45s.xml">
+      <configuration name="Test1" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="32578000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+=======
     <option name="totallyTimeSpent" value="21362000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="70" y="-9" width="1859" height="1098" extended-state="6" />
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -571,12 +644,16 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+=======
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21753247" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3917749" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23560767" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13598673" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24357034" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -589,27 +666,27 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15884861" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2196162" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33102345" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32896176" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792208" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17814207" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07462686" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12786885" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37089714" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13598673" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22768533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -625,7 +702,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -687,6 +764,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+<<<<<<< HEAD
+          <folding />
+=======
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
         </state>
       </provider>
     </entry>
@@ -708,7 +789,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+<<<<<<< HEAD
+          <folding>
+            <element signature="e#1871#1872#0" expanded="true" />
+            <element signature="e#1954#1955#0" expanded="true" />
+          </folding>
+=======
           <folding />
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
         </state>
       </provider>
     </entry>
@@ -716,7 +804,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="814">
           <caret line="37" column="42" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="37" selection-end-column="42" />
+<<<<<<< HEAD
+          <folding>
+            <element signature="method#before#0;class#Test1#0" expanded="false" />
+            <element signature="method#t1#0;class#Test1#0" expanded="false" />
+            <element signature="method#t2#0;class#Test1#0" expanded="false" />
+            <element signature="method#t3#0;class#Test1#0" expanded="false" />
+            <element signature="method#t4#0;class#Test1#0" expanded="false" />
+            <element signature="method#t5#0;class#Test1#0" expanded="false" />
+            <element signature="method#t6#0;class#Test1#0" expanded="false" />
+            <element signature="method#t7#0;class#Test1#0" expanded="false" />
+            <element signature="method#t8#0;class#Test1#0" expanded="false" />
+            <element signature="method#t9#0;class#Test1#0" expanded="false" />
+            <element signature="method#t10#0;class#Test1#0" expanded="false" />
+          </folding>
+=======
           <folding />
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
         </state>
       </provider>
     </entry>
@@ -888,6 +992,10 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="das://table:/2fad9c5/87b8d681-a695-4408-b058-89784d0635f4/itpdb.orders" />
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/Date.java" />
+=======
     <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/DocumentService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -904,6 +1012,7 @@
         </state>
       </provider>
     </entry>
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
     <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="616">
@@ -918,6 +1027,18 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/BookingController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="31" column="35" lean-forward="false" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+          <folding>
+            <element signature="docComment;method#takeItem#0;class#BookingController#0" expanded="false" />
+            <element signature="docComment;method#listItems#0;class#BookingController#0" expanded="false" />
+            <element signature="method#listItems#0;class#BookingController#0" expanded="false" />
+            <element signature="docComment;method#returnDocument#0;class#BookingController#0" expanded="false" />
+            <element signature="method#goToQueue#0;class#BookingController#0" expanded="false" />
+=======
     <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/DocumentServiceC.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
@@ -925,6 +1046,7 @@
           <folding>
             <element signature="method#returnDocument#0;class#DocumentServiceC#0" expanded="false" />
             <element signature="method#getQueueForDocument#0;class#DocumentServiceC#0" expanded="false" />
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
           </folding>
         </state>
       </provider>
@@ -937,87 +1059,140 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/model/Document.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="48" column="177" lean-forward="false" selection-start-line="48" selection-start-column="177" selection-end-line="48" selection-end-column="177" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/UserServiceC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/proselyte/springsecurityapp/Test1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2816">
-          <caret line="162" column="71" lean-forward="false" selection-start-line="162" selection-start-column="71" selection-end-line="162" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/dao/OrderRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
+        <state relative-caret-position="187">
           <caret line="14" column="73" lean-forward="false" selection-start-line="14" selection-start-column="73" selection-end-line="14" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/OrderService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="21" column="60" lean-forward="false" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/model/Document.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="48" column="166" lean-forward="false" selection-start-line="48" selection-start-column="166" selection-end-line="48" selection-end-column="166" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/ActionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="205">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding>
+            <element signature="method#settings#0;class#ActionController#0" expanded="false" />
+          </folding>
+=======
+        <state relative-caret-position="260">
+          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2794">
+          <caret line="131" column="49" lean-forward="false" selection-start-line="131" selection-start-column="49" selection-end-line="131" selection-end-column="49" />
+          <folding>
+            <element signature="method#createUserHistoryBlock#0;class#Controller#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/DocumentService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="43" lean-forward="false" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/OrderServiceC.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="54" column="69" lean-forward="false" selection-start-line="54" selection-start-column="69" selection-end-line="54" selection-end-column="69" />
-          <folding />
+        <state relative-caret-position="177">
+          <caret line="64" column="23" lean-forward="false" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
+          <folding>
+            <element signature="e#1871#1872#0" expanded="true" />
+            <element signature="e#1954#1955#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="191" column="55" lean-forward="false" selection-start-line="191" selection-start-column="55" selection-end-line="191" selection-end-column="55" />
+        <state relative-caret-position="453">
+          <caret line="193" column="0" lean-forward="true" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
           <folding>
             <element signature="docComment;method#addDocument#0;class#AdminController#0" expanded="false" />
-            <element signature="docComment;method#addDocument#1;class#AdminController#0" expanded="false" />
-            <element signature="docComment;method#modifyDocument#0;class#AdminController#0" expanded="false" />
-            <element signature="method#modifyDocument#0;class#AdminController#0" expanded="false" />
-            <element signature="docComment;method#addNewuser#0;class#AdminController#0" expanded="false" />
-            <element signature="method#addNewuser#0;class#AdminController#0" expanded="false" />
-            <element signature="docComment;method#modifyUser#0;class#AdminController#0" expanded="false" />
-            <element signature="method#modifyUser#0;class#AdminController#0" expanded="false" />
-            <element signature="docComment;method#deleteUser#0;class#AdminController#0" expanded="false" />
-            <element signature="method#deleteUser#0;class#AdminController#0" expanded="false" />
-            <element signature="docComment;method#deleteDocumentById#0;class#AdminController#0" expanded="false" />
-            <element signature="method#deleteDocumentById#0;class#AdminController#0" expanded="false" />
-            <element signature="docComment;method#closeOrder#0;class#AdminController#0" expanded="false" />
-            <element signature="method#closeOrder#0;class#AdminController#0" expanded="false" />
-            <element signature="docComment;method#queueRequest#0;class#AdminController#0" expanded="false" />
+          </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/dao/OrderRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="14" column="73" lean-forward="false" selection-start-line="14" selection-start-column="73" selection-end-line="14" selection-end-column="73" />
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/proselyte/springsecurityapp/Test1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="53" column="48" lean-forward="true" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
+          <folding>
+            <element signature="method#before#0;class#Test1#0" expanded="false" />
+            <element signature="method#t1#0;class#Test1#0" expanded="false" />
+            <element signature="method#t2#0;class#Test1#0" expanded="false" />
+            <element signature="method#t3#0;class#Test1#0" expanded="false" />
+            <element signature="method#t4#0;class#Test1#0" expanded="false" />
+            <element signature="method#t5#0;class#Test1#0" expanded="false" />
+            <element signature="method#t6#0;class#Test1#0" expanded="false" />
+            <element signature="method#t7#0;class#Test1#0" expanded="false" />
+            <element signature="method#t8#0;class#Test1#0" expanded="false" />
+            <element signature="method#t9#0;class#Test1#0" expanded="false" />
+            <element signature="method#t10#0;class#Test1#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/OrderService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/DocumentServiceC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+          <folding>
+            <element signature="method#returnDocument#0;class#DocumentServiceC#0" expanded="false" />
+            <element signature="method#getQueueForDocument#0;class#DocumentServiceC#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/service/UserServiceC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="method#UserServiceC#0;class#UserServiceC#0" expanded="false" />
+            <element signature="method#checkoutDocument#0;class#UserServiceC#0" expanded="false" />
+            <element signature="method#renewDocument#0;class#UserServiceC#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/net/proselyte/springsecurityapp/controller/EntireController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="49" column="38" lean-forward="false" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
-          <folding>
-            <element signature="method#exit#0;class#EntireController#0" expanded="false" />
-            <element signature="method#hello#0;class#EntireController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+        <state relative-caret-position="167">
+          <caret line="38" column="37" lean-forward="false" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+=======
     <entry file="file://$PROJECT_DIR$/src/main/resources/database.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -1075,8 +1250,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="22" column="74" lean-forward="false" selection-start-line="22" selection-start-column="74" selection-end-line="22" selection-end-column="74" />
+>>>>>>> ad2e4c3c876c4765e48e069c5531b568bc3e04b0
           <folding>
-            <element signature="method#settings#0;class#ActionController#0" expanded="false" />
+            <element signature="method#index#0;class#EntireController#0" expanded="false" />
+            <element signature="method#exit#0;class#EntireController#0" expanded="false" />
+            <element signature="method#hello#0;class#EntireController#0" expanded="false" />
           </folding>
         </state>
       </provider>

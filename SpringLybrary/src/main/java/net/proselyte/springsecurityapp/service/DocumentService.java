@@ -15,7 +15,7 @@ public interface DocumentService {
     public Document get(int id);
     public void save(Document document);
     public void delete(Document document);
-
     public String returnDocument(int orderId);
     public List<User> getQueueForDocument(Document document);
+    public String queueRequest(Document d);
 }

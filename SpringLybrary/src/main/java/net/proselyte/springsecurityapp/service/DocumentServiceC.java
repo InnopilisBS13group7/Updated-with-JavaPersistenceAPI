@@ -8,6 +8,7 @@ import net.proselyte.springsecurityapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class DocumentServiceC implements DocumentService {
         return "true";
     }
 
+    @Override
     public List<User> getQueueForDocument(Document document) {
         List<Order> queue = orderService.getQueue(document.getId());
         List<User> users = new LinkedList<>();
@@ -96,5 +98,22 @@ public class DocumentServiceC implements DocumentService {
         students.addAll(visitingProfessors);
         students.addAll(professors);
         return students;
+    }
+
+    @Override
+    public String queueRequest(Document d){
+        for (Order o: orderService.getOrdersByItemIdAndStatus(d.getId(),"open")){
+            //послать уведомления чтобы вернули книжки
+            o.setStatus("finished");
+            o.setFinishTime(System.currentTimeMillis());
+            orderRepository.save(o);
+        }
+        //послать уведомления
+
+        //deieting queue
+        for (Order o:orderService.getQueue(d.getId())){
+            orderService.delete(o);
+        }
+        return "true";
     }
 }

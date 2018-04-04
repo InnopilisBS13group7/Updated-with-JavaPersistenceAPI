@@ -13,6 +13,7 @@ import net.proselyte.springsecurityapp.service.OrderServiceC;
 import net.proselyte.springsecurityapp.service.UserService;
 import net.proselyte.springsecurityapp.service.UserServiceC;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,9 +26,7 @@ import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -49,6 +48,8 @@ public class Test1 {
     public final long MARCH_5 = 1520222902225L;
     public final long MARCH_6 = 1520309302225L;
     public final long MARCH_7 = 1520309302225L+3600000*24;
+    public final long MARCH_26= 1522064699000L;
+    public final long MARCH_29= 1522325515000L;
     public final long MARCH_31 = 1522454441000L;
     public final long MARCH_28 = 1522195241000L;
 
@@ -62,13 +63,13 @@ public class Test1 {
     @Before
     public void before(){
         User p1 = new User("email1","pass","Sergey","Afonso", "cookieId1",
-                "ta",0,"Via Margutta, 3","30001");
+                "professor",0,"Via Margutta, 3","30001");
         userService.save(p1);
         User p2 = new User("email2","pass","Nadia", "Teixeira","cookieId2",
-                "ta",0,"Via Sacra, 13","30002");
+                "professor",0,"Via Sacra, 13","30002");
         userService.save(p2);
         User p3=new User("email3","pass","Elvira", "Espindola","cookieId3",
-                "ta",0,"Via del Corso, 22","30003");
+                "professor",0,"Via del Corso, 22","30003");
         userService.save(p3);
         User s=new User("emails","pass","Andrey", "Velo","cookieIds",
                 "student",0,"Avenida Mazatlan 250","30004");
@@ -98,10 +99,9 @@ public class Test1 {
 
     }
 
-    @org.junit.Test
+    @Test
     public void t1() {
-
-        User p1 = userService.get(1);
+        User p1 =userService.get("email1");
         Document d1 = documentService.get(1);
         Document d2 = documentService.get(2);
         userService.checkoutDocument(d1.getId(),p1.getId());
@@ -115,13 +115,13 @@ public class Test1 {
 
     }
 
-    @org.junit.Test
+    @Test
     public void t2(){
-        User p1 = userService.get(1);
-        User s = userService.get(4);
-        User v = userService.get(5);
-        Document d1 = documentService.get(1);
-        Document d2 = documentService.get(2);
+        User p1 = userService.get("email1");
+        User s = userService.get("emails");
+        User v = userService.get("emailv");
+        Document d1 = documentService.get(4);
+        Document d2 = documentService.get(5);
         userService.checkoutDocument(d1.getId(),p1.getId());
         userService.checkoutDocument(d2.getId(),p1.getId());
         userService.checkoutDocument(d1.getId(),s.getId());
@@ -139,19 +139,19 @@ public class Test1 {
         System.out.println(orders.get(0).overdueDays());
         assertEquals(0, orders.get(0).overdueDays());
         assertEquals(0, orders.get(1).overdueDays());
-        assertEquals(6, orders.get(2).overdueDays());
-        assertEquals(13, orders.get(3).overdueDays());
-        assertEquals(20, orders.get(4).overdueDays());
-        assertEquals(20, orders.get(5).overdueDays());
+        assertEquals(7, orders.get(2).overdueDays());
+        assertEquals(14, orders.get(3).overdueDays());
+        assertEquals(21, orders.get(4).overdueDays());
+        assertEquals(21, orders.get(5).overdueDays());
     }
 
-    @org.junit.Test
+    @Test
     public void t3(){
-        User p1 = userService.get(1);
-        User s = userService.get(4);
-        User v = userService.get(5);
-        Document d1 = documentService.get(1);
-        Document d2 = documentService.get(2);
+        User p1 = userService.get("email1");
+        User s = userService.get("emails");
+        User v = userService.get("emailv");
+        Document d1 = documentService.get(7);
+        Document d2 = documentService.get(8);
         userService.checkoutDocument(d1.getId(),p1.getId());
         userService.checkoutDocument(d2.getId(),s.getId());
         userService.checkoutDocument(d2.getId(),v.getId());
@@ -165,10 +165,159 @@ public class Test1 {
         assertEquals("11.04.2018", getDate(orders.get(2).getFinishTime()));
     }
 
+    @Test
+    public void t4(){
+        User p1 = userService.get("email1");
+        User s = userService.get("emails");
+        User v = userService.get("emailv");
+        Document d1 = documentService.get(10);
+        Document d2 = documentService.get(11);
+        userService.checkoutDocument(d1.getId(),p1.getId());
+        userService.checkoutDocument(d2.getId(),s.getId());
+        userService.checkoutDocument(d2.getId(),v.getId());
+        List<Order> orders = orderServiceC.getAllOrders();
 
+        //реквест
+        documentService.queueRequest(d2);
+        userService.renewDocument(orders.get(0).getId());
+        userService.renewDocument(orders.get(1).getId());
+        userService.renewDocument(orders.get(2).getId());
 
-   /* @org.springframework.context.annotation.Configuration
-    public static class ContextConfiguration {
+        assertEquals("02.05.2018", getDate(orders.get(0).getFinishTime()));
+        assertEquals("04.04.2018", getDate(orders.get(1).getFinishTime()));
+        assertEquals("04.04.2018", getDate(orders.get(2).getFinishTime()));
+
     }
-    */
+
+    @Test
+    public void t5(){
+        User p1 = userService.get("email1");
+        User s = userService.get("emails");
+        User v = userService.get("emailv");
+        Document d3 = documentService.get(15);
+        userService.checkoutDocument(d3.getId(),p1.getId());
+        userService.checkoutDocument(d3.getId(),s.getId());
+        userService.checkoutDocument(d3.getId(),v.getId());
+        List<User> waitingList=documentService.getQueueForDocument(d3);
+        System.out.println(waitingList);
+        assertEquals(v,waitingList.get(0));
+    }
+
+    @Test
+    public void t6(){
+        User p1 = userService.get("email1");
+        User s = userService.get("emails");
+        User v = userService.get("emailv");
+        User p2=userService.get("email2");
+        User p3=userService.get("email3");
+        Document d3 = documentService.get(18);
+        userService.checkoutDocument(d3.getId(),p1.getId());
+        userService.checkoutDocument(d3.getId(),p2.getId());
+        userService.checkoutDocument(d3.getId(),s.getId());
+        userService.checkoutDocument(d3.getId(),v.getId());
+        userService.checkoutDocument(d3.getId(),p3.getId());
+        List<User> waitingList=documentService.getQueueForDocument(d3);
+        System.out.println(waitingList);
+        assertEquals(s,waitingList.get(0));
+        assertEquals(v,waitingList.get(1));
+        assertEquals(p3,waitingList.get(2));
+    }
+
+    @Test
+    public void t7(){
+        User p1 = userService.get("email1");
+        User s = userService.get("emails");
+        User v = userService.get("emailv");
+        User p2=userService.get("email2");
+        User p3=userService.get("email3");
+        Document d3 = documentService.get(21);
+        userService.checkoutDocument(d3.getId(),p1.getId());
+        userService.checkoutDocument(d3.getId(),p2.getId());
+        userService.checkoutDocument(d3.getId(),s.getId());
+        userService.checkoutDocument(d3.getId(),v.getId());
+        userService.checkoutDocument(d3.getId(),p3.getId());
+
+
+
+        documentService.queueRequest(d3);
+        List<User> waitingList=documentService.getQueueForDocument(d3);
+        assert waitingList.isEmpty();
+    }
+
+    @Test
+    public void t8(){
+        User p1 = userService.get("email1");
+        User s = userService.get("emails");
+        User v = userService.get("emailv");
+        User p2=userService.get("email2");
+        User p3=userService.get("email3");
+        Document d3 = documentService.get(24);
+        userService.checkoutDocument(d3.getId(),p1.getId());
+        userService.checkoutDocument(d3.getId(),p2.getId());
+        userService.checkoutDocument(d3.getId(),s.getId());
+        userService.checkoutDocument(d3.getId(),v.getId());
+        userService.checkoutDocument(d3.getId(),p3.getId());
+        List<Order> orders = orderServiceC.getAllOrders();
+        documentService.returnDocument(orders.get(1).getId());
+        List<Order> openedOrdersOfP2=orderServiceC.getOpenOrdersByUserId(p2.getId());
+        List<User> waitingList=documentService.getQueueForDocument(d3);
+        assertEquals(s,waitingList.get(0));
+        assertEquals(v,waitingList.get(1));
+        assertEquals(p3,waitingList.get(2));
+        assert openedOrdersOfP2.isEmpty();
+    }
+
+    @Test
+    public void t9(){
+        User p1 = userService.get("email1");
+        User s = userService.get("emails");
+        User v = userService.get("emailv");
+        User p2=userService.get("email2");
+        User p3=userService.get("email3");
+        Document d3 = documentService.get(27);
+        userService.checkoutDocument(d3.getId(),p1.getId());
+        userService.checkoutDocument(d3.getId(),p2.getId());
+        userService.checkoutDocument(d3.getId(),s.getId());
+        userService.checkoutDocument(d3.getId(),v.getId());
+        userService.checkoutDocument(d3.getId(),p3.getId());
+        List<Order> orders = orderServiceC.getAllOrders();
+        userService.renewDocument(orders.get(0).getId());
+        assertEquals("02.05.2018",getDate(orders.get(0).getFinishTime()));
+        List<User> waitingList=documentService.getQueueForDocument(d3);
+        assertEquals(s,waitingList.get(0));
+        assertEquals(v,waitingList.get(1));
+        assertEquals(p3,waitingList.get(2));
+
+    }
+
+    @Test
+    public void t10(){
+        User p1 = userService.get("email1");
+        User v = userService.get("emailv");
+        Document d1 = documentService.get(28);
+        Document d2 = documentService.get(29);
+        userService.checkoutDocument(d1.getId(),p1.getId());
+        userService.checkoutDocument(d1.getId(),v.getId());
+        List<Order> orders = orderServiceC.getAllOrders();
+        for(Order or:orders){
+            or.setFinishTime(MARCH_26+or.getFinishTime()-or.getStartTime());
+            or.setStartTime(MARCH_26);
+            System.out.println(getDate(MARCH_26)+"-"+getDate(or.getFinishTime()));
+        }
+        userService.renewDocument(orders.get(0).getId());
+        userService.renewDocument(orders.get(1).getId());
+        for(Order or:orders){
+            or.setFinishTime(MARCH_29+or.getFinishTime()-or.getStartTime());
+            or.setStartTime(MARCH_29);
+            System.out.println(getDate(MARCH_29)+"-"+getDate(or.getFinishTime()));
+        }
+        userService.renewDocument(orders.get(0).getId());
+        userService.renewDocument(orders.get(1).getId());
+        for(Order or:orders){
+            System.out.println(getDate(MARCH_29)+"-"+getDate(or.getFinishTime()));
+        }
+
+        assertEquals("26.04.2018",getDate(orders.get(0).getFinishTime()));
+        assertEquals("05.04.2018",getDate(orders.get(1).getFinishTime()));
+    }
 }
