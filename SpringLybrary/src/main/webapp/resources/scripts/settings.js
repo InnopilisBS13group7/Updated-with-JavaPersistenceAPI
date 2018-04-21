@@ -121,4 +121,11 @@ $(document).ready(function(){
 			$.getScript('../resources/scripts/close_order.js');
 		});
 	});
+	$("#search_users").keypress(function(e){
+	    if(e.keyCode==13){
+	    	$.post("/searchUsers", {name:$(this).val()}, function(result){
+      				alert(result)
+    		});
+	    }
+	});
 });

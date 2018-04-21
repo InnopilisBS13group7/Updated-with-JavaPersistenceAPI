@@ -92,4 +92,11 @@ $(document).ready(function(){
     		$("#alert_back").slideDown(0).animate({"opacity":"1"}, 200);
     	});
   	});
+  	$("#booking_search_name").keypress(function(e){
+	    if(e.keyCode==13){
+	    	$.post("/bookingSearch", {name:$(this).val()}, function(result){
+      				alert(result)
+    		});
+	    }
+	});
 });

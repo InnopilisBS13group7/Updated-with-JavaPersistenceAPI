@@ -61,6 +61,9 @@ public class BookingController extends Controller {
                 "</div>" +
                 "</div>" : "");
 
+        divList += "<div id=booking_search>" +
+                "<input type=text id=booking_search_name placeholder=\"Search\" />" +
+                "</div>";
 
         for (Document d : getAllDocuments()) {
             divList = divList + "<div class=books_box><img src=/resources/img/books/" + (d.getType().equals("book") ? "1.jpg" : "2.jpg") + " class=cover width=94px height=145px />" +

@@ -284,7 +284,8 @@ public class Controller {
                 "<input type=text class=new_user_inputs id=new_user_inputs_type placeholder=\"Type\" />" +
                 "<div id=new_user_save>Save</div>" +
                 "<div id=new_user_alert>New user was saved</div>" +
-                "</div>";
+                "</div>" +
+                "<input id=search_users placeholder=\"Search\" />";
         for (User u : users) {
             div += "<div class=settings_list_users>" +
                     "<img src=/resources/img/avatars/1.jpg width=106px height=106px class=settings_users_list_avatar />" +
