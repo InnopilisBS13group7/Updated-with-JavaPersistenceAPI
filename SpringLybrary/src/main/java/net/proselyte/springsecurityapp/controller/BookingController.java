@@ -12,7 +12,6 @@ import java.sql.Statement;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -66,7 +65,7 @@ public class BookingController extends Controller {
                 "<input type=text id=booking_search_name placeholder=\"Search\" />" +
                 "</div>";
 
-        /*for (Document d : getAllDocuments()) {
+        for (Document d : getAllDocuments()) {
             divList = divList + "<div class=books_box><img src=/resources/img/books/" + (d.getType().equals("book") ? "1.jpg" : "2.jpg") + " class=cover width=94px height=145px />" +
                     "<p class=books_text>" +
                     "Title:&nbsp;<input class=books_inputs_title placeholder=\"Title\" value=\"" + d.getTitle() + "\" /></br>" +
@@ -85,9 +84,9 @@ public class BookingController extends Controller {
                                     "<div class=queue id=" + d.getId() + ">Queue</div>"):"") +
                     "<div class=queue_box></div>" +
                     "</div>";
-        }*/
+        }
 
-        divList = divList + getListOfDocuments(getAllDocuments(), u);
+
         return divList;
     }
 
@@ -135,17 +134,6 @@ public class BookingController extends Controller {
             i++;
         }
         return (i == 1)?"Queue is empty":div;
-    }
-
-    @RequestMapping(value = "/bookingSearch", method = RequestMethod.POST)
-    public String bookingSearch(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
-                            @RequestParam(value = "name") String searchKey){
-        User u = getClientUserObject(getIdFromCookie(cookieUserCode.getValue()));
-        List<Document> list = getAllDocuments();
-
-        list = list.stream().filter(d -> d.isAppropriateForSearch(searchKey)).collect(Collectors.toList());
-
-        return getListOfDocuments(list, u);
     }
 
 

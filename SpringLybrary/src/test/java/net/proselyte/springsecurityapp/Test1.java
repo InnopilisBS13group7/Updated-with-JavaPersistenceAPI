@@ -101,14 +101,6 @@ public class Test1 {
 
     @Test
     public void t1() {
-        Controller c = new Controller();
-        Document d1 = documentService.get(1);
-        System.out.println(d1.isAppropriateForSearch("Introduction"));
-
-    }
-
-    /*@Test
-    public void t1() {
         User p1 =userService.get("email1");
         Document d1 = documentService.get(1);
         Document d2 = documentService.get(2);
@@ -123,7 +115,7 @@ public class Test1 {
 
     }
 
- @Test
+    @Test
     public void t2(){
         User p1 = userService.get("email1");
         User s = userService.get("emails");
@@ -196,7 +188,6 @@ public class Test1 {
         assertEquals("04.04.2018", getDate(orders.get(2).getFinishTime()));
 
     }
-
 
     @Test
     public void t5(){
@@ -276,7 +267,7 @@ public class Test1 {
         assert openedOrdersOfP2.isEmpty();
     }
 
-@Test
+    @Test
     public void t9(){
         User p1 = userService.get("email1");
         User s = userService.get("emails");
@@ -298,7 +289,6 @@ public class Test1 {
         assertEquals(p3,waitingList.get(2));
 
     }
-
 
     @Test
     public void t10(){
@@ -329,5 +319,5 @@ public class Test1 {
 
         assertEquals("26.04.2018",getDate(orders.get(0).getFinishTime()));
         assertEquals("05.04.2018",getDate(orders.get(1).getFinishTime()));
-    }*/
+    }
 }

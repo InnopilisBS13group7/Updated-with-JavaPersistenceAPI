@@ -9,13 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.print.Doc;
-import javax.servlet.http.Cookie;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class AdminController extends Controller {
@@ -191,17 +188,6 @@ public class AdminController extends Controller {
         Order or = orderService.get(Integer.parseInt(orderId));
         Document d = documentService.get(or.getItemId());
         return documentService.queueRequest(d);
-    }
-
-    @RequestMapping(value = "/searchUsers", method = RequestMethod.POST)
-    public String searchUsers(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
-                                @RequestParam(value = "name") String searchKey){
-        User u = getClientUserObject(getIdFromCookie(cookieUserCode.getValue()));
-        List<User> list = getAllUsers();
-
-        list = list.stream().filter(d -> d.isAppropriateForSearch(searchKey)).collect(Collectors.toList());
-
-        return createListOfUsersBlock(getAllUsers());
     }
 
 }
