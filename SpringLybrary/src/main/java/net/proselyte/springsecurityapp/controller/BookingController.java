@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -61,11 +62,24 @@ public class BookingController extends Controller {
                 "</div>" +
                 "</div>" : "");
 
-        divList += "<div id=booking_search>" +
-                "<input type=text id=booking_search_name placeholder=\"Search\" />" +
+        divList += "<div id=booking_search_box>" +
+                "<div class=booking_search>" +
+                "<input type=text class=booking_search_name placeholder=\"Search\" />" +
+                "<select class=booking_search_select>" +
+                "<option>By title</option>" +
+                "<option>By title</option>" +
+                "<option>By author</option>" +
+                "<option>By publisher</option>" +
+                "<option>By year</option>" +
+                "<option>By type</option>" +
+                "<option>By edition</option>" +
+                "<option>By note</option>" +
+                "</select>" +
+                "<div class=search_booking_plus>+</div>" +
+                "</div>" +
                 "</div>";
 
-        for (Document d : getAllDocuments()) {
+        /*for (Document d : getAllDocuments()) {
             divList = divList + "<div class=books_box><img src=/resources/img/books/" + (d.getType().equals("book") ? "1.jpg" : "2.jpg") + " class=cover width=94px height=145px />" +
                     "<p class=books_text>" +
                     "Title:&nbsp;<input class=books_inputs_title placeholder=\"Title\" value=\"" + d.getTitle() + "\" /></br>" +
@@ -84,9 +98,9 @@ public class BookingController extends Controller {
                                     "<div class=queue id=" + d.getId() + ">Queue</div>"):"") +
                     "<div class=queue_box></div>" +
                     "</div>";
-        }
+        }*/
 
-
+        divList = divList + getListOfDocuments(getAllDocuments(), u);
         return divList;
     }
 
@@ -134,6 +148,17 @@ public class BookingController extends Controller {
             i++;
         }
         return (i == 1)?"Queue is empty":div;
+    }
+
+    @RequestMapping(value = "/bookingSearch", method = RequestMethod.POST)
+    public String bookingSearch(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
+                            @RequestParam(value = "name") String searchKey){
+        User u = getClientUserObject(getIdFromCookie(cookieUserCode.getValue()));
+        List<Document> list = getAllDocuments();
+
+        list = list.stream().filter(d -> d.isAppropriateForSearch(searchKey)).collect(Collectors.toList());
+
+        return getListOfDocuments(list, u);
     }
 
 

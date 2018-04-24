@@ -92,11 +92,27 @@ $(document).ready(function(){
     		$("#alert_back").slideDown(0).animate({"opacity":"1"}, 200);
     	});
   	});
-  	$("#booking_search_name").keypress(function(e){
+  	$(document).on('keypress', ".booking_search_name", function(e){
 	    if(e.keyCode==13){
-	    	$.post("/bookingSearch", {name:$(this).val()}, function(result){
+	    	var search = new Array(16);
+	    	var i = 0;
+	    	$(".booking_search").each(function(){
+	    		search[i] = $(this).find(".booking_search_name").val();
+	    		search[i + 1] = $(this).find(".booking_search_select").val();
+	    		i += 2;
+	    	})
+	    	//alert(search[15])
+	    	$.post("/bookingSearch", {text0:search[0], type0:search[1], text1:search[2], type1:search[3], text2:search[4], type2:search[5], text3:search[6], type3:search[7], text4:search[8], type4:search[9], text5:search[10], type5:search[11], text6:search[12], type6:search[13], text7:search[14], type7:search[15]}, function(result){
       				alert(result)
     		});
 	    }
+	});
+	$(document).on('click', ".search_booking_plus", function(){
+		if($(this).css("transform") == "matrix(1, 0, 0, 1, 0, 0)"){
+			$("#booking_search_box").append("<div class=booking_search><input type=text class=booking_search_name placeholder='Search' /><select class=booking_search_select><option>By title</option><option>By title</option><option>By author</option><option>By publisher</option><option>By year</option><option>By type</option><option>By edition</option><option>By note</option></select><div class=search_booking_plus style='transform:rotate(45deg)'>+</div></div>")
+		}
+		else if($(this).css("transform") == "matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)"){
+			$(this).parent().remove();
+		}
 	});
 });

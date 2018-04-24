@@ -6,21 +6,32 @@ $(document).ready(function(){
 		$("#settings_type_line").animate({"margin-left":"0px"}, 300);
 		$("#settings_users").animate({"margin-left":"800px"}, 300);
 		$("#settings_orders").animate({"margin-left":"1600px"}, 300);
+		$("#settings_history").animate({"margin-left":"2400px"}, 300);
 		$("#settings_block").animate({"height":$("#settings_type_menu").height() + $("#settings_profile").height()}, 300);
 	});
 	$("#settings_type_users").click(function(){
 		$("#settings_profile").animate({"margin-left":"-800px"}, 300);
-		$("#settings_type_line").animate({"margin-left":"266px"}, 300);
+		$("#settings_type_line").animate({"margin-left":"200px"}, 300);
 		$("#settings_users").animate({"margin-left":"0px"}, 300);
 		$("#settings_orders").animate({"margin-left":"800px"}, 300);
+		$("#settings_history").animate({"margin-left":"1600px"}, 300);
 		$("#settings_block").animate({"height":$("#settings_type_menu").height() + $("#settings_users").height()}, 300);
 	});
 	$("#settings_type_orders").click(function(){
 		$("#settings_profile").animate({"margin-left":"-1600px"}, 300);
-		$("#settings_type_line").animate({"margin-left":"532px"}, 300);
+		$("#settings_type_line").animate({"margin-left":"400px"}, 300);
 		$("#settings_users").animate({"margin-left":"-800px"}, 300);
 		$("#settings_orders").animate({"margin-left":"0px"}, 300);
+		$("#settings_history").animate({"margin-left":"800px"}, 300);
 		$("#settings_block").animate({"height":$("#settings_type_menu").height() + $("#settings_orders").height()}, 300);
+	});
+	$("#settings_type_history").click(function(){
+		$("#settings_profile").animate({"margin-left":"-2400px"}, 300);
+		$("#settings_type_line").animate({"margin-left":"600px"}, 300);
+		$("#settings_users").animate({"margin-left":"-1600px"}, 300);
+		$("#settings_orders").animate({"margin-left":"-800px"}, 300);
+		$("#settings_history").animate({"margin-left":"0px"}, 300);
+		$("#settings_block").animate({"height":$("#settings_type_menu").height() + $("#settings_history").height()}, 300);
 	});
 	$("#new_user_bottom").click(function(){
 		if($(this).text() == "+ Add a new user"){

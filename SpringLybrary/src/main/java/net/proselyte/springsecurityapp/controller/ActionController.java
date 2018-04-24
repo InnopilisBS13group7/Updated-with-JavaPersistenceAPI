@@ -40,6 +40,7 @@ public class ActionController extends Controller {
                         "<div class=settings_type id=settings_type_profile>Profile</div>" +
                         "<div class=settings_type id=settings_type_users>Users</div>" +
                         "<div class=settings_type id=settings_type_orders>Orders</div>" +
+                        "<div class=settings_type id=settings_type_history>History</div>" +
                         "<div id=settings_type_line></div>" +
                         "</div>" : "") +
                 "<div class=settings_type_box id=settings_profile>" +
@@ -60,6 +61,8 @@ public class ActionController extends Controller {
                 createListOfUsersBlock(getAllUsers()) +
 
                 createListOfOrdersBlock(getAllOrders()) +
+
+                createListOfHistoryBlock(getAllHistory()) +
 
                 "<div id=settings_alert>Changes are successfully saved</div>" +
 
