@@ -48,23 +48,87 @@ public class UserServiceC implements UserService {
     }
 
     @Override
-    public void add(User user) {
-        userRepository.save(user);
+    public void add(User NewUser) {
+        if(!NewUser.getStatus().equals("admin") || !hasAdmin())
+            userRepository.save(NewUser);
     }
 
     @Override
-    public void save(User user) {
-        userRepository.save(user);
+    public boolean add(User librarian, User NewUser) {
+        if(!NewUser.getStatus().equals("admin") || !hasAdmin()){
+            userRepository.save(NewUser);
+            return true;
+        }
+
+        if(librarian.getStatus().equals("admin")||librarian.getStatus().equals("lib2")||librarian.getStatus().equals("lib3")){
+            userRepository.save(NewUser);
+            return true;
+        }
+        return false;
+
+    }
+
+    @Override
+    public void save( User NewUser) {
+        if(!NewUser.getStatus().equals("admin") || !hasAdmin())
+            userRepository.save(NewUser);
+    }
+
+    @Override
+    public boolean save(User librarian, User NewUser) {
+        if(!NewUser.getStatus().equals("admin") || !hasAdmin()){
+            userRepository.save(NewUser);
+            return true;
+        }
+
+        if(librarian.getStatus().equals("admin")|| librarian.getStatus().equals("lib2")||librarian.getStatus().equals("lib3")||librarian.getStatus().equals("lib1")){
+            userRepository.save(NewUser);
+            return true;
+        }
+
+        else return false;
+
     }
 
     @Override
     public void delete(int id) {
-        userRepository.delete(id);
+            userRepository.delete(id);
     }
 
     @Override
     public void delete(User user) {
-        userRepository.delete(user);
+            userRepository.delete(user);
+    }
+
+    @Override
+    public boolean delete(User librarian,int id) {
+        if(librarian.getStatus().equals("admin")||librarian.getStatus().equals("lib3")){
+            userRepository.delete(id);
+            return true;
+        }
+        else return false;
+
+    }
+
+    @Override
+    public boolean delete(User librarian,User user) {
+        if(librarian.getStatus().equals("admin")||librarian.getStatus().equals("lib3")){
+            userRepository.delete(user);
+            return true;
+        }
+        else return false;
+    }
+
+    private boolean hasAdmin(){
+        List<User> userList=getAllusers();
+        boolean has=false;
+        for (User u:userList) {
+            if(u.getStatus().equals("admin")){
+                has=true;
+                break;
+            }
+        }
+        return has;
     }
 
     @Override

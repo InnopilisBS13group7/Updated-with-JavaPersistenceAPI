@@ -274,9 +274,9 @@ public class Controller {
      * @param users
      * @return block with all users
      */
-    protected String createListOfUsersBlock(List<User> users) {
+    protected String createListOfUsersBlock(List<User> users, User host) {
         String div = "<div class=settings_type_box id=settings_users>" +
-                "<div id=new_user><p id=new_user_bottom>+ Add a new user</p>" +
+                ((isLibrarian(host.getStatus()) && !host.getStatus().equals("lib1"))?"<div id=new_user><p id=new_user_bottom>+ Add a new user</p>" +
                 "<input type=text class=new_user_inputs id=new_user_inputs_name placeholder=\"Name\" />" +
                 "<input type=text class=new_user_inputs id=new_user_inputs_surname placeholder=\"Surname\" />" +
                 "<input type=text class=new_user_inputs id=new_user_inputs_email placeholder=\"email\" />" +
@@ -284,23 +284,44 @@ public class Controller {
                 "<input type=text class=new_user_inputs id=new_user_inputs_type placeholder=\"Type\" />" +
                 "<div id=new_user_save>Save</div>" +
                 "<div id=new_user_alert>New user was saved</div>" +
-                "</div>" +
-                "<input id=search_users placeholder=\"Search\" />";
+                "</div>":"<div id=users_plug></div>") +
+                "<input id=search_users placeholder=\"Search\" />" +
+                "<select id=settings_search_select>" +
+                "<option>By name</option>" +
+                "<option>By address</option>" +
+                "<option>By phone number</option>" +
+                "<option>By id</option>" +
+                "<option>By type</option>" +
+                "</select>";
         for (User u : users) {
             div += "<div class=settings_list_users>" +
                     "<img src=/resources/img/avatars/1.jpg width=106px height=106px class=settings_users_list_avatar />" +
                     "<div class=settings_users_list_specs_box>" +
                     "<b>Name: </b><input type=text class=settings_inputs_users_name placeholder=\"Name\" value=\""+ u.getName() + " " + u.getSurname() +"\" /></br>" +
-                    "<b>Adress: </b><input type=text class=settings_inputs_users_adress placeholder=\"Adress\" value=\""+u.getAddress()+"\" /></br>" +
+                    "<b>Address: </b><input type=text class=settings_inputs_users_adress placeholder=\"Address\" value=\""+u.getAddress()+"\" /></br>" +
                     "<b>Phone number: </b><input type=text class=settings_inputs_users_phone placeholder=\"Phone number\" value=\""+u.getPhone()+"\" /></br>" +
                     "<b>id: </b>"+u.getId()+"</br>" +
-                    "<b>Type: </b><input type=text class=settings_inputs_users_type placeholder=\"Type\" value=\"" + u.getStatus() + "\" /></br>" +
+                    "<b>Type: </b><select class=settings_inputs_users_type >\" +\n" +
+                    "<option>" + u.getStatus() + "</option>" +"\n" +
+                    "\"<option>lib1</option>\" +\n" +
+                    "\"<option>lib2</option>\" +\n" +
+                    "\"<option>lib3</option>\" +\n" +
+                    "\"<option>student</option>\" +\n" +
+                    "\"<option>visitingProfessor</option>\" +\n" +
+                    "\"<option>instructor</option>\" +\n" +
+                    "\"<option>ta</option>\" +\n" +
+                    "\"<option>professor</option>\" +\n" +
+                    "\"</select></br>" +
                     "</div>" +
-                    "<div class=settings_users_list_delete id=" + u.getId() + ">Delete</div>" +
-                    "<div class=settings_users_list_modify id=" + u.getId() + ">Save</div>" +
+                    ((host.getStatus().equals("admin") ||host.getStatus().equals("lib3"))?"<div class=settings_users_list_delete id=" + u.getId() + ">Delete</div>" : "") +
+                    (isLibrarian(host.getStatus())?"<div class=settings_users_list_modify id=" + u.getId() + ">Save</div>":"") +
                     "</div>";
         }
         return div + "</div>";
+    }
+
+    boolean isLibrarian(String s){
+        return s.equals("admin") || s.equals("lib1") || s.equals("lib2")|| s.equals("lib3");
     }
 
     String createListOfHistoryBlock(String history){

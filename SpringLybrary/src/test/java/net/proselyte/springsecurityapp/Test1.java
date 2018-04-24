@@ -6,12 +6,10 @@ import net.proselyte.springsecurityapp.controller.Controller;
 import net.proselyte.springsecurityapp.dao.DocumentRepository;
 import net.proselyte.springsecurityapp.dao.UserRepository;
 import net.proselyte.springsecurityapp.model.Document;
+import net.proselyte.springsecurityapp.model.Log;
 import net.proselyte.springsecurityapp.model.Order;
 import net.proselyte.springsecurityapp.model.User;
-import net.proselyte.springsecurityapp.service.DocumentServiceC;
-import net.proselyte.springsecurityapp.service.OrderServiceC;
-import net.proselyte.springsecurityapp.service.UserService;
-import net.proselyte.springsecurityapp.service.UserServiceC;
+import net.proselyte.springsecurityapp.service.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +29,7 @@ import java.util.*;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {jp.class,UserServiceC.class,DocumentServiceC.class,OrderServiceC.class}, loader = AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = {jp.class,UserServiceC.class,DocumentServiceC.class,OrderServiceC.class,LogServiceC.class}, loader = AnnotationConfigContextLoader.class)
 @Transactional
 @WebAppConfiguration
 public class Test1 {
@@ -44,6 +42,8 @@ public class Test1 {
     protected OrderServiceC orderServiceC;
     @Resource
     private UserRepository userRepository;
+    @Autowired
+    protected LogServiceC logService;
 
     public final long MARCH_5 = 1520222902225L;
     public final long MARCH_6 = 1520309302225L;
@@ -60,7 +60,7 @@ public class Test1 {
         return format.format(cal.getTime());
     }
 
-    @Before
+ /*   @Before
     public void before(){
         User p1 = new User("email1","pass","Sergey","Afonso", "cookieId1",
                 "professor",0,"Via Margutta, 3","30001");
@@ -99,13 +99,378 @@ public class Test1 {
 
     }
 
+*/
+
     @Test
     public void t1() {
-        Controller c = new Controller();
-        Document d1 = documentService.get(1);
-        System.out.println(d1.isAppropriateForSearch("Introduction"));
+        User admin1 = new User("emailadmin1","pass","admin1","admin1", "cookieIdadmin1",
+                "admin",0,"","");
+        userService.save(admin1);
+        User admin2 = new User("emailadmin2","pass","admin2","admin2", "cookieIdadmin2",
+                "admin",0,"","");
+        userService.save(admin2);
+        assertEquals(null,userService.get("emailadmin2"));
+    }
+
+    @Test
+    public void t2(){
+        User admin1 = new User("emailadmin1","pass","admin1","admin1", "cookieIdadmin1",
+                "admin",0,"","");
+        userService.save(admin1);
+        User lib1 = new User("emailLib1","pass","lib1","lib1", "cookieIdlib1",
+                "lib1",0,"","");
+        User lib2 = new User("emailLib2","pass","lib2","lib2", "cookieIdlib2",
+                "lib2",0,"","");
+        User lib3 = new User("emailLib3","pass","lib3","lib3", "cookieIdlib3",
+                "lib3",0,"","");
+        userService.add(admin1,lib1);
+        userService.add(admin1,lib2);
+        userService.add(admin1,lib3);
+        assertEquals(4,userService.getAllusers().size());
+    }
+
+    @Test
+    public void t3(){
+        User admin1 = new User("emailadmin1","pass","admin1","admin1", "cookieIdadmin1",
+                "admin",0,"","");
+        userService.save(admin1);
+        User lib1 = new User("emailLib1","pass","lib1","lib1", "cookieIdlib1",
+                "lib1",0,"","");
+        User lib2 = new User("emailLib2","pass","lib2","lib2", "cookieIdlib2",
+                "lib2",0,"","");
+        User lib3 = new User("emailLib3","pass","lib3","lib3", "cookieIdlib3",
+                "lib3",0,"","");
+        userService.add(admin1,lib1);
+        userService.add(admin1,lib2);
+        userService.add(admin1,lib3);
+
+        Document d1=new Document("Introduction to Algorithms",
+                "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein",
+                "book",3,"5000","","book",2009,"MIT Press","Third edition",5000);
+        documentService.save(lib1,d1);
+
+
+        Document d2=new Document("Design Patterns: Elements of Reusable Object-Oriented Software",
+                "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm",
+                "bestseller",3,"1700","","book",2003,
+                "Addison-Wesley Professional","First edition",1700);
+
+        documentService.save(lib1,d2);
+
+        Document d3=new Document("Null References: The Billion Dollar Mistake",
+                "Tony Hoare","",2,"700","","",0,"","",700);
+        documentService.save(lib1,d3);
+
+        assertEquals(0,documentService.getAllDocuments().size());
 
     }
+
+    @Test
+    public void t4(){
+        User admin1 = new User("emailadmin1","pass","admin1","admin1", "cookieIdadmin1",
+                "admin",0,"","");
+        userService.save(admin1);
+        User lib1 = new User("emailLib1","pass","lib1","lib1", "cookieIdlib1",
+                "lib1",0,"","");
+        User lib2 = new User("emailLib2","pass","lib2","lib2", "cookieIdlib2",
+                "lib2",0,"","");
+        User lib3 = new User("emailLib3","pass","lib3","lib3", "cookieIdlib3",
+                "lib3",0,"","");
+        userService.add(admin1,lib1);
+        userService.add(admin1,lib2);
+        userService.add(admin1,lib3);
+
+        Document d1=new Document("Introduction to Algorithms",
+                "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein",
+                "book",3,"5000","","book",2009,"MIT Press","Third edition",5000);
+        documentService.save(lib2,d1);
+
+
+        Document d2=new Document("Design Patterns: Elements of Reusable Object-Oriented Software",
+                "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm",
+                "bestseller",3,"1700","","book",2003,
+                "Addison-Wesley Professional","First edition",1700);
+
+        documentService.save(lib2,d2);
+
+        Document d3=new Document("Null References: The Billion Dollar Mistake",
+                "Tony Hoare","",3,"700","","",0,"","",700);
+        documentService.save(lib2,d3);
+
+        assertEquals(3,documentService.getAllDocuments().size());
+
+        User p1 = new User("email1","pass","Sergey","Afonso", "cookieId1",
+                "professor",0,"Via Margutta, 3","30001");
+        userService.save(lib2,p1);
+        User p2 = new User("email2","pass","Nadia", "Teixeira","cookieId2",
+                "professor",0,"Via Sacra, 13","30002");
+        userService.save(lib2,p2);
+        User p3=new User("email3","pass","Elvira", "Espindola","cookieId3",
+                "professor",0,"Via del Corso, 22","30003");
+        userService.save(lib2,p3);
+        User s=new User("emails","pass","Andrey", "Velo","cookieIds",
+                "student",0,"Avenida Mazatlan 250","30004");
+        userService.save(lib2,s);
+        User v=new User("emailv","pass","Veronika" ,"Rama","cookieIdv",
+                "visitingProfessor",0,"Stret Atocha, 27","30005");
+        userService.save(lib2,v);
+
+        assertEquals(9,userService.getAllusers().size());
+        assertEquals(3,documentService.getAllDocuments().size());
+    }
+
+    @Test
+    public void t5(){
+        User admin1 = new User("emailadmin1","pass","admin1","admin1", "cookieIdadmin1",
+                "admin",0,"","");
+        userService.save(admin1);
+        User lib1 = new User("emailLib1","pass","lib1","lib1", "cookieIdlib1",
+                "lib1",0,"","");
+        User lib2 = new User("emailLib2","pass","lib2","lib2", "cookieIdlib2",
+                "lib2",0,"","");
+        User lib3 = new User("emailLib3","pass","lib3","lib3", "cookieIdlib3",
+                "lib3",0,"","");
+        userService.add(admin1,lib1);
+        userService.add(admin1,lib2);
+        userService.add(admin1,lib3);
+
+        Document d1=new Document("Introduction to Algorithms",
+                "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein",
+                "book",3,"5000","","book",2009,"MIT Press","Third edition",5000);
+        documentService.save(lib2,d1);
+
+
+        Document d2=new Document("Design Patterns: Elements of Reusable Object-Oriented Software",
+                "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm",
+                "bestseller",3,"1700","","book",2003,
+                "Addison-Wesley Professional","First edition",1700);
+
+        documentService.save(lib2,d2);
+
+        Document d3=new Document("Null References: The Billion Dollar Mistake",
+                "Tony Hoare","",3,"700","","",0,"","",700);
+        documentService.save(lib2,d3);
+
+        assertEquals(3,documentService.getAllDocuments().size());
+
+        User p1 = new User("email1","pass","Sergey","Afonso", "cookieId1",
+                "professor",0,"Via Margutta, 3","30001");
+        userService.save(lib2,p1);
+        User p2 = new User("email2","pass","Nadia", "Teixeira","cookieId2",
+                "professor",0,"Via Sacra, 13","30002");
+        userService.save(lib2,p2);
+        User p3=new User("email3","pass","Elvira", "Espindola","cookieId3",
+                "professor",0,"Via del Corso, 22","30003");
+        userService.save(lib2,p3);
+        User s=new User("emails","pass","Andrey", "Velo","cookieIds",
+                "student",0,"Avenida Mazatlan 250","30004");
+        userService.save(lib2,s);
+        User v=new User("emailv","pass","Veronika" ,"Rama","cookieIdv",
+                "visitingProfessor",0,"Stret Atocha, 27","30005");
+        userService.save(lib2,v);
+
+        assertEquals(9,userService.getAllusers().size());
+        assertEquals(3,documentService.getAllDocuments().size());
+
+        documentService.deleteSome(lib3,d1,1);
+        assertEquals(2,d1.getAmount());
+    }
+
+    @Test
+    public void t6(){
+        User admin1 = new User("emailadmin1","pass","admin1","admin1", "cookieIdadmin1",
+                "admin",0,"","");
+        userService.save(admin1);
+        User lib1 = new User("emailLib1","pass","lib1","lib1", "cookieIdlib1",
+                "lib1",0,"","");
+        User lib2 = new User("emailLib2","pass","lib2","lib2", "cookieIdlib2",
+                "lib2",0,"","");
+        User lib3 = new User("emailLib3","pass","lib3","lib3", "cookieIdlib3",
+                "lib3",0,"","");
+        userService.add(admin1,lib1);
+        userService.add(admin1,lib2);
+        userService.add(admin1,lib3);
+
+        Document d1=new Document("Introduction to Algorithms",
+                "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein",
+                "book",3,"5000","","book",2009,"MIT Press","Third edition",5000);
+        documentService.save(lib2,d1);
+
+
+        Document d2=new Document("Design Patterns: Elements of Reusable Object-Oriented Software",
+                "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm",
+                "bestseller",3,"1700","","book",2003,
+                "Addison-Wesley Professional","First edition",1700);
+
+        documentService.save(lib2,d2);
+
+        Document d3=new Document("Null References: The Billion Dollar Mistake",
+                "Tony Hoare","",3,"700","","",0,"","",700);
+        documentService.save(lib2,d3);
+
+        assertEquals(3,documentService.getAllDocuments().size());
+
+        User p1 = new User("email1","pass","Sergey","Afonso", "cookieId1",
+                "professor",0,"Via Margutta, 3","30001");
+        userService.save(lib2,p1);
+        User p2 = new User("email2","pass","Nadia", "Teixeira","cookieId2",
+                "professor",0,"Via Sacra, 13","30002");
+        userService.save(lib2,p2);
+        User p3=new User("email3","pass","Elvira", "Espindola","cookieId3",
+                "professor",0,"Via del Corso, 22","30003");
+        userService.save(lib2,p3);
+        User s=new User("emails","pass","Andrey", "Velo","cookieIds",
+                "student",0,"Avenida Mazatlan 250","30004");
+        userService.save(lib2,s);
+        User v=new User("emailv","pass","Veronika" ,"Rama","cookieIdv",
+                "visitingProfessor",0,"Stret Atocha, 27","30005");
+        userService.save(lib2,v);
+
+        assertEquals(9,userService.getAllusers().size());
+        assertEquals(3,documentService.getAllDocuments().size());
+
+        userService.checkoutDocument(d3.getId(),p1.getId());
+        userService.checkoutDocument(d3.getId(),p2.getId());
+        userService.checkoutDocument(d3.getId(),s.getId());
+        userService.checkoutDocument(d3.getId(),v.getId());
+        userService.checkoutDocument(d3.getId(),p3.getId());
+        assertEquals ("false", documentService.queueRequest(lib1,d3));
+
+    }
+
+    @Test
+    public void t7(){
+        User admin1 = new User("emailadmin1","pass","admin1","admin1", "cookieIdadmin1",
+                "admin",0,"","");
+        userService.save(admin1);
+        User lib1 = new User("emailLib1","pass","lib1","lib1", "cookieIdlib1",
+                "lib1",0,"","");
+        User lib2 = new User("emailLib2","pass","lib2","lib2", "cookieIdlib2",
+                "lib2",0,"","");
+        User lib3 = new User("emailLib3","pass","lib3","lib3", "cookieIdlib3",
+                "lib3",0,"","");
+        userService.add(admin1,lib1);
+        userService.add(admin1,lib2);
+        userService.add(admin1,lib3);
+
+        Document d1=new Document("Introduction to Algorithms",
+                "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein",
+                "book",3,"5000","","book",2009,"MIT Press","Third edition",5000);
+        documentService.save(lib2,d1);
+
+
+        Document d2=new Document("Design Patterns: Elements of Reusable Object-Oriented Software",
+                "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm",
+                "bestseller",3,"1700","","book",2003,
+                "Addison-Wesley Professional","First edition",1700);
+
+        documentService.save(lib2,d2);
+
+        Document d3=new Document("Null References: The Billion Dollar Mistake",
+                "Tony Hoare","",3,"700","","",0,"","",700);
+        documentService.save(lib2,d3);
+
+        assertEquals(3,documentService.getAllDocuments().size());
+
+        User p1 = new User("email1","pass","Sergey","Afonso", "cookieId1",
+                "professor",0,"Via Margutta, 3","30001");
+        userService.save(lib2,p1);
+        User p2 = new User("email2","pass","Nadia", "Teixeira","cookieId2",
+                "professor",0,"Via Sacra, 13","30002");
+        userService.save(lib2,p2);
+        User p3=new User("email3","pass","Elvira", "Espindola","cookieId3",
+                "professor",0,"Via del Corso, 22","30003");
+        userService.save(lib2,p3);
+        User s=new User("emails","pass","Andrey", "Velo","cookieIds",
+                "student",0,"Avenida Mazatlan 250","30004");
+        userService.save(lib2,s);
+        User v=new User("emailv","pass","Veronika" ,"Rama","cookieIdv",
+                "visitingProfessor",0,"Stret Atocha, 27","30005");
+        userService.save(lib2,v);
+
+        assertEquals(9,userService.getAllusers().size());
+        assertEquals(3,documentService.getAllDocuments().size());
+
+        userService.checkoutDocument(d3.getId(),p1.getId());
+        userService.checkoutDocument(d3.getId(),p2.getId());
+        userService.checkoutDocument(d3.getId(),s.getId());
+        userService.checkoutDocument(d3.getId(),v.getId());
+        userService.checkoutDocument(d3.getId(),p3.getId());
+        assertEquals ("true", documentService.queueRequest(lib3,d3));
+        assertEquals (true, documentService.getQueueForDocument(d3).isEmpty());
+    }
+
+    @Test
+    public void t8(){
+        t5();
+        System.out.println();
+        System.out.println();
+        List<Log> logs=logService.getAllLogs();
+        for (Log l: logs) {
+            System.out.println(l.getInfo());
+        }
+
+        System.out.println();
+    }
+
+    @Test
+    public void t9(){
+
+    }
+
+    @Test
+    public void t10() {
+        User admin1 = new User("emailadmin1","pass","admin1","admin1", "cookieIdadmin1",
+                "admin",0,"","");
+        userService.save(admin1);
+        User lib1 = new User("emailLib1","pass","lib1","lib1", "cookieIdlib1",
+                "lib1",0,"","");
+        User lib2 = new User("emailLib2","pass","lib2","lib2", "cookieIdlib2",
+                "lib2",0,"","");
+        User lib3 = new User("emailLib3","pass","lib3","lib3", "cookieIdlib3",
+                "lib3",0,"","");
+        userService.add(admin1,lib1);
+        userService.add(admin1,lib2);
+        userService.add(admin1,lib3);
+
+        Document d1=new Document("Introduction to Algorithms",
+                "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein",
+                "book",3,"5000","","book",2009,"MIT Press","Third edition",5000);
+        documentService.save(lib2,d1);
+
+
+        Document d2=new Document("Design Patterns: Elements of Reusable Object-Oriented Software",
+                "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm",
+                "bestseller",3,"1700","","book",2003,
+                "Addison-Wesley Professional","First edition",1700);
+
+        documentService.save(lib2,d2);
+
+        Document d3=new Document("Null References: The Billion Dollar Mistake",
+                "Tony Hoare","",3,"700","","",0,"","",700);
+        documentService.save(lib2,d3);
+
+        assertEquals(3,documentService.getAllDocuments().size());
+
+        User p1 = new User("email1","pass","Sergey","Afonso", "cookieId1",
+                "professor",0,"Via Margutta, 3","30001");
+        userService.save(lib2,p1);
+        User p2 = new User("email2","pass","Nadia", "Teixeira","cookieId2",
+                "professor",0,"Via Sacra, 13","30002");
+        userService.save(lib2,p2);
+        User p3=new User("email3","pass","Elvira", "Espindola","cookieId3",
+                "professor",0,"Via del Corso, 22","30003");
+        userService.save(lib2,p3);
+        User s=new User("emails","pass","Andrey", "Velo","cookieIds",
+                "student",0,"Avenida Mazatlan 250","30004");
+        userService.save(lib2,s);
+        User v=new User("emailv","pass","Veronika" ,"Rama","cookieIdv",
+                "visitingProfessor",0,"Stret Atocha, 27","30005");
+        userService.save(lib2,v);
+
+        assert(d1.isAppropriateForSearch("Introduction"));
+    }
+
 
     /*@Test
     public void t1() {

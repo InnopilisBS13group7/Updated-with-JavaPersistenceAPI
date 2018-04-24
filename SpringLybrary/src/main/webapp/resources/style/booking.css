@@ -188,16 +188,16 @@
 	cursor:pointer;
 	font-family:'RobotoRegular';
 }
-.booking_search{
+#booking_search{
 	position:relative;
-	width:656px;
+	width:624px;
 	background-color:white;
 	box-shadow:0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
 	border:8px solid white;
 	margin-top:8px;
-	padding-right:144px;
+	padding-right:176px;
 }
-.booking_search_name{
+#booking_search_name{
 	position:relative;
 	width:100%;
 	border:none;
@@ -206,7 +206,7 @@
 	font-size:18px;
 	text-align:center;
 }
-.booking_search_select{
+#booking_search_select{
 	position:absolute;
 	font-family:'RobotoRegular';
 	font-size:18px;
@@ -219,14 +219,38 @@
 	outline:none;
 	margin-left:4px;
 }
-.search_booking_plus{
+#booking_available{
 	position:absolute;
-	color:#ff4751;
-	font-size:36px;
-	margin-top:-33px;
-	margin-left:816px;
+	border:2px solid #ff4751;
+	width:20px;
+	height:20px;
+	margin-top:-24px;
+	margin-left:776px;
+	z-index:1000;
 	cursor:pointer;
-	transform-style:preserve-3d;
-	transform-origin:50% 50% 50%;
-	transform:rotate(0deg);
+}
+#booking_available_id{
+	position:absolute;
+	background-color:#ff4751;
+	width:10px;
+	height:10px;
+	margin-left:783px;
+	margin-top:-17px;
+	border-radius:10px;
+}
+#booking_available_text{
+	position:absolute;
+	font-family:'RobotoRegular';
+	font-size:18px;
+	padding-left:8px;
+	padding-right:8px;
+	background-color:white;
+	color:#ff4751;
+	margin-left:8px;
+	margin-top:-3px;
+	width:111px;
+	height:24px;
+	box-shadow:0px 2px 10px rgba(0,0,0,0.5);
+	display:none;
+	opacity:0;
 }

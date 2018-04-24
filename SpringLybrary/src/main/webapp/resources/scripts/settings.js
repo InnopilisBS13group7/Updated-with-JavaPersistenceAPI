@@ -134,7 +134,7 @@ $(document).ready(function(){
 	});
 	$("#search_users").keypress(function(e){
 	    if(e.keyCode==13){
-	    	$.post("/searchUsers", {name:$(this).val()}, function(result){
+	    	$.post("/searchUsers", {text:$(this).val(), type:$("#settings_search_select").val()}, function(result){
       				alert(result)
     		});
 	    }

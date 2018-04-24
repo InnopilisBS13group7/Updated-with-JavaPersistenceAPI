@@ -32,7 +32,8 @@ public class AdminController extends Controller {
      * @return "true" string
      */
     @RequestMapping(value = "/addDocument", method = RequestMethod.POST)
-    public String addDocument(@RequestParam(value = "title", required = false, defaultValue = "Not found") String title,
+    public String addDocument(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
+                              @RequestParam(value = "title", required = false, defaultValue = "Not found") String title,
                               @RequestParam(value = "author", required = false, defaultValue = "Not found") String author,
                               @RequestParam(value = "publisher", required = false, defaultValue = "Not found") String publisher,
                               @RequestParam(value = "note", required = false, defaultValue = "Not found") String description,
@@ -40,8 +41,12 @@ public class AdminController extends Controller {
                               @RequestParam(value = "status", required = false, defaultValue = "Not found") String status,
                               @RequestParam(value = "edition", required = false, defaultValue = "Not found") String edition){
         Document d = new Document(title,author,status,0,description,"#","book",Integer.parseInt(year),publisher,edition,100);
-        documentService.save(d);
-        return "true";
+        User u=userService.getByCookie(cookieUserCode.getValue());
+        if(u.getStatus().equals("admin")||u.getStatus().equals("lib2")||u.getStatus().equals("lib3")){
+            documentService.save(d);
+            return "true";
+        }
+        return "false";
     }
 
     /**
@@ -187,10 +192,11 @@ public class AdminController extends Controller {
      * @return "true" string
      */
     @RequestMapping(value = "/queueRequest", method = RequestMethod.POST)
-    public String queueRequest(@RequestParam(value = "id", required = false, defaultValue = "Not found") String orderId){
+    public String queueRequest(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
+                               @RequestParam(value = "id", required = false, defaultValue = "Not found") String orderId){
         Order or = orderService.get(Integer.parseInt(orderId));
         Document d = documentService.get(or.getItemId());
-        return documentService.queueRequest(d);
+        return documentService.queueRequest(userService.getByCookie(cookieUserCode.getValue()),d);
     }
 
     @RequestMapping(value = "/searchUsers", method = RequestMethod.POST)
@@ -201,7 +207,7 @@ public class AdminController extends Controller {
 
         list = list.stream().filter(d -> d.isAppropriateForSearch(searchKey)).collect(Collectors.toList());
 
-        return createListOfUsersBlock(getAllUsers());
+        return createListOfUsersBlock(getAllUsers(),u);
     }
 
 }

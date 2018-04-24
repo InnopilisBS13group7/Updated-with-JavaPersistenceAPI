@@ -92,7 +92,29 @@ $(document).ready(function(){
     		$("#alert_back").slideDown(0).animate({"opacity":"1"}, 200);
     	});
   	});
-  	$(document).on('keypress', ".booking_search_name", function(e){
+  	$("#booking_search_name").keypress(function(e){
+  		var available = "False";
+  		if(parseInt($("#booking_available_id").css("width")) == 10)
+  			available = "True";
+  		if(e.keyCode==13){
+  			$.post("/bookingSearch", {text:$("#booking_search_name").val(), type:$("#booking_search_select").val(), available:available}, function(result){
+  				alert(result)
+  			});
+  		}
+  	});
+  	$("#booking_available").mouseenter(function(){
+  		$("#booking_available_text").slideDown(0).animate({"opacity":"1", "margin-left":"28px"}, 100);
+  	});
+  	$("#booking_available").mouseout(function(){
+  		$("#booking_available_text").animate({"opacity":"0", "margin-left":"8px"}, 100).slideUp(0);
+  	});
+  	$("#booking_available").click(function(){
+  		if(parseInt($("#booking_available_id").css("width")) == 10)
+  			$("#booking_available_id").animate({"margin-left":"788px", "margin-top":"-12px", "width":"0px", "height":"0px"}, 100);
+  		else
+  			$("#booking_available_id").animate({"margin-left":"783px", "margin-top":"-17px", "width":"10px", "height":"10px"}, 100);
+  	});
+  	/*$(document).on('keypress', ".booking_search_name", function(e){
 	    if(e.keyCode==13){
 	    	var search = new Array(16);
 	    	var i = 0;
@@ -114,5 +136,5 @@ $(document).ready(function(){
 		else if($(this).css("transform") == "matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)"){
 			$(this).parent().remove();
 		}
-	});
+	});*/
 });

@@ -43,7 +43,7 @@ public class BookingController extends Controller {
         if (isCookieWrong(cookieUserCode)) return "false";
         User u = getClientUserObject(getIdFromCookie(cookieUserCode.getValue()));
 
-        String divList = (u.getStatus().equals("admin") ? "<div id=new_doc_box>" +
+        String divList = ((u.getStatus().equals("admin")||u.getStatus().equals("lib2")||u.getStatus().equals("lib3") ) ? "<div id=new_doc_box>" +
                 "<div class=new_doc id=new_book>+ Add a new book</div>" +
                 "<div class=new_doc id=new_av>+ Add a new audio/video</div>" +
                 "<div class=add_block id=add_block_book>" +
@@ -63,9 +63,9 @@ public class BookingController extends Controller {
                 "</div>" : "");
 
         divList += "<div id=booking_search_box>" +
-                "<div class=booking_search>" +
-                "<input type=text class=booking_search_name placeholder=\"Search\" />" +
-                "<select class=booking_search_select>" +
+                "<div id=booking_search>" +
+                "<input type=text id=booking_search_name placeholder=\"Search\" />" +
+                "<select id=booking_search_select>" +
                 "<option>By title</option>" +
                 "<option>By title</option>" +
                 "<option>By author</option>" +
@@ -75,7 +75,10 @@ public class BookingController extends Controller {
                 "<option>By edition</option>" +
                 "<option>By note</option>" +
                 "</select>" +
-                "<div class=search_booking_plus>+</div>" +
+                "<div id=booking_available_id></div>" +
+                "<div id=booking_available>" +
+                "<div id=booking_available_text>Only available</div>" +
+                "</div>" +
                 "</div>" +
                 "</div>";
 

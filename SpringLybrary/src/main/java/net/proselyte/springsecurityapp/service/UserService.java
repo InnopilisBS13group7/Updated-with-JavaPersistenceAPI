@@ -14,10 +14,14 @@ public interface UserService {
 
     public User get(String email);
     public User getByCookie(String cookie);
-    public void add(User user);
-    public void save(User user);
+    public boolean add(User librarian, User NewuUser);
+    public void add(User NewUser);
+    public void save(User NewuUser);
+    public boolean save(User librarian, User NewUser);
     public void delete(int id);
-    public void delete(User user);
+    public boolean delete(User librarian,int id);
+    public void delete(User NewUser);
+    public boolean delete(User librarian, User NewUser);
 
     public String checkoutDocument(int documentId, int userId);
 

@@ -31,18 +31,23 @@ public class ActionController extends Controller {
      * @return settings page
      */
     @RequestMapping(value = "/settings", method = RequestMethod.POST)
-    public String settings(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode) {
+    public String settings(@CookieValue(value = "user_code", required = true) Cookie cookieUserCode) {
         if (isCookieWrong(cookieUserCode)) return "false";
 
         User u = getClientUserObject(getIdFromCookie(cookieUserCode.getValue()));
         String div = "<div id=settings_block>" +
-                (u.getStatus().equals("admin") ? "<div id=settings_type_menu>" +
+                (isLibrarian(u.getStatus()) ? "<div id=settings_type_menu>" +
                         "<div class=settings_type id=settings_type_profile>Profile</div>" +
                         "<div class=settings_type id=settings_type_users>Users</div>" +
                         "<div class=settings_type id=settings_type_orders>Orders</div>" +
-                        "<div class=settings_type id=settings_type_history>History</div>" +
+                        ((u.getStatus().equals("admin"))?"<div class=settings_type id=settings_type_history>History</div>" : "") +
                         "<div id=settings_type_line></div>" +
                         "</div>" : "") +
+
+
+
+
+
                 "<div class=settings_type_box id=settings_profile>" +
                 "<p class=setting_parameter_name><b>Change name</b></p>" +
                 "<input type=text class=settings_input id=settings_name placeholder=\"New name\" style=\"margin-top:-8px\" value=\"" + u.getName() + "\" />" +
@@ -58,11 +63,11 @@ public class ActionController extends Controller {
                 "<p class=setting_parameter_name style=\"margin-top:16px\"><b>Your type is "+u.getStatus()+"</b></p>" +
                 "<div id=settings_profile_save>Save</div>" +
                 "</div>" +
-                createListOfUsersBlock(getAllUsers()) +
+                createListOfUsersBlock(getAllUsers(),u) +
 
                 createListOfOrdersBlock(getAllOrders()) +
 
-                createListOfHistoryBlock(getAllHistory()) +
+                createListOfHistoryBlock(getAllHistory())+
 
                 "<div id=settings_alert>Changes are successfully saved</div>" +
 

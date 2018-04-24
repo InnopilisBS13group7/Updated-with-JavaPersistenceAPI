@@ -95,7 +95,7 @@ body{
 	text-align:center;
 	border:2px solid black;
 	padding:8px;
-	margin-left:129px;
+	margin-left:30px;
 	margin-top:8px;
 	cursor:pointer;
 	overflow:hidden;
@@ -110,7 +110,7 @@ body{
 	font-family:'RobotoRegular';
 	font-size:18px;
 	text-align:center;
-	margin-left:406px;
+	margin-left:304px;
 	margin-top:-26px;
 }
 #new_user_bottom{
@@ -348,4 +348,22 @@ body{
 	margin-left:649px;
 	margin-top:-29px;
 	color:#ff4751;
+}
+#settings_search_select{
+	position:absolute;
+	font-family:'RobotoRegular';
+	font-size:18px;
+	text-align:center;
+	color:white;
+	background-color:#ff4751;
+	padding-left:8px;
+	padding-right:8px;
+	border:none;
+	outline:none;
+	margin-left:578px;
+	margin-top:-32px;
+}
+#users_plug{
+	position:relative;
+	height:36px;
 }

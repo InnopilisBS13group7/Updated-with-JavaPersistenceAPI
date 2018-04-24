@@ -3,6 +3,7 @@ package net.proselyte.springsecurityapp.service;
 import net.proselyte.springsecurityapp.dao.DocumentRepository;
 import net.proselyte.springsecurityapp.dao.OrderRepository;
 import net.proselyte.springsecurityapp.model.Document;
+import net.proselyte.springsecurityapp.model.Log;
 import net.proselyte.springsecurityapp.model.Order;
 import net.proselyte.springsecurityapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import java.util.List;
 
 @Service
 public class DocumentServiceC implements DocumentService {
+
+    @Autowired
+    private LogService logService;
 
     @Autowired
     private DocumentRepository documentRepository;
@@ -33,7 +37,8 @@ public class DocumentServiceC implements DocumentService {
     }
 
     @Override
-    public Document getDocumentByOrderId() {
+    public Document
+    getDocumentByOrderId() {
         return null;
     }
 
@@ -44,12 +49,33 @@ public class DocumentServiceC implements DocumentService {
 
     @Override
     public void save(Document document) {
-        documentRepository.save(document);
+            documentRepository.save(document);
     }
 
     @Override
-    public void delete(Document document) {
+    public boolean save(User librarian,Document document) {
+        if(librarian.getStatus().equals("admin")|| librarian.getStatus().equals("lib2")||librarian.getStatus().equals("lib3")){
+            documentRepository.save(document);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void delete(Document document){
         documentRepository.delete(document);
+    }
+
+    @Override
+    public boolean deleteSome(User librarian,Document document, int k) {
+        logService.save(librarian,"deleted "+k+" of "+document.getTitle());
+        if(librarian.getStatus().equals("admin")|| librarian.getStatus().equals("lib3")){
+            if (document.getAmount()-k<1)
+                documentRepository.delete(document);
+            else document.setAmount(document.getAmount()-k);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -101,7 +127,9 @@ public class DocumentServiceC implements DocumentService {
     }
 
     @Override
-    public String queueRequest(Document d){
+    public String queueRequest(User librarian,Document d){
+        if(!(librarian.getStatus().equals("admin")|| librarian.getStatus().equals("lib2")||librarian.getStatus().equals("lib3")))
+            return "false";
         for (Order o: orderService.getOrdersByItemIdAndStatus(d.getId(),"open")){
             //послать уведомления чтобы вернули книжки
             o.setStatus("finished");
