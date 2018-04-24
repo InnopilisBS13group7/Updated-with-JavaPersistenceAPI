@@ -86,6 +86,9 @@ body{
 #settings_orders{
 	margin-left:1600px;
 }
+#settings_history{
+	margin-left:2400px;
+}
 #new_user{
 	position:relative;
 	width:246px;
@@ -335,14 +338,14 @@ body{
 	position:relative;
 	font-family:'RobotoRegular';
 	font-size:18px;
-	width:650px;
+	width:641px;
 	margin-top:0px;
 }
 .settings_history_list_date{
 	position:absolute;
 	font-family:'RobotoRegular';
 	font-size:18px;
-	margin-left:658px;
+	margin-left:649px;
 	margin-top:-29px;
 	color:#ff4751;
 }

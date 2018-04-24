@@ -308,11 +308,12 @@ public class Controller {
     }
 
     String getAllHistory(){
-        String div = "<div class=settings_history_list_box>\n" +
+        String div = "<div class=settings_type_box id=settings_history>" +
+                "<div class=settings_history_list_box>\n" +
                 "  <p class=settings_history_list_text>Etot pidor otsosal etomy pidory</p>\n" +
                 "  <p class=settings_history_list_date>21:03 14.88.20!8</p>\n" +
                 "</div>";
-        return div;
+        return div + "</div>";
     }
 
     /**
