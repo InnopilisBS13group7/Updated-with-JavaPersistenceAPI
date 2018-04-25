@@ -173,9 +173,14 @@ public class User {
                 "}\n";
     }
 
-    public boolean isAppropriateForSearch(String s){
+    public boolean isAppropriateForSearch(String s,String searchType){
         boolean check = false;
         String doc = id + ' ' + name + ' ' + surname + ' ' + status + ' ' + email + " " + address + ' ' + phone;
+        if (searchType.equals("name")) doc = name + " " + surname;
+        if (searchType.equals("address")) doc = address;
+        if (searchType.equals("phone")) doc = phone;
+        if (searchType.equals("id")) doc = ""+id;
+        if (searchType.equals("type")) doc = status;
         String[] l = doc.split(" ");
         for (String i : l){
             if (editdist(i,s) < 3) check = true;

@@ -1,6 +1,8 @@
 package net.proselyte.springsecurityapp.controller;
 
 import net.proselyte.springsecurityapp.model.User;
+import net.proselyte.springsecurityapp.service.LogServiceC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +16,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController
 public class EnterController extends net.proselyte.springsecurityapp.controller.Controller {
 
+    @Autowired
+    protected LogServiceC logServiceC=new LogServiceC();
 
     /**
      * checking if there is such user in the system and matching password, creating cookie
@@ -36,9 +40,10 @@ public class EnterController extends net.proselyte.springsecurityapp.controller.
         if (!passwordValidation) return "false";
         //create cookie----
 
+
         createNewCookieForUser(email, response);
 
-
+        logServiceC.save("user "+email+" entered");
         //-------create page
         return createUserCardPage(u.getId());
     }

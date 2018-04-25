@@ -3,6 +3,8 @@ package net.proselyte.springsecurityapp.controller;
 import net.proselyte.springsecurityapp.model.Document;
 import net.proselyte.springsecurityapp.model.Order;
 import net.proselyte.springsecurityapp.model.User;
+import net.proselyte.springsecurityapp.service.LogServiceC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -20,6 +22,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController
 public class BookingController extends Controller {
 
+    @Autowired
+    protected LogServiceC logServiceC;
+
     /**
      *checking requirements, setting keeping time,if ammount is 0 adding to waiting list, if not 0 - opening the order
      * @param id
@@ -29,8 +34,10 @@ public class BookingController extends Controller {
     @RequestMapping(value = "/takeItem", method = POST)
     public String takeItem(@RequestParam(value = "documentId", required = true, defaultValue = "0") String id,
                            @CookieValue(value = "user_code", required = false) Cookie cookieUserCode) {
+        User u=userService.getByCookie(cookieUserCode.getValue());
         int documentId = Integer.parseInt(id);
         int userId = getIdFromCookie(cookieUserCode.getValue());
+        logServiceC.save(u,"took document "+" "+documentId);
         return userService.checkoutDocument(documentId,userId);
     }
 
@@ -127,7 +134,9 @@ public class BookingController extends Controller {
     @RequestMapping(value = "/returnDocument", method = RequestMethod.POST)
     public String returnDocument(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
                                  @RequestParam(value = "orderId") String orderId){
+        User u=userService.getByCookie(cookieUserCode.getValue());
         if (isCookieWrong(cookieUserCode)) return "false";
+        logServiceC.save(u,"returned document "+" "+orderId);
         return documentService.returnDocument(Integer.parseInt(orderId));
     }
 
@@ -172,9 +181,9 @@ public class BookingController extends Controller {
         List<Document> list = getAllDocuments();
         String type = searchType.substring(3,searchType.length());
         type = type.toLowerCase();
-        System.out.println(type);
+        System.out.println("IT's search type: "+type);
         Predicate<Document> pr;
-        pr = isAvailable.equals("True")? d -> d.isAppropriateForSearch(searchText) && d.getAmount() > 0 : d -> d.isAppropriateForSearch(searchText);
+        pr = isAvailable.equals("True")? d -> d.isAppropriateForSearch(searchText,searchType) && d.getAmount() > 0 : d -> d.isAppropriateForSearch(searchText,searchType);
         list = list.stream().filter(pr).collect(Collectors.toList());
 
         return getListOfDocuments(list, u);

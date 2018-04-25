@@ -56,6 +56,7 @@ public class DocumentServiceC implements DocumentService {
     public boolean save(User librarian,Document document) {
         if(librarian.getStatus().equals("admin")|| librarian.getStatus().equals("lib2")||librarian.getStatus().equals("lib3")){
             documentRepository.save(document);
+            logService.save(librarian,"saved "+document.getTitle());
             return true;
         }
         return false;
@@ -68,11 +69,12 @@ public class DocumentServiceC implements DocumentService {
 
     @Override
     public boolean deleteSome(User librarian,Document document, int k) {
-        logService.save(librarian,"deleted "+k+" of "+document.getTitle());
+
         if(librarian.getStatus().equals("admin")|| librarian.getStatus().equals("lib3")){
             if (document.getAmount()-k<1)
                 documentRepository.delete(document);
             else document.setAmount(document.getAmount()-k);
+            logService.save(librarian,"deleted "+k+" of document "+document.getId());
             return true;
         }
         return false;
@@ -130,6 +132,7 @@ public class DocumentServiceC implements DocumentService {
     public String queueRequest(User librarian,Document d){
         if(!(librarian.getStatus().equals("admin")|| librarian.getStatus().equals("lib2")||librarian.getStatus().equals("lib3")))
             return "false";
+        logService.save("outstanding request for document "+d.getId());
         for (Order o: orderService.getOrdersByItemIdAndStatus(d.getId(),"open")){
             //TODO: послать уведомления чтобы вернули книжки
             o.setStatus("closed");

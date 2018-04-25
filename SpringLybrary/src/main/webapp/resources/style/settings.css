@@ -332,21 +332,21 @@ body{
 	width:784px;
 	margin-top:8px;
 	margin-left:8px;
-	padding-bottom:8px;
+	border-bottom:1px solid black;
 }
 .settings_history_list_text{
 	position:relative;
 	font-family:'RobotoRegular';
 	font-size:18px;
-	width:641px;
+	width:686px;
 	margin-top:0px;
 }
 .settings_history_list_date{
 	position:absolute;
 	font-family:'RobotoRegular';
 	font-size:18px;
-	margin-left:649px;
-	margin-top:-29px;
+	margin-left:694px;
+	margin-top:-37px;
 	color:#ff4751;
 }
 #settings_search_select{

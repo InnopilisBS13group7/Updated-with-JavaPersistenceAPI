@@ -1,6 +1,7 @@
 package net.proselyte.springsecurityapp.service;
 
 import net.proselyte.springsecurityapp.dao.DocumentRepository;
+import net.proselyte.springsecurityapp.dao.LogRepository;
 import net.proselyte.springsecurityapp.dao.OrderRepository;
 import net.proselyte.springsecurityapp.dao.UserRepository;
 import net.proselyte.springsecurityapp.model.Document;
@@ -15,10 +16,12 @@ import java.util.List;
 @Service
 public class UserServiceC implements UserService {
 
-
     private UserRepository userRepository;
     private DocumentRepository documentRepository;
     private OrderRepository orderRepository;
+
+    @Autowired
+    protected LogService logService;
 
     @Autowired
     public UserServiceC(UserRepository userRepository, DocumentRepository documentRepository,OrderRepository orderRepository) {
@@ -56,11 +59,13 @@ public class UserServiceC implements UserService {
     public boolean add(User librarian, User NewUser) {
         if(!NewUser.getStatus().equals("admin") || !hasAdmin()){
             userRepository.save(NewUser);
+            logService.save(librarian,"added user "+NewUser.getEmail());
             return true;
         }
 
         if(librarian.getStatus().equals("admin")||librarian.getStatus().equals("lib2")||librarian.getStatus().equals("lib3")){
             userRepository.save(NewUser);
+            logService.save(librarian,"added user "+NewUser.getEmail());
             return true;
         }
         return false;
@@ -69,18 +74,22 @@ public class UserServiceC implements UserService {
 
     @Override
     public void save( User newUser) {
+        if(newUser.getStatus().equals("admin") && hasAdmin())
+            return;
         userRepository.save(newUser);
     }
 
     @Override
     public boolean save(User librarian, User NewUser) {
         if(!NewUser.getStatus().equals("admin") || !hasAdmin()){
+            logService.save(librarian,"saved user "+NewUser.getEmail());
             userRepository.save(NewUser);
             return true;
         }
 
         if(librarian.getStatus().equals("admin")|| librarian.getStatus().equals("lib2")||librarian.getStatus().equals("lib3")||librarian.getStatus().equals("lib1")){
             userRepository.save(NewUser);
+            logService.save(librarian,"saved user "+NewUser.getEmail());
             return true;
         }
 
@@ -112,6 +121,7 @@ public class UserServiceC implements UserService {
     public boolean delete(User librarian,User user) {
         if(librarian.getStatus().equals("admin")||librarian.getStatus().equals("lib3")){
             userRepository.delete(user);
+            logService.save(librarian,"deleted user "+user.getEmail());
             return true;
         }
         else return false;
@@ -147,6 +157,7 @@ public class UserServiceC implements UserService {
         int currentAmount = d.getAmount();
         if (d.getStatus().equals("reference")) return "false";
         //-- some conditions
+        logService.save(userId+" checked out document "+documentId);
         long keepingTime = 0;
         String userStatus = u.getStatus();
         String documentStatus = d.getStatus();

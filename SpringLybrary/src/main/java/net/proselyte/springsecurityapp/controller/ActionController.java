@@ -2,6 +2,7 @@ package net.proselyte.springsecurityapp.controller;
 
 import net.proselyte.springsecurityapp.model.User;
 import net.proselyte.springsecurityapp.service.LogServiceC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -12,7 +13,8 @@ import java.util.List;
 public class ActionController extends Controller {
 
 
-    LogServiceC logServiceC=new LogServiceC();
+    @Autowired
+    protected LogServiceC logServiceC=new LogServiceC();
     /**
      * to go to profile page
      * @param cookieUserCode individual cookie of user
@@ -49,10 +51,6 @@ public class ActionController extends Controller {
                         ((u.getStatus().equals("admin"))?"<div class=settings_type id=settings_type_history>History</div>" : "") +
                         "<div id=settings_type_line></div>" +
                         "</div>" : "") +
-
-
-
-
 
                 "<div class=settings_type_box id=settings_profile>" +
                 "<p class=setting_parameter_name><b>Change name</b></p>" +

@@ -135,7 +135,15 @@ $(document).ready(function(){
 	$("#search_users").keypress(function(e){
 	    if(e.keyCode==13){
 	    	$.post("/searchUsers", {text:$(this).val(), type:$("#settings_search_select").val()}, function(result){
-      				alert(result)
+	    		alert(result);
+      			if(result == ""){
+  					$("#alert_message").text("Not found");
+                	$("#alert_back").slideDown(0).animate({"opacity":"1"}, 200);
+  				}
+  				else{
+  					$(".settings_list_users").remove();
+					$("#settings_users").append(result);
+  				}
     		});
 	    }
 	});

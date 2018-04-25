@@ -402,14 +402,32 @@ public class Test1 {
 
     @Test
     public void t8(){
-        t5();
+        t6();
         System.out.println();
         System.out.println();
+        String res="";
+        String expected="25.04.2018 admin  admin1 admin1 (46) added user emailLib1\n" +
+                "25.04.2018 admin  admin1 admin1 (46) added user emailLib2\n" +
+                "25.04.2018 admin  admin1 admin1 (46) added user emailLib3\n" +
+                "25.04.2018 lib2  lib2 lib2 (48) saved Introduction to Algorithms\n" +
+                "25.04.2018 lib2  lib2 lib2 (48) saved Design Patterns: Elements of Reusable Object-Oriented Software\n" +
+                "25.04.2018 lib2  lib2 lib2 (48) saved Null References: The Billion Dollar Mistake\n" +
+                "25.04.2018 lib2  lib2 lib2 (48) saved user email1\n" +
+                "25.04.2018 lib2  lib2 lib2 (48) saved user email2\n" +
+                "25.04.2018 lib2  lib2 lib2 (48) saved user email3\n" +
+                "25.04.2018 lib2  lib2 lib2 (48) saved user emails\n" +
+                "25.04.2018 lib2  lib2 lib2 (48) saved user emailv\n" +
+                "25.04.2018 50 checked out document 15\n" +
+                "25.04.2018 51 checked out document 15\n" +
+                "25.04.2018 53 checked out document 15\n" +
+                "25.04.2018 54 checked out document 15\n" +
+                "25.04.2018 52 checked out document 15\n";
         List<Log> logs=logService.getAllLogs();
         for (Log l: logs) {
-            System.out.println(l.getInfo());
+            res+=l.getDate()+" "+l.getInfo()+"\n";
+            System.out.println(l.getDate()+" "+l.getInfo());
         }
-
+        assertEquals(res,expected);
         System.out.println();
     }
 
@@ -468,7 +486,7 @@ public class Test1 {
                 "visitingProfessor",0,"Stret Atocha, 27","30005");
         userService.save(lib2,v);
 
-        assert(d1.isAppropriateForSearch("Introduction"));
+        assert(d1.isAppropriateForSearch("Introduction","title"));
     }
 
 

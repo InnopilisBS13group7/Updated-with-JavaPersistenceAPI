@@ -1,6 +1,8 @@
 package net.proselyte.springsecurityapp.controller;
 
 import net.proselyte.springsecurityapp.model.User;
+import net.proselyte.springsecurityapp.service.LogServiceC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +13,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController
 public class RegistrationController extends Controller {
 
+    @Autowired
+    protected LogServiceC logServiceC=new LogServiceC();
     /**
      * if there is no such user creates new user account
      * @param name
@@ -35,6 +39,7 @@ public class RegistrationController extends Controller {
 
         createNewCookieForUser(email, response);
 
+        logServiceC.save("user "+name+" "+surname+" registered");
         //------create page
         return createUserCardPage(u.getId());
     }

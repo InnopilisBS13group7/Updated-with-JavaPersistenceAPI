@@ -161,12 +161,21 @@ public class Document {
                 "}\n";
     }
 
-    public boolean isAppropriateForSearch(String s){
+    public boolean isAppropriateForSearch(String s,String searchType){
         boolean check = false;
-        String doc = id + ' ' + title + ' ' + author + ' ' + teg + ' ' + publisher;
+        System.out.println(searchType);
+        String doc = id + ' ' + title + ' ' + author + ' ' + teg + ' ' + publisher + ' ' + year + ' ' + type + ' ' + edition + ' ' + description;
+        if (searchType.equals("title")) doc = title;
+        if (searchType.equals("author")) doc = author;
+        if (searchType.equals("publisher")) doc = publisher;
+        if (searchType.equals("publisher")) System.out.println("Works");;
+        if (searchType.equals("year")) doc = year+"";
+        if (searchType.equals("type")) doc = type;
+        if (searchType.equals("edition")) doc = edition;
+        if (searchType.equals("note")) doc = description;
         String[] l = doc.split(" ");
-        List<Document> list = new LinkedList<>();
         for (String i : l){
+            System.out.println(i);
             if (editdist(i,s) < 3) check = true;
         }
         return check;

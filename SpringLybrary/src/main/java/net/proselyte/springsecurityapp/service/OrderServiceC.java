@@ -16,6 +16,9 @@ import java.util.List;
 public class OrderServiceC implements OrderService {
 
     @Autowired
+    protected LogService logService;
+
+    @Autowired
     private OrderRepository orderRepository;
 
     @Autowired
@@ -63,6 +66,7 @@ public class OrderServiceC implements OrderService {
 
     @Override
     public List<Order> getQueue(int documentId) {
+
         return orderRepository.findAllByItemIdAndStatus(documentId,"queue");
     }
 

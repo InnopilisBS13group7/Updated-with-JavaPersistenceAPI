@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @RestController
@@ -241,13 +242,17 @@ public class AdminController extends Controller {
      */
     @RequestMapping(value = "/searchUsers", method = RequestMethod.POST)
     public String searchUsers(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
-                                @RequestParam(value = "name") String searchKey){
+                              @RequestParam(value = "text") String searchText,
+                              @RequestParam(value = "type") String searchType){
         User u = getClientUserObject(getIdFromCookie(cookieUserCode.getValue()));
         List<User> list = getAllUsers();
+        String type = searchType.substring(3,searchType.length());
+        type = type.toLowerCase();
+        Predicate<User> pr;
+        pr = d -> d.isAppropriateForSearch(searchText,searchType);
+        list = list.stream().filter(pr).collect(Collectors.toList());
 
-        list = list.stream().filter(d -> d.isAppropriateForSearch(searchKey)).collect(Collectors.toList());
-
-        return createListOfUsersBlock(getAllUsers(),u);
+        return usersListForSettings(list,u);
     }
 
 }

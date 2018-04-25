@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="10" failures="1" name="net.proselyte.springsecurityapp.Test1" time="0.884" errors="0" skipped="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="java.vm.version" value="9.0.4+11"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-9.0.4\bin"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\Semyon\Documents\GitHub\Updated-with-JavaPersistenceAPI\SpringLybrary"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="path.separator" value=";"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="RU"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\Semyon\Documents\GitHub\Updated-with-JavaPersistenceAPI\SpringLybrary"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="java.runtime.version" value="9.0.4+11"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\Semyon\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="classworlds.conf" value="C:\Program Files\apache-maven-3.5.2\bin\..\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1251"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-9.0.4\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Common Files\Autodesk Shared\;C:\Program Files\Git\cmd;C:\Users\Semyon\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\Semyon\AppData\Local\Programs\Python\Python36\;C:\Users\Semyon\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk-9.0.4\bin;C:\Program Files\apache-maven-3.5.2\bin;C:\Users\Semyon\AppData\Local\GitHubDesktop\bin;C:\MinGW\bin;;C:\intelFPGA_pro\17.1\modelsim_ase\win32aloem;."/>
+    <property name="maven.conf" value="C:\Program Files\apache-maven-3.5.2\bin\../conf"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="java.class.version" value="53.0"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="library.jansi.path" value="C:\Program Files\apache-maven-3.5.2\bin\..\lib\jansi-native"/>
+    <property name="user.home" value="C:\Users\Semyon"/>
+    <property name="user.timezone" value="Europe/Moscow"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="file.encoding" value="Cp1251"/>
+    <property name="java.specification.version" value="9"/>
+    <property name="user.name" value="Semyon"/>
+    <property name="java.class.path" value="C:\Program Files\apache-maven-3.5.2\bin\..\boot\plexus-classworlds-2.5.2.jar"/>
+    <property name="java.vm.specification.version" value="9"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-9.0.4"/>
+    <property name="user.language" value="ru"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="9.0.4"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="sun.stderr.encoding" value="cp866"/>
+    <property name="maven.home" value="C:\Program Files\apache-maven-3.5.2\bin\.."/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.java.com/bugreport/"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.stdout.encoding" value="cp866"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase classname="net.proselyte.springsecurityapp.Test1" name="t1" time="0.257">
+    <failure message="expected:&lt;null&gt; but was:&lt;User{id=2, email=&apos;emailadmin2&apos;, password=&apos;pass&apos;, name=&apos;admin2&apos;, surname=&apos;admin2&apos;, cookieId=&apos;cookieIdadmin2&apos;, status=&apos;admin&apos;, fine=0, address=&apos;&apos;, phone=&apos;&apos;}
+&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;null&gt; but was:&lt;User{id=2, email=&apos;emailadmin2&apos;, password=&apos;pass&apos;, name=&apos;admin2&apos;, surname=&apos;admin2&apos;, cookieId=&apos;cookieIdadmin2&apos;, status=&apos;admin&apos;, fine=0, address=&apos;&apos;, phone=&apos;&apos;}
+&gt;
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at net.proselyte.springsecurityapp.Test1.t1(Test1.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:254)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:193)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+</failure>
+    <system-out>17:01:56.478 [main] INFO  o.s.t.c.w.WebTestContextBootstrapper#259 Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+17:01:56.518 [main] INFO  o.s.t.c.w.WebTestContextBootstrapper#185 Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@15888343, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@33ecda92, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@14fc5f04, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6e2829c7, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3feb2dda, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6a8658ff]
+17:01:56.678 [main] INFO  o.s.c.s.GenericApplicationContext#574 Refreshing org.springframework.context.support.GenericApplicationContext@13d73f29: startup date [Wed Apr 25 17:01:56 MSK 2018]; root of context hierarchy
+17:01:57.319 [main] INFO  o.s.j.d.DriverManagerDataSource#133 Loaded JDBC driver: org.h2.Driver
+17:01:57.414 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean#334 Building JPA container EntityManagerFactory for persistence unit &apos;default&apos;
+Hibernate: drop table documents if exists
+Hibernate: drop table log if exists
+Hibernate: drop table orders if exists
+Hibernate: drop table users if exists
+Hibernate: create table documents (id integer generated by default as identity, amount integer, author varchar(255), description varchar(255), edition varchar(255), price integer, publisher varchar(255), status varchar(255), teg varchar(255), title varchar(255), type varchar(255), year integer, primary key (id))
+Hibernate: create table log (id integer generated by default as identity, date varchar(255), info varchar(255), primary key (id))
+Hibernate: create table orders (id integer generated by default as identity, finishTime bigint, itemId integer, startTime bigint, status varchar(255), userId integer, primary key (id))
+Hibernate: create table users (id integer generated by default as identity, address varchar(255), cookieId varchar(255), email varchar(255), fine integer, name varchar(255), password varchar(255), phone varchar(255), status varchar(255), surname varchar(255), primary key (id))
+17:01:59.102 [main] INFO  o.s.t.c.t.TransactionContext#101 Began transaction (1) for test context [DefaultTestContext@52f6900a testClass = Test1, testInstance = net.proselyte.springsecurityapp.Test1@7bbcf6f0, testMethod = t1@Test1, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@432af457 testClass = Test1, locations = &apos;{}&apos;, classes = &apos;{class net.proselyte.springsecurityapp.config.jp, class net.proselyte.springsecurityapp.service.UserServiceC, class net.proselyte.springsecurityapp.service.DocumentServiceC, class net.proselyte.springsecurityapp.service.OrderServiceC, class net.proselyte.springsecurityapp.service.LogServiceC}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, resourceBasePath = &apos;src/main/webapp&apos;, contextLoader = &apos;org.springframework.test.context.support.AnnotationConfigContextLoader&apos;, parent = [null]]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@2b80e5a9]; rollback [true]
+Hibernate: insert into users (id, address, cookieId, email, fine, name, password, phone, status, surname) values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: insert into users (id, address, cookieId, email, fine, name, password, phone, status, surname) values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: select user0_.id as id1_3_, user0_.address as address2_3_, user0_.cookieId as cookieId3_3_, user0_.email as email4_3_, user0_.fine as fine5_3_, user0_.name as name6_3_, user0_.password as password7_3_, user0_.phone as phone8_3_, user0_.status as status9_3_, user0_.surname as surname10_3_ from users user0_ where user0_.email=?
+17:01:59.336 [main] INFO  o.s.t.c.t.TransactionContext#136 Rolled back transaction for test context [DefaultTestContext@52f6900a testClass = Test1, testInstance = net.proselyte.springsecurityapp.Test1@7bbcf6f0, testMethod = t1@Test1, testException = java.lang.AssertionError: expected:&lt;null&gt; but was:&lt;User{id=2, email=&apos;emailadmin2&apos;, password=&apos;pass&apos;, name=&apos;admin2&apos;, surname=&apos;admin2&apos;, cookieId=&apos;cookieIdadmin2&apos;, status=&apos;admin&apos;, fine=0, address=&apos;&apos;, phone=&apos;&apos;}
+&gt;, mergedContextConfiguration = [WebMergedContextConfiguration@432af457 testClass = Test1, locations = &apos;{}&apos;, classes = &apos;{class net.proselyte.springsecurityapp.config.jp, class net.proselyte.springsecurityapp.service.UserServiceC, class net.proselyte.springsecurityapp.service.DocumentServiceC, class net.proselyte.springsecurityapp.service.OrderServiceC, class net.proselyte.springsecurityapp.service.LogServiceC}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, resourceBasePath = &apos;src/main/webapp&apos;, contextLoader = &apos;org.springframework.test.context.support.AnnotationConfigContextLoader&apos;, parent = [null]]].
+</system-out>
+  </testcase>
+  <testcase classname="net.proselyte.springsecurityapp.Test1" name="t2" time="0.069"/>
+  <testcase classname="net.proselyte.springsecurityapp.Test1" name="t3" time="0.035"/>
+  <testcase classname="net.proselyte.springsecurityapp.Test1" name="t4" time="0.036"/>
+  <testcase classname="net.proselyte.springsecurityapp.Test1" name="t5" time="0.073"/>
+  <testcase classname="net.proselyte.springsecurityapp.Test1" name="t6" time="0.119"/>
+  <testcase classname="net.proselyte.springsecurityapp.Test1" name="t7" time="0.159"/>
+  <testcase classname="net.proselyte.springsecurityapp.Test1" name="t8" time="0.119"/>
+  <testcase classname="net.proselyte.springsecurityapp.Test1" name="t9" time="0.001"/>
+  <testcase classname="net.proselyte.springsecurityapp.Test1" name="t10" time="0.016"/>
+</testsuite>

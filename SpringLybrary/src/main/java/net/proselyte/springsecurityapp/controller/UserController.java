@@ -3,6 +3,8 @@ package net.proselyte.springsecurityapp.controller;
 import net.proselyte.springsecurityapp.model.Document;
 import net.proselyte.springsecurityapp.model.Order;
 import net.proselyte.springsecurityapp.model.User;
+import net.proselyte.springsecurityapp.service.LogServiceC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
@@ -12,6 +14,9 @@ import java.util.Date;
 @RestController
 public class UserController extends Controller {
 
+
+    @Autowired
+    protected LogServiceC logServiceC=new LogServiceC();
 
     /**
      * change your profile info
@@ -54,11 +59,13 @@ public class UserController extends Controller {
                 u.setAddress(address);
                 u.setPhone(phone);
             }
+            logServiceC.save(u,"modified profile settings");
         } else {
             u.setName(name);
             u.setSurname(surname);
             u.setAddress(address);
             u.setPhone(phone);
+            logServiceC.save(u,"modified profile settings");
         }
         userService.save(u);
         return "true";
@@ -70,7 +77,8 @@ public class UserController extends Controller {
      * @return true if successfully, false else
      */
     @RequestMapping(value = "/acceptDocument", method = RequestMethod.POST)
-    public String acceptDocument(@RequestParam(value = "orderId", required = false, defaultValue = "Not found") String orderId){
+    public String acceptDocument(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
+                                 @RequestParam(value = "orderId", required = false, defaultValue = "Not found") String orderId){
 
         Order or = orderService.get(Integer.parseInt(orderId));
         or.setStatus("open");
@@ -83,6 +91,8 @@ public class UserController extends Controller {
         or.setStartTime(start);
         documentService.save(d);
         orderService.save(or);
+        User u = getClientUserObject(getIdFromCookie(cookieUserCode.getValue()));
+        logServiceC.save(u,"accepted document");
         return "true";
     }
 
@@ -97,6 +107,8 @@ public class UserController extends Controller {
     public String renewDocument(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
                                 @RequestParam(value = "orderId") String orderId){
         if (isCookieWrong(cookieUserCode)) return "false";
+        User u = getClientUserObject(getIdFromCookie(cookieUserCode.getValue()));
+        logServiceC.save(u,"renewed document");
         return userService.renewDocument(Integer.parseInt(orderId));
     }
 }

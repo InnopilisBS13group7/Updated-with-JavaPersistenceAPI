@@ -109,7 +109,14 @@ $(document).ready(function(){
   			available = "True";
   		if(e.keyCode==13){
   			$.post("/bookingSearch", {text:$("#booking_search_name").val(), type:$("#booking_search_select").val(), available:available}, function(result){
-  				alert(result)
+  				if(result == ""){
+  					$("#alert_message").text("Not found");
+                	$("#alert_back").slideDown(0).animate({"opacity":"1"}, 200);
+  				}
+  				else{
+  					$(".books_box").remove();
+					$("#more_box20").append(result);
+  				}
   			});
   		}
   	});

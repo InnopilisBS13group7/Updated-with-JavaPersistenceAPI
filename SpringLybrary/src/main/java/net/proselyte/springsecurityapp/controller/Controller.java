@@ -292,9 +292,10 @@ public class Controller {
                 "</div>":"<div id=users_plug></div>") +
                 "<input id=search_users placeholder=\"Search\" />" +
                 "<select id=settings_search_select>" +
+                "<option>By all</option>" +
                 "<option>By name</option>" +
                 "<option>By address</option>" +
-                "<option>By phone number</option>" +
+                "<option>By phone</option>" +
                 "<option>By id</option>" +
                 "<option>By type</option>" +
                 "</select>";
@@ -325,12 +326,40 @@ public class Controller {
         return div + "</div>";
     }
 
+    protected String usersListForSettings(List<User> users, User host){
+        String div = "";
+        for (User u : users) {
+            div += "<div class=settings_list_users>" +
+                    "<img src=/resources/img/avatars/1.jpg width=106px height=106px class=settings_users_list_avatar />" +
+                    "<div class=settings_users_list_specs_box>" +
+                    "<b>Name: </b><input type=text class=settings_inputs_users_name placeholder=\"Name\" value=\""+ u.getName() + " " + u.getSurname() +"\" /></br>" +
+                    "<b>Address: </b><input type=text class=settings_inputs_users_adress placeholder=\"Address\" value=\""+u.getAddress()+"\" /></br>" +
+                    "<b>Phone number: </b><input type=text class=settings_inputs_users_phone placeholder=\"Phone number\" value=\""+u.getPhone()+"\" /></br>" +
+                    "<b>id: </b>"+u.getId()+"</br>" +
+                    "<b>Type: </b><select class=settings_inputs_users_type >\" +\n" +
+                    "<option>" + u.getStatus() + "</option>" +"\n" +
+                    "\"<option>lib1</option>\" +\n" +
+                    "\"<option>lib2</option>\" +\n" +
+                    "\"<option>lib3</option>\" +\n" +
+                    "\"<option>student</option>\" +\n" +
+                    "\"<option>visitingProfessor</option>\" +\n" +
+                    "\"<option>instructor</option>\" +\n" +
+                    "\"<option>ta</option>\" +\n" +
+                    "\"<option>professor</option>\" +\n" +
+                    "\"</select></br>" +
+                    "</div>" +
+                    ((host.getStatus().equals("admin") ||host.getStatus().equals("lib3"))?"<div class=settings_users_list_delete id=" + u.getId() + ">Delete</div>" : "") +
+                    (isLibrarian(host.getStatus())?"<div class=settings_users_list_modify id=" + u.getId() + ">Save</div>":"") +
+                    "</div>";
+        }
+        return div;
+    }
+
     boolean isLibrarian(String s){
         return s.equals("admin") || s.equals("lib1") || s.equals("lib2")|| s.equals("lib3");
     }
 
     String createListOfHistoryBlock(String history){
-        System.out.println(history);
         return history;
     }
 
