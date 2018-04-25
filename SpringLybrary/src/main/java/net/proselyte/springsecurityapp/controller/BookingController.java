@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -53,11 +54,13 @@ public class BookingController extends Controller {
                 "<input class=add_inputs id=add_book_year placeholder=Year />" +
                 "<input class=add_inputs id=add_book_edition placeholder=Edition />" +
                 "<input class=add_inputs id=add_book_note placeholder=Note />" +
+                "<input class=add_inputs id=add_book_number placeholder=\"Number of copies\" />" +
                 "<div class=add_save id=add_save_book>Add</div>" +
                 "</div>" +
                 "<div class=add_block id=add_block_av>" +
                 "<input class=add_inputs id=add_av_title placeholder=Title />" +
                 "<input class=add_inputs id=add_av_author placeholder=Authors />" +
+                "<input class=add_inputs id=add_av_number placeholder=\"Number of copies\" />" +
                 "<div class=add_save id=add_save_av>Add</div>" +
                 "</div>" +
                 "</div>" : "");
@@ -107,6 +110,13 @@ public class BookingController extends Controller {
         return divList;
     }
 
+    @RequestMapping(value = "/bookingUpdate", method = POST)
+    public String bookingUpdate(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode) {
+        if (isCookieWrong(cookieUserCode)) return "false";
+        User u = getClientUserObject(getIdFromCookie(cookieUserCode.getValue()));
+        String divList =  getListOfDocuments(getAllDocuments(), u);
+        return divList;
+    }
 
     /**
      * returning document to the system, finishing the order
@@ -155,11 +165,17 @@ public class BookingController extends Controller {
 
     @RequestMapping(value = "/bookingSearch", method = RequestMethod.POST)
     public String bookingSearch(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
-                            @RequestParam(value = "name") String searchKey){
+                                @RequestParam(value = "text") String searchText,
+                                @RequestParam(value = "type") String searchType,
+                                @RequestParam(value = "available") String isAvailable){
         User u = getClientUserObject(getIdFromCookie(cookieUserCode.getValue()));
         List<Document> list = getAllDocuments();
-
-        list = list.stream().filter(d -> d.isAppropriateForSearch(searchKey)).collect(Collectors.toList());
+        String type = searchType.substring(3,searchType.length());
+        type = type.toLowerCase();
+        System.out.println(type);
+        Predicate<Document> pr;
+        pr = isAvailable.equals("True")? d -> d.isAppropriateForSearch(searchText) && d.getAmount() > 0 : d -> d.isAppropriateForSearch(searchText);
+        list = list.stream().filter(pr).collect(Collectors.toList());
 
         return getListOfDocuments(list, u);
     }

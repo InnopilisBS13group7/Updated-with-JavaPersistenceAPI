@@ -28,7 +28,7 @@ public class RegistrationController extends Controller {
                                @RequestParam(value = "password", required = false, defaultValue = "Not found") String password,
                                HttpServletResponse response) throws SQLException {
 
-        Boolean check = addNewUserToTheSystem(name, surname, email, password,"disabled");
+        Boolean check = addNewUserToTheSystem(name, surname, email, password,"student");
         if (!check) return "false";
         User u = userService.get(email);
         //-------create Cookie

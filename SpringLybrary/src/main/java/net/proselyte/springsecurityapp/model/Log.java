@@ -20,6 +20,9 @@ public class Log {
         this.info=info;
     }
 
+    public Log() {
+    }
+
     public String getInfo(){
         return this.info;
     }

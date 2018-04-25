@@ -48,9 +48,8 @@ public class UserServiceC implements UserService {
     }
 
     @Override
-    public void add(User NewUser) {
-        if(!NewUser.getStatus().equals("admin") || !hasAdmin())
-            userRepository.save(NewUser);
+    public void add(User newUser) {
+        userRepository.save(newUser);
     }
 
     @Override
@@ -69,9 +68,8 @@ public class UserServiceC implements UserService {
     }
 
     @Override
-    public void save( User NewUser) {
-        if(!NewUser.getStatus().equals("admin") || !hasAdmin())
-            userRepository.save(NewUser);
+    public void save( User newUser) {
+        userRepository.save(newUser);
     }
 
     @Override

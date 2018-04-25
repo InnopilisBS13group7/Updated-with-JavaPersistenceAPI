@@ -1,6 +1,7 @@
 package net.proselyte.springsecurityapp.controller;
 
 import net.proselyte.springsecurityapp.model.User;
+import net.proselyte.springsecurityapp.service.LogServiceC;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -10,6 +11,8 @@ import java.util.List;
 @RestController
 public class ActionController extends Controller {
 
+
+    LogServiceC logServiceC=new LogServiceC();
     /**
      * to go to profile page
      * @param cookieUserCode individual cookie of user
@@ -32,8 +35,11 @@ public class ActionController extends Controller {
      */
     @RequestMapping(value = "/settings", method = RequestMethod.POST)
     public String settings(@CookieValue(value = "user_code", required = true) Cookie cookieUserCode) {
-        if (isCookieWrong(cookieUserCode)) return "false";
-
+        /*if (isCookieWrong(cookieUserCode)){
+            System.out.println("NENE");
+            return "false";
+        }
+*/
         User u = getClientUserObject(getIdFromCookie(cookieUserCode.getValue()));
         String div = "<div id=settings_block>" +
                 (isLibrarian(u.getStatus()) ? "<div id=settings_type_menu>" +

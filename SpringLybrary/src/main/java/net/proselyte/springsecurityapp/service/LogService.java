@@ -10,4 +10,6 @@ import java.util.List;
 public interface LogService {
     public List<Log> getAllLogs();
     public void save(User user, String s);
+    public void save(String s);
+
 }

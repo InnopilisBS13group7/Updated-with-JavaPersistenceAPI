@@ -29,7 +29,13 @@ public class LogServiceC implements LogService{
 
     @Override
     public void save(User user,String s){
-        s=user.getStatus()+" "+" "+user.getName()+" "+user.getSurname()+" with email "+user.getEmail()+ " "+s;
+        s=user.getStatus()+" "+" "+user.getName()+" "+user.getSurname()+" ("+user.getId()+ ") "+s;
+        Log log=new Log(getDate(),s);
+        logRepository.save(log);
+    }
+
+    @Override
+    public void save(String s){
         Log log=new Log(getDate(),s);
         logRepository.save(log);
     }

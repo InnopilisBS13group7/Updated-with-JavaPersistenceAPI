@@ -131,8 +131,8 @@ public class DocumentServiceC implements DocumentService {
         if(!(librarian.getStatus().equals("admin")|| librarian.getStatus().equals("lib2")||librarian.getStatus().equals("lib3")))
             return "false";
         for (Order o: orderService.getOrdersByItemIdAndStatus(d.getId(),"open")){
-            //послать уведомления чтобы вернули книжки
-            o.setStatus("finished");
+            //TODO: послать уведомления чтобы вернули книжки
+            o.setStatus("closed");
             o.setFinishTime(System.currentTimeMillis());
             orderRepository.save(o);
         }
@@ -140,7 +140,9 @@ public class DocumentServiceC implements DocumentService {
 
         //deieting queue
         for (Order o:orderService.getQueue(d.getId())){
-            orderService.delete(o);
+            o.setStatus("closed");
+            o.setFinishTime(System.currentTimeMillis());
+            orderRepository.save(o);
         }
         return "true";
     }

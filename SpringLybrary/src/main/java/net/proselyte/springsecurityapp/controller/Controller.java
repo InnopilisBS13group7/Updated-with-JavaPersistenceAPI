@@ -2,9 +2,11 @@ package net.proselyte.springsecurityapp.controller;
 
 import net.proselyte.springsecurityapp.dao.DocumentRepository;
 import net.proselyte.springsecurityapp.model.Document;
+import net.proselyte.springsecurityapp.model.Log;
 import net.proselyte.springsecurityapp.model.Order;
 import net.proselyte.springsecurityapp.model.User;
 import net.proselyte.springsecurityapp.service.DocumentService;
+import net.proselyte.springsecurityapp.service.LogServiceC;
 import net.proselyte.springsecurityapp.service.OrderService;
 import net.proselyte.springsecurityapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ import java.util.*;
 
 @org.springframework.stereotype.Controller
 public class Controller {
+
+    @Autowired
+    protected LogServiceC logServiceC;
 
     @Autowired
     protected UserService userService;
@@ -325,15 +330,21 @@ public class Controller {
     }
 
     String createListOfHistoryBlock(String history){
+        System.out.println(history);
         return history;
     }
 
     String getAllHistory(){
-        String div = "<div class=settings_type_box id=settings_history>" +
-                "<div class=settings_history_list_box>\n" +
-                "  <p class=settings_history_list_text>Etot pidor otsosal etomy pidory</p>\n" +
-                "  <p class=settings_history_list_date>21:03 14.88.20!8</p>\n" +
-                "</div>";
+        String div="";
+        List<Log> logs = logServiceC.getAllLogs();
+        div = "<div class=settings_type_box id=settings_history>";
+        for (Log l:logs) {
+            div += "<div class=settings_history_list_box>\n" +
+                    "  <p class=settings_history_list_text>"+l.getInfo() +"</p>\n"  +
+                    "  <p class=settings_history_list_date>"+l.getDate()+"</p>\n" +
+                    "</div>";
+        }
+
         return div + "</div>";
     }
 
