@@ -468,9 +468,9 @@ public class Controller {
                             "Edition:&nbsp;<input class=books_inputs_edition placeholder=\"Edition\" value=\"" + d.getEdition() + "\" /></br>" +
                             "Note:&nbsp;<input class=books_inputs_note placeholder=\"Note\" value=\"" + d.getDescription() + "\" /></br>" : "") +
                     "</p>" +
-                    "<div class=deleteit id=" + d.getId() + ">Delete</div>" +
+                    ((u.getStatus().equals("admin") || u.getStatus().equals("lib3"))?"<div class=deleteit id=" + d.getId() + ">Delete</div>":"") +
                     "<div class=bookit id=" + d.getId() + ">Book</div>" +
-                    ((u.getStatus().equals("admin"))?(
+                    ((u.getStatus().equals("admin") || isLibrarian(u.getStatus()))?(
                             "<div class=modifyit id=" + d.getId() + ">Modify</div>" +
                                     "<div class=queue id=" + d.getId() + ">Queue</div>"):"") +
                     "<div class=queue_box></div>" +

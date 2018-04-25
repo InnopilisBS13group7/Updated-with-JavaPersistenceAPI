@@ -12,9 +12,6 @@ import java.util.List;
 @RestController
 public class ActionController extends Controller {
 
-
-    @Autowired
-    protected LogServiceC logServiceC=new LogServiceC();
     /**
      * to go to profile page
      * @param cookieUserCode individual cookie of user

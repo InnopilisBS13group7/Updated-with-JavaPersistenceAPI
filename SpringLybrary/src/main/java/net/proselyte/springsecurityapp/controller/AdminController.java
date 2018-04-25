@@ -237,7 +237,7 @@ public class AdminController extends Controller {
     /**
      * searching users
      * @param cookieUserCode
-     * @param searchKey
+     * @param searchText
      * @return
      */
     @RequestMapping(value = "/searchUsers", method = RequestMethod.POST)

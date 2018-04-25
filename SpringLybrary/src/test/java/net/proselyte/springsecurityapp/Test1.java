@@ -19,13 +19,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.test.context.web.WebAppConfiguration;
-
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
-
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -433,7 +430,59 @@ public class Test1 {
 
     @Test
     public void t9(){
+        User admin1 = new User("emailadmin1","pass","admin1","admin1", "cookieIdadmin1",
+                "admin",0,"","");
+        userService.save(admin1);
+        User lib1 = new User("emailLib1","pass","lib1","lib1", "cookieIdlib1",
+                "lib1",0,"","");
+        User lib2 = new User("emailLib2","pass","lib2","lib2", "cookieIdlib2",
+                "lib2",0,"","");
+        User lib3 = new User("emailLib3","pass","lib3","lib3", "cookieIdlib3",
+                "lib3",0,"","");
+        userService.add(admin1,lib1);
+        userService.add(admin1,lib2);
+        userService.add(admin1,lib3);
 
+        Document d1=new Document("Introduction to Algorithms",
+                "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein",
+                "book",3,"5000","","book",2009,"MIT Press","Third edition",5000);
+        documentService.save(lib2,d1);
+
+
+        Document d2=new Document("Design Patterns: Elements of Reusable Object-Oriented Software",
+                "Erich Gamma, Ralph Johnson, John Vlissides, Richard Helm",
+                "bestseller",3,"1700","","book",2003,
+                "Addison-Wesley Professional","First edition",1700);
+
+        documentService.save(lib2,d2);
+
+        Document d3=new Document("Null References: The Billion Dollar Mistake",
+                "Tony Hoare","",3,"700","","",0,"","",700);
+        documentService.save(lib2,d3);
+
+        assertEquals(3,documentService.getAllDocuments().size());
+
+        User p1 = new User("email1","pass","Sergey","Afonso", "cookieId1",
+                "professor",0,"Via Margutta, 3","30001");
+        userService.save(lib2,p1);
+        User p2 = new User("email2","pass","Nadia", "Teixeira","cookieId2",
+                "professor",0,"Via Sacra, 13","30002");
+        userService.save(lib2,p2);
+        User p3=new User("email3","pass","Elvira", "Espindola","cookieId3",
+                "professor",0,"Via del Corso, 22","30003");
+        userService.save(lib2,p3);
+        User s=new User("emails","pass","Andrey", "Velo","cookieIds",
+                "student",0,"Avenida Mazatlan 250","30004");
+        userService.save(lib2,s);
+        User v=new User("emailv","pass","Veronika" ,"Rama","cookieIdv",
+                "visitingProfessor",0,"Stret Atocha, 27","30005");
+        userService.save(lib2,v);
+
+        assertEquals(9,userService.getAllusers().size());
+        assertEquals(3,documentService.getAllDocuments().size());
+
+        documentService.deleteSome(lib3,d1,1);
+        assertEquals(2,d1.getAmount());
     }
 
     @Test

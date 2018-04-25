@@ -76,6 +76,7 @@ public class BookingController extends Controller {
                 "<div id=booking_search>" +
                 "<input type=text id=booking_search_name placeholder=\"Search\" />" +
                 "<select id=booking_search_select>" +
+                "<option>By all</option>" +
                 "<option>By title</option>" +
                 "<option>By title</option>" +
                 "<option>By author</option>" +
@@ -145,6 +146,7 @@ public class BookingController extends Controller {
     public String goToQueue(@CookieValue(value = "user_code", required = false) Cookie cookieUserCode,
                             @RequestParam(value = "id") String documentId){
         if (isCookieWrong(cookieUserCode)) return "false";
+        User host=userService.getByCookie(cookieUserCode.getValue());
         Document d = documentService.get(Integer.parseInt(documentId));
         List<Order> orderQueue = new LinkedList<>();
         for (User u : getQueueForDocument(d)){
@@ -165,7 +167,7 @@ public class BookingController extends Controller {
                     "<b>Fine: </b>" + getFine(or,d) + "</br>" +
                     "<b>Return date:</b>" + getDate(or.getFinishTime()) +
                     "</div>" +
-                    "<div class=otdat id="+ or.getId()+">Queue Request</div>" +
+                    ((host.getStatus().equals("admin"))?"<div class=otdat id="+ or.getId()+">Queue Request</div>":"") +
                     "</div>";
             i++;
         }
